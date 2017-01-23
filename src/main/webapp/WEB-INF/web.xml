@@ -7,11 +7,6 @@
 
     <display-name>Solution Project</display-name>
 
-    <jsp-config>
-        <jsp-property-group>
-            <url-pattern>*.jps</url-pattern>
-            <trim-directive-whitespaces>true</trim-directive-whitespaces>
-        </jsp-property-group>
-    </jsp-config>
+
 
 </web-app>
