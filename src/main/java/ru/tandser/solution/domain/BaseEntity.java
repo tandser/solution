@@ -1,4 +1,4 @@
-package ru.tandser.solution.model;
+package ru.tandser.solution.domain;
 
 import org.springframework.data.domain.Persistable;
 
@@ -7,12 +7,12 @@ import java.util.Objects;
 
 @MappedSuperclass
 public abstract class BaseEntity implements Persistable<Integer> {
+
     private Integer id;
-    private int version;
+    private int     version;
 
     @Override
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     public Integer getId() {
         return id;
@@ -33,12 +33,17 @@ public abstract class BaseEntity implements Persistable<Integer> {
     }
 
     @Override
+    @Transient
     public boolean isNew() {
         return getId() == null;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
