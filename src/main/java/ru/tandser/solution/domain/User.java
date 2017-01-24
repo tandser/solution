@@ -9,6 +9,8 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.List;
 
 @Entity
@@ -100,11 +102,11 @@ public class User extends BaseEntity {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("id", getId())
-                .add("name", getName())
-                .add("email", getEmail())
+                .add("id",      getId())
+                .add("name",    getName())
+                .add("email",   getEmail())
                 .add("created", getCreated())
-                .add("role", getRole())
+                .add("role",    getRole())
                 .toString();
     }
 }

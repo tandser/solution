@@ -59,10 +59,10 @@ public class Meal extends BaseEntity {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("id", getId())
-                .add("date_time", getDateTime())
+                .add("id",          getId())
+                .add("date_time",   getDateTime())
                 .add("description", getDescription())
-                .add("calories", getCalories())
+                .add("calories",    getCalories())
                 .toString();
     }
 }

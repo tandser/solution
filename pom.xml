@@ -97,6 +97,14 @@
             <version>9.4.1212</version>
         </dependency>
 
+        <!-- org.apache.tomcat -->
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>8.5.11</version>
+        </dependency>
+
         <!-- javax.servlet -->
 
         <dependency>
