@@ -12,7 +12,7 @@ public abstract class BaseEntity implements Persistable<Integer> {
     private int     version;
 
     @Override
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;

@@ -5,12 +5,11 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.List;
 
 @Entity
@@ -26,8 +25,13 @@ public class User extends BaseEntity {
     private String        password;
     private LocalDateTime created;
     private Role          role;
-    private int           normOfCalories;
+    private Integer       normOfCalories;
     private List<Meal>    meals;
+
+    {
+        created = LocalDateTime.now();
+        role    = Role.USER;
+    }
 
     @NotBlank
     @Column(name = "name")
@@ -59,6 +63,7 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
+    @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Column(name = "created")
     public LocalDateTime getCreated() {
         return created;
@@ -79,13 +84,13 @@ public class User extends BaseEntity {
         this.role = role;
     }
 
-    @Range(min = 0, max = 5000)
+    @NotNull @Range(min = 0, max = 5000)
     @Column(name = "norm_of_calories")
-    public int getNormOfCalories() {
+    public Integer getNormOfCalories() {
         return normOfCalories;
     }
 
-    public void setNormOfCalories(int normOfCalories) {
+    public void setNormOfCalories(Integer normOfCalories) {
         this.normOfCalories = normOfCalories;
     }
 
