@@ -5,7 +5,7 @@ import ru.tandser.solution.repository.MealRepository;
 import ru.tandser.solution.repository.UserRepository;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
         ctx.load("classpath:spring/datajpa-config.xml");
         ctx.refresh();

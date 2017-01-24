@@ -18,7 +18,7 @@ public abstract class BaseEntity implements Persistable<Integer> {
         return id;
     }
 
-    public void setId(Integer id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
@@ -28,7 +28,7 @@ public abstract class BaseEntity implements Persistable<Integer> {
         return version;
     }
 
-    public void setVersion(int version) {
+    private void setVersion(int version) {
         this.version = version;
     }
 
