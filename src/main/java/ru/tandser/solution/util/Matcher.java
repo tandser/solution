@@ -1,7 +1,5 @@
 package ru.tandser.solution.util;
 
-import org.junit.Assert;
-
 import java.util.Objects;
 import java.util.function.BiPredicate;
 
@@ -23,10 +21,6 @@ public class Matcher<T> {
 
         @Override
         public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-
             if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
@@ -39,7 +33,7 @@ public class Matcher<T> {
         }
     }
 
-    public void assertEquals(T expected, T actual) {
-        Assert.assertEquals(new Wrapper(expected), new Wrapper(actual));
+    public boolean equals(T obj1, T obj2) {
+        return Objects.equals(new Wrapper(obj1), new Wrapper(obj2));
     }
 }

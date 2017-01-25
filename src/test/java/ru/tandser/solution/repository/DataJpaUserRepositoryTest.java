@@ -10,7 +10,9 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static ru.tandser.solution.UserTestData.*;
+import static org.junit.Assert.assertTrue;
+import static ru.tandser.solution.UserTestData.USER;
+import static ru.tandser.solution.UserTestData.USER_MATCHER;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/datajpa-test.xml")
@@ -29,7 +31,7 @@ public class DataJpaUserRepositoryTest {
 
     @Test
     public void testGet() {
-        USER_MATCHER.assertEquals(USER, userRepository.get(2));
+        assertTrue(USER_MATCHER.equals(USER, userRepository.get(2)));
     }
 
     @Test
