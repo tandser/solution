@@ -8,8 +8,7 @@ import javax.validation.ConstraintViolationException;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static ru.tandser.solution.UserTestData.*;
 
 public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {

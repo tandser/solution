@@ -7,9 +7,10 @@ import java.util.Objects;
 
 public class MealTestData {
 
+    public static Meal meal;
+
     public static final Matcher<Meal> MEAL_MATCHER = new Matcher<>((expected, actual) ->
-            expected == actual || (Objects.equals(expected.getId(),          actual.getId())          &&
-                                   Objects.equals(expected.getDateTime(),    actual.getDateTime())    &&
+            expected == actual || (Objects.equals(expected.getDateTime(),    actual.getDateTime())    &&
                                    Objects.equals(expected.getDescription(), actual.getDescription()) &&
                                    Objects.equals(expected.getCalories(),    actual.getCalories())));
 }
