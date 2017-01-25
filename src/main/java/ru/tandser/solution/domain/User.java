@@ -14,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity {
+public class User extends AbstractEntity {
 
     public enum Role {
         ADMIN, USER

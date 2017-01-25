@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @MappedSuperclass
-public abstract class BaseEntity implements Persistable<Integer> {
+public abstract class AbstractEntity implements Persistable<Integer> {
 
     private Integer id;
     private int     version;
@@ -48,9 +48,9 @@ public abstract class BaseEntity implements Persistable<Integer> {
             return false;
         }
 
-        BaseEntity other = (BaseEntity) obj;
+        AbstractEntity that = (AbstractEntity) obj;
 
-        return Objects.equals(getId(), other.getId());
+        return Objects.equals(getId(), that.getId());
     }
 
     @Override

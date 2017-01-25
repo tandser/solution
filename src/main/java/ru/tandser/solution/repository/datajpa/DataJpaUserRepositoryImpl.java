@@ -3,13 +3,11 @@ package ru.tandser.solution.repository.datajpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.repository.UserRepository;
 
 import java.util.List;
 
-@Service("userService") // удалить аннотацию @Service после тестирования
 @Repository
 public class DataJpaUserRepositoryImpl implements UserRepository {
 
@@ -21,7 +19,7 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
         this.userRepository = userRepository;
     }
 
-    @Value("${default.norm_of_calories}")
+    @Value("${default.normOfCalories}")
     public void setDefaultNormOfCalories(Integer defaultNormOfCalories) {
         this.defaultNormOfCalories = defaultNormOfCalories;
     }

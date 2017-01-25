@@ -2,13 +2,12 @@ package ru.tandser.solution.repository.datajpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.repository.MealRepository;
 
 import java.util.List;
 
-@Service("mealService") // удалить аннотацию @Service после тестирования
 @Repository
 public class DataJpaMealRepositoryImpl implements MealRepository {
 
@@ -42,7 +41,12 @@ public class DataJpaMealRepositoryImpl implements MealRepository {
     }
 
     @Override
+    @Transactional
     public Meal put(Meal meal, Integer userId) {
+        if (!userRepository.exists(userId)) {
+            return null;
+        }
+
         if (!meal.isNew() && get(meal.getId(), userId) == null) {
             return null;
         }

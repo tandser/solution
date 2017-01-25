@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "meals")
-public class Meal extends BaseEntity {
+public class Meal extends AbstractEntity {
 
     private LocalDateTime dateTime;
     private String        description;
