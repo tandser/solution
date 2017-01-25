@@ -1,7 +1,9 @@
 package ru.tandser.solution.util;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.function.BiPredicate;
+import java.util.stream.Collectors;
 
 public class Matcher<T> {
 
@@ -33,7 +35,15 @@ public class Matcher<T> {
         }
     }
 
+    private List<Wrapper> wrap(List<T> list) {
+        return list.stream().map(Wrapper::new).collect(Collectors.toList());
+    }
+
     public boolean equals(T obj1, T obj2) {
         return Objects.equals(new Wrapper(obj1), new Wrapper(obj2));
+    }
+
+    public boolean equals(List<T> list1, List<T> list2) {
+        return Objects.equals(wrap(list1), wrap(list2));
     }
 }

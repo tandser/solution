@@ -1,28 +1,20 @@
 package ru.tandser.solution.repository;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.dao.DataAccessException;
 
+import javax.validation.ConstraintViolationException;
+import java.util.Arrays;
+import java.util.Collections;
+
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static ru.tandser.solution.UserTestData.USER;
-import static ru.tandser.solution.UserTestData.USER_MATCHER;
+import static ru.tandser.solution.UserTestData.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/datajpa-test.xml")
-@Sql(scripts = "classpath:scripts/insert.ddl", config = @SqlConfig(encoding = "UTF-8"))
-public class DataJpaUserRepositoryTest {
+public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
 
     private UserRepository userRepository;
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -30,12 +22,46 @@ public class DataJpaUserRepositoryTest {
     }
 
     @Test
-    public void testGet() {
-        assertTrue(USER_MATCHER.equals(USER, userRepository.get(2)));
+    public void testGet() throws Exception {
+        assertNull(userRepository.get(0));
+        assertTrue(USER_MATCHER.equals(admin, userRepository.get(1)));
+        assertTrue(USER_MATCHER.equals(user,  userRepository.get(2)));
     }
 
     @Test
-    public void testGetAll() {
+    public void testGetAll() throws Exception {
+        assertTrue(USER_MATCHER.equals(Arrays.asList(admin, user), userRepository.getAll()));
+    }
 
+    @Test
+    public void testRemove() throws Exception {
+        assertNull(userRepository.remove(0));
+        assertTrue(USER_MATCHER.equals(admin, userRepository.remove(1)));
+        assertTrue(USER_MATCHER.equals(Collections.singletonList(user), userRepository.getAll()));
+    }
+
+    @Test
+    public void testPut() throws Exception {
+        assertTrue(USER_MATCHER.equals(newUser, userRepository.put(newUser)));
+        assertTrue(USER_MATCHER.equals(newUser, userRepository.get(newUser.getId())));
+
+        newUser.setPassword("lgZtBlx");
+
+        assertTrue(USER_MATCHER.equals(newUser, userRepository.put(newUser)));
+        assertTrue(USER_MATCHER.equals(newUser, userRepository.get(newUser.getId())));
+    }
+
+    @Test(expected = DataAccessException.class)
+    public void testPutDuplicateEmail() throws Exception {
+        userRepository.put(duplicateUser);
+    }
+
+    @Test
+    public void testValidation() throws Exception {
+        validateRootCause(() -> userRepository.put(invalidNameUser),           ConstraintViolationException.class);
+        validateRootCause(() -> userRepository.put(invalidEmailUser),          ConstraintViolationException.class);
+        validateRootCause(() -> userRepository.put(invalidPasswordUser),       ConstraintViolationException.class);
+        validateRootCause(() -> userRepository.put(invalidRoleUser),           ConstraintViolationException.class);
+        validateRootCause(() -> userRepository.put(invalidNormOfCaloriesUser), ConstraintViolationException.class);
     }
 }
