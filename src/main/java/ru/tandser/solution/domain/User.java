@@ -16,10 +16,6 @@ import java.util.List;
 @Table(name = "users")
 public class User extends AbstractEntity {
 
-    public enum Role {
-        ADMIN, USER
-    }
-
     private String        name;
     private String        email;
     private String        password;
@@ -27,11 +23,6 @@ public class User extends AbstractEntity {
     private Role          role;
     private Integer       normOfCalories;
     private List<Meal>    meals;
-
-    {
-        created = LocalDateTime.now();
-        role    = Role.USER;
-    }
 
     @NotBlank
     @Column(name = "name")
@@ -69,7 +60,7 @@ public class User extends AbstractEntity {
         return created;
     }
 
-    private void setCreated(LocalDateTime created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 

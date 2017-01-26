@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.org/mapping.dtd">
+
+<mapping>
+
+    <class name="ru.tandser.solution.util.Users">
+        <field name="users" type="ru.tandser.solution.domain.User" collection="arraylist">
+            <bind-xml name="user"/>
+        </field>
+    </class>
+
+    <class name="ru.tandser.solution.domain.User" identity="id">
+
+        <map-to xml="user"/>
+
+        <field name="id" type="integer">
+            <bind-xml name="id" node="element"/>
+        </field>
+
+        <field name="name" type="string">
+            <bind-xml name="name" node="element"/>
+        </field>
+
+        <field name="email" type="string">
+            <bind-xml name="email" node="element"/>
+        </field>
+
+        <field name="password" type="string">
+            <bind-xml name="password" node="element"/>
+        </field>
+
+        <field name="created" type="string" handler="localDateTimeHandler">
+            <bind-xml name="created" node="element"/>
+        </field>
+
+        <field name="role" type="ru.tandser.solution.domain.Role">
+            <bind-xml name="role" node="element"/>
+        </field>
+
+        <field name="normOfCalories" type="integer">
+            <bind-xml name="norm-of-calories" node="element"/>
+        </field>
+
+    </class>
+
+    <field-handler name="localDateTimeHandler" class="ru.tandser.solution.util.LocalDateTimeFieldHandler">
+        <param name="date-time-format" value="yyyy-MM-dd HH:mm"/>
+    </field-handler>
+
+</mapping>

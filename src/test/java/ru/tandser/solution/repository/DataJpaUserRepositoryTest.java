@@ -1,14 +1,17 @@
 package ru.tandser.solution.repository;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import ru.tandser.solution.UserTestData;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.UserTestData.*;
 
 public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
@@ -18,6 +21,11 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @BeforeClass
+    public static void beforeClass() throws Exception {
+        UserTestData.loadMocks();
     }
 
     @Test
@@ -60,7 +68,6 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
         validateRootCause(() -> userRepository.put(invalidNameUser),           ConstraintViolationException.class);
         validateRootCause(() -> userRepository.put(invalidEmailUser),          ConstraintViolationException.class);
         validateRootCause(() -> userRepository.put(invalidPasswordUser),       ConstraintViolationException.class);
-        validateRootCause(() -> userRepository.put(invalidRoleUser),           ConstraintViolationException.class);
         validateRootCause(() -> userRepository.put(invalidNormOfCaloriesUser), ConstraintViolationException.class);
     }
 }

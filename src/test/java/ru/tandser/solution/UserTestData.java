@@ -1,8 +1,18 @@
 package ru.tandser.solution;
 
+import org.exolab.castor.mapping.Mapping;
+import org.exolab.castor.mapping.MappingException;
+import org.exolab.castor.xml.Unmarshaller;
+import org.exolab.castor.xml.XMLContext;
+import org.springframework.util.ResourceUtils;
+import ru.tandser.solution.domain.Role;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.util.Matcher;
+import ru.tandser.solution.util.Users;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 
 public class UserTestData {
@@ -14,7 +24,6 @@ public class UserTestData {
     public static User invalidNameUser;
     public static User invalidEmailUser;
     public static User invalidPasswordUser;
-    public static User invalidRoleUser;
     public static User invalidNormOfCaloriesUser;
 
     public static final Matcher<User> USER_MATCHER = new Matcher<>((expected, actual) ->
@@ -24,68 +33,29 @@ public class UserTestData {
                                    Objects.equals(expected.getRole(),           actual.getRole())           &&
                                    Objects.equals(expected.getNormOfCalories(), actual.getNormOfCalories())));
 
-    static {
-        admin = new User();
-        admin.setName("Lynn Douglas");
-        admin.setEmail("l.douglas@gmail.com");
-        admin.setPassword("Mr01LRc");
-        admin.setRole(User.Role.ADMIN);
-        admin.setNormOfCalories(2000);
+    public static void loadMocks() throws Exception {
+        FileReader reader = new FileReader(ResourceUtils.getFile("classpath:mocks/users.xml"));
 
-        user = new User();
-        user.setName("Scott Welch");
-        user.setEmail("s.welch@gmail.com");
-        user.setPassword("Izhyw29");
-        user.setRole(User.Role.USER);
-        user.setNormOfCalories(2000);
+        Mapping mapping = new Mapping();
+        mapping.loadMapping(ResourceUtils.getURL("classpath:castor/mapping.xml"));
 
-        newUser = new User();
-        newUser.setName("Ralph Bass");
-        newUser.setEmail("r.bass@gmail.com");
-        newUser.setPassword("9Mn5Z6x");
-        newUser.setRole(User.Role.USER);
-        newUser.setNormOfCalories(2000);
+        XMLContext xmlContext = new XMLContext();
+        xmlContext.addMapping(mapping);
 
-        duplicateUser = new User();
-        duplicateUser.setName("Steven Welch");
-        duplicateUser.setEmail("s.welch@gmail.com");
-        duplicateUser.setPassword("Y9rpqov");
-        duplicateUser.setRole(User.Role.USER);
-        duplicateUser.setNormOfCalories(2000);
+        Unmarshaller unmarshaller = xmlContext.createUnmarshaller();
+        unmarshaller.setClass(Users.class);
 
-        invalidNameUser = new User();
-        invalidNameUser.setName("");
-        invalidNameUser.setEmail("l.jones@gmail.com");
-        invalidNameUser.setPassword("uGbn0oU");
-        invalidNameUser.setRole(User.Role.USER);
-        invalidNameUser.setNormOfCalories(2000);
+        Users users = (Users) unmarshaller.unmarshal(reader);
 
-        invalidEmailUser = new User();
-        invalidEmailUser.setName("Cary Rhodes");
-        invalidEmailUser.setEmail("c.rhodesgmail.com");
-        invalidEmailUser.setPassword("lgZtBlx");
-        invalidEmailUser.setRole(User.Role.USER);
-        invalidEmailUser.setNormOfCalories(2000);
+        reader.close();
 
-        invalidPasswordUser = new User();
-        invalidPasswordUser.setName("Nathaniel Perez");
-        invalidPasswordUser.setEmail("n.perez@gmail.com");
-        invalidPasswordUser.setPassword("SyDDH");
-        invalidPasswordUser.setRole(User.Role.USER);
-        invalidPasswordUser.setNormOfCalories(2000);
-
-        invalidRoleUser = new User();
-        invalidRoleUser.setName("Bruce Cummings");
-        invalidRoleUser.setEmail("b.cummings@gmail.com");
-        invalidRoleUser.setPassword("ilYZkRs");
-        invalidRoleUser.setRole(null);
-        invalidRoleUser.setNormOfCalories(2000);
-
-        invalidNormOfCaloriesUser = new User();
-        invalidNormOfCaloriesUser.setName("Trevor Weaver");
-        invalidNormOfCaloriesUser.setEmail("t.weaver@gmail.com");
-        invalidNormOfCaloriesUser.setPassword("aE8hC4Y");
-        invalidNormOfCaloriesUser.setRole(User.Role.USER);
-        invalidNormOfCaloriesUser.setNormOfCalories(-1);
+        admin                     = users.getUsers().get(0);
+        user                      = users.getUsers().get(1);
+        newUser                   = users.getUsers().get(2);
+        duplicateUser             = users.getUsers().get(3);
+        invalidNameUser           = users.getUsers().get(4);
+        invalidEmailUser          = users.getUsers().get(5);
+        invalidPasswordUser       = users.getUsers().get(6);
+        invalidNormOfCaloriesUser = users.getUsers().get(7);
     }
 }

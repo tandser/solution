@@ -18,7 +18,7 @@ public abstract class AbstractEntity implements Persistable<Integer> {
         return id;
     }
 
-    private void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -28,7 +28,7 @@ public abstract class AbstractEntity implements Persistable<Integer> {
         return version;
     }
 
-    private void setVersion(int version) {
+    public void setVersion(int version) {
         this.version = version;
     }
 
