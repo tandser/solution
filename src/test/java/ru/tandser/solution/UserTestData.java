@@ -22,14 +22,14 @@ public class UserTestData {
     public static User invalidPasswordUser;
     public static User invalidNormOfCaloriesUser;
 
-    private UserTestData() {}
-
     public static final Matcher<User> USER_MATCHER = new Matcher<>((expected, actual) ->
             expected == actual || (Objects.equals(expected.getName(),           actual.getName())           &&
                                    Objects.equals(expected.getEmail(),          actual.getEmail())          &&
                                    Objects.equals(expected.getPassword(),       actual.getPassword())       &&
                                    Objects.equals(expected.getRole(),           actual.getRole())           &&
                                    Objects.equals(expected.getNormOfCalories(), actual.getNormOfCalories())));
+
+    private UserTestData() {}
 
     public static void loadMocks() throws Exception {
         FileReader reader = new FileReader(ResourceUtils.getFile("classpath:mocks/users.xml"));

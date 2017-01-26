@@ -25,12 +25,12 @@ public class MealTestData {
     public static LocalDateTime from;
     public static LocalDateTime to;
 
-    private MealTestData() {}
-
     public static final Matcher<Meal> MEAL_MATCHER = new Matcher<>((expected, actual) ->
             expected == actual || (Objects.equals(expected.getDateTime(),    actual.getDateTime())    &&
                                    Objects.equals(expected.getDescription(), actual.getDescription()) &&
                                    Objects.equals(expected.getCalories(),    actual.getCalories())));
+
+    private MealTestData() {}
 
     public static void loadMocks() throws Exception {
         FileReader reader = new FileReader(ResourceUtils.getFile("classpath:mocks/meals.xml"));

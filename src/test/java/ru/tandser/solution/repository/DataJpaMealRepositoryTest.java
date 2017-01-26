@@ -7,8 +7,6 @@ import org.springframework.dao.DataAccessException;
 
 import javax.validation.ConstraintViolationException;
 
-import java.time.LocalDateTime;
-
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.*;
