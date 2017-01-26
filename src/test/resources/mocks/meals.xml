@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<meals>
+
+    <!-- meals -->
+
+    <meal>
+        <date-time>2017-01-09 10:00</date-time>
+        <description>Breakfast</description>
+        <calories>700</calories>
+    </meal>
+
+    <meal>
+        <date-time>2017-01-09 13:00</date-time>
+        <description>Launch</description>
+        <calories>1000</calories>
+    </meal>
+
+    <meal>
+        <date-time>2017-01-09 19:00</date-time>
+        <description>Supper</description>
+        <calories>1200</calories>
+    </meal>
+
+    <meal>
+        <date-time>2017-01-10 10:00</date-time>
+        <description>Breakfast</description>
+        <calories>800</calories>
+    </meal>
+
+    <meal>
+        <date-time>2017-01-10 13:00</date-time>
+        <description>Launch</description>
+        <calories>1500</calories>
+    </meal>
+
+    <meal>
+        <date-time>2017-01-10 19:00</date-time>
+        <description>Supper</description>
+        <calories>1000</calories>
+    </meal>
+
+    <meal>
+        <date-time>2017-01-11 10:00</date-time>
+        <description>Breakfast</description>
+        <calories>500</calories>
+    </meal>
+
+    <meal>
+        <date-time>2017-01-11 13:00</date-time>
+        <description>Launch</description>
+        <calories>1100</calories>
+    </meal>
+
+    <meal>
+        <date-time>2017-01-11 19:00</date-time>
+        <description>Supper</description>
+        <calories>1000</calories>
+    </meal>
+
+    <meal>
+        <date-time>2017-01-12 10:00</date-time>
+        <description>Breakfast</description>
+        <calories>500</calories>
+    </meal>
+
+    <meal>
+        <date-time>2017-01-12 13:00</date-time>
+        <description>Launch</description>
+        <calories>1000</calories>
+    </meal>
+
+    <meal>
+        <date-time>2017-01-12 19:00</date-time>
+        <description>Supper</description>
+        <calories>1200</calories>
+    </meal>
+
+    <!-- newMeal -->
+
+    <meal>
+        <date-time>2017-01-13 10:00</date-time>
+        <description>Breakfast</description>
+        <calories>400</calories>
+    </meal>
+
+    <!-- duplicateMeal -->
+
+    <meal>
+        <date-time>2017-01-09 10:00</date-time>
+        <description>Breakfast</description>
+        <calories>1000</calories>
+    </meal>
+
+    <!-- invalidDateTimeMeal -->
+
+    <meal>
+        <description>Breakfast</description>
+        <calories>500</calories>
+    </meal>
+
+    <!-- invalidDescriptionMeal -->
+
+    <meal>
+        <date-time>2017-01-13 13:00</date-time>
+        <description></description>
+        <calories>1200</calories>
+    </meal>
+
+    <!-- invalidCaloriesMeal -->
+
+    <meal>
+        <date-time>2017-01-13 13:00</date-time>
+        <description>Launch</description>
+        <calories>-1</calories>
+    </meal>
+
+</meals>

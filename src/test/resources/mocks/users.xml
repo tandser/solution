@@ -8,7 +8,6 @@
         <name>Lynn Douglas</name>
         <email>l.douglas@gmail.com</email>
         <password>Mr01LRc</password>
-        <created>null</created>
         <role>ADMIN</role>
         <norm-of-calories>2000</norm-of-calories>
     </user>
@@ -19,7 +18,6 @@
         <name>Scott Welch</name>
         <email>s.welch@gmail.com</email>
         <password>Izhyw29</password>
-        <created>null</created>
         <role>USER</role>
         <norm-of-calories>2000</norm-of-calories>
     </user>
@@ -30,7 +28,6 @@
         <name>Ralph Bass</name>
         <email>r.bass@gmail.com</email>
         <password>9Mn5Z6x</password>
-        <created>null</created>
         <role>USER</role>
         <norm-of-calories>2000</norm-of-calories>
     </user>
@@ -41,7 +38,6 @@
         <name>Steven Welch</name>
         <email>s.welch@gmail.com</email>
         <password>Y9rpqov</password>
-        <created>null</created>
         <role>USER</role>
         <norm-of-calories>2000</norm-of-calories>
     </user>
@@ -52,7 +48,6 @@
         <name></name>
         <email>l.jones@gmail.com</email>
         <password>uGbn0oU</password>
-        <created>null</created>
         <role>USER</role>
         <norm-of-calories>2000</norm-of-calories>
     </user>
@@ -63,7 +58,6 @@
         <name>Cary Rhodes</name>
         <email>c.rhodesgmail.com</email>
         <password>lgZtBlx</password>
-        <created>null</created>
         <role>USER</role>
         <norm-of-calories>2000</norm-of-calories>
     </user>
@@ -74,7 +68,6 @@
         <name>Nathaniel Perez</name>
         <email>n.perez@gmail.com</email>
         <password>SyDDH</password>
-        <created>null</created>
         <role>USER</role>
         <norm-of-calories>2000</norm-of-calories>
     </user>
@@ -85,7 +78,6 @@
         <name>Trevor Weaver</name>
         <email>t.weaver@gmail.com</email>
         <password>aE8hC4Y</password>
-        <created>null</created>
         <role>USER</role>
         <norm-of-calories>-1</norm-of-calories>
     </user>
