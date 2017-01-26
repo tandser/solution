@@ -7,6 +7,8 @@ import org.springframework.dao.DataAccessException;
 
 import javax.validation.ConstraintViolationException;
 
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.*;
@@ -67,9 +69,15 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
     }
 
     @Test
+    public void testBetween() throws Exception {
+        assertTrue(mealRepository.between(from, to, 0).isEmpty());
+        assertTrue(MEAL_MATCHER.equals(meals.subList(0, 6), mealRepository.between(from, to, 2)));
+    }
+
+    @Test
     public void testValidation() throws Exception {
-        validateRootCause(() -> mealRepository.put(invalidDateTimeMeal, 2),    ConstraintViolationException.class);
+        validateRootCause(() -> mealRepository.put(invalidDateTimeMeal,    2), ConstraintViolationException.class);
         validateRootCause(() -> mealRepository.put(invalidDescriptionMeal, 2), ConstraintViolationException.class);
-        validateRootCause(() -> mealRepository.put(invalidCaloriesMeal, 2),    ConstraintViolationException.class);
+        validateRootCause(() -> mealRepository.put(invalidCaloriesMeal,    2), ConstraintViolationException.class);
     }
 }

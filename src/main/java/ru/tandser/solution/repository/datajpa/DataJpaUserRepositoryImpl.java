@@ -27,7 +27,7 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User get(Integer id) {
+    public User get(int id) {
         return userRepository.findOne(id);
     }
 
@@ -37,7 +37,7 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User remove(Integer id) {
+    public User remove(int id) {
         List<User> result = userRepository.removeById(id);
         return result.isEmpty() ? null : result.get(0);
     }

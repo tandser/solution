@@ -1,5 +1,7 @@
 package ru.tandser.solution.util;
 
+import org.springframework.util.Assert;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.function.BiPredicate;
@@ -10,7 +12,7 @@ public class Matcher<T> {
     private BiPredicate<T, T> comparator;
 
     public Matcher(BiPredicate<T, T> comparator) {
-        Objects.requireNonNull(comparator);
+        Assert.notNull(comparator);
         this.comparator = comparator;
     }
 

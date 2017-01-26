@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.repository.MealRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -25,24 +26,24 @@ public class DataJpaMealRepositoryImpl implements MealRepository {
     }
 
     @Override
-    public Meal get(Integer id, Integer userId) {
+    public Meal get(int id, int userId) {
         return mealRepository.findOneByIdAndUserId(id, userId);
     }
 
     @Override
-    public List<Meal> getAll(Integer userId) {
+    public List<Meal> getAll(int userId) {
         return mealRepository.findAllByUserId(userId);
     }
 
     @Override
-    public Meal remove(Integer id, Integer userId) {
+    public Meal remove(int id, int userId) {
         List<Meal> result = mealRepository.removeByIdAndUserId(id, userId);
         return result.isEmpty() ? null : result.get(0);
     }
 
     @Override
     @Transactional
-    public Meal put(Meal meal, Integer userId) {
+    public Meal put(Meal meal, int userId) {
         if (!userRepository.exists(userId)) {
             return null;
         }
@@ -54,5 +55,10 @@ public class DataJpaMealRepositoryImpl implements MealRepository {
         meal.setUser(userRepository.getOne(userId));
 
         return mealRepository.save(meal);
+    }
+
+    @Override
+    public List<Meal> between(LocalDateTime from, LocalDateTime to, int userId) {
+        return mealRepository.findByUserIdAndDateTimeBetween(userId, from, to);
     }
 }

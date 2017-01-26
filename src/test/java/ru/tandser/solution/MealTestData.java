@@ -9,6 +9,7 @@ import ru.tandser.solution.util.Matcher;
 import ru.tandser.solution.util.Meals;
 
 import java.io.FileReader;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +21,11 @@ public class MealTestData {
     public static Meal       invalidDateTimeMeal;
     public static Meal       invalidDescriptionMeal;
     public static Meal       invalidCaloriesMeal;
+
+    public static LocalDateTime from;
+    public static LocalDateTime to;
+
+    private MealTestData() {}
 
     public static final Matcher<Meal> MEAL_MATCHER = new Matcher<>((expected, actual) ->
             expected == actual || (Objects.equals(expected.getDateTime(),    actual.getDateTime())    &&
@@ -48,5 +54,8 @@ public class MealTestData {
         invalidDateTimeMeal    = mocks.getMeals().get(14);
         invalidDescriptionMeal = mocks.getMeals().get(15);
         invalidCaloriesMeal    = mocks.getMeals().get(16);
+
+        from = meals.get(0).getDateTime();
+        to   = meals.get(5).getDateTime();
     }
 }

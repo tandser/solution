@@ -85,9 +85,9 @@ public class LocalDateTimeFieldHandler implements ConfigurableFieldHandler {
     }
 
     @Override
-    @SuppressWarnings("deprication")
+    @SuppressWarnings("deprecation")
     public void checkValidity(Object object) throws ValidityException, IllegalStateException {
-
+        // No longer supported
     }
 
     @Override
