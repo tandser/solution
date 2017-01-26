@@ -1,7 +1,6 @@
 package ru.tandser.solution;
 
 import org.exolab.castor.mapping.Mapping;
-import org.exolab.castor.xml.Marshaller;
 import org.exolab.castor.xml.Unmarshaller;
 import org.exolab.castor.xml.XMLContext;
 import org.springframework.util.ResourceUtils;

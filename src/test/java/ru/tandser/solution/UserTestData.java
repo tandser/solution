@@ -1,18 +1,14 @@
 package ru.tandser.solution;
 
 import org.exolab.castor.mapping.Mapping;
-import org.exolab.castor.mapping.MappingException;
 import org.exolab.castor.xml.Unmarshaller;
 import org.exolab.castor.xml.XMLContext;
 import org.springframework.util.ResourceUtils;
-import ru.tandser.solution.domain.Role;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.util.Matcher;
 import ru.tandser.solution.util.Users;
 
 import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
 
 public class UserTestData {
