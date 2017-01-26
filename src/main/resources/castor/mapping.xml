@@ -4,11 +4,21 @@
 
 <mapping>
 
+    <!-- ru.tandser.solution.util.Users -->
+
     <class name="ru.tandser.solution.util.Users">
         <field name="users" type="ru.tandser.solution.domain.User" collection="arraylist">
             <bind-xml name="user"/>
         </field>
     </class>
+
+    <!-- ru.tandser.solution.util.LocalDateTimeFieldHandler -->
+
+    <field-handler name="userDateTimeHandler" class="ru.tandser.solution.util.LocalDateTimeFieldHandler">
+        <param name="date-time-format" value="yyyy-MM-dd HH:mm"/>
+    </field-handler>
+
+    <!-- ru.tandser.solution.domain.User -->
 
     <class name="ru.tandser.solution.domain.User" identity="id">
 
@@ -30,7 +40,7 @@
             <bind-xml name="password" node="element"/>
         </field>
 
-        <field name="created" type="string" handler="localDateTimeHandler">
+        <field name="created" type="string" handler="userDateTimeHandler">
             <bind-xml name="created" node="element"/>
         </field>
 
@@ -44,8 +54,46 @@
 
     </class>
 
-    <field-handler name="localDateTimeHandler" class="ru.tandser.solution.util.LocalDateTimeFieldHandler">
+    <!-- ru.tandser.solution.util.Meals -->
+
+    <class name="ru.tandser.solution.util.Meals">
+        <field name="meals" type="ru.tandser.solution.domain.Meal" collection="arraylist">
+            <bind-xml name="meal"/>
+        </field>
+    </class>
+
+    <!-- ru.tandser.solution.util.LocalDateTimeFieldHandler -->
+
+    <field-handler name="mealDateTimeHandler" class="ru.tandser.solution.util.LocalDateTimeFieldHandler">
         <param name="date-time-format" value="yyyy-MM-dd HH:mm"/>
     </field-handler>
+
+    <!-- ru.tandser.solution.domain.Meal -->
+
+    <class name="ru.tandser.solution.domain.Meal" identity="id">
+
+        <map-to xml="meal"/>
+
+        <field name="id" type="integer">
+            <bind-xml name="id" node="element"/>
+        </field>
+
+        <field name="dateTime" type="string" handler="mealDateTimeHandler">
+            <bind-xml name="date-time" node="element"/>
+        </field>
+
+        <field name="description" type="string">
+            <bind-xml name="description" node="element"/>
+        </field>
+
+        <field name="calories" type="integer">
+            <bind-xml name="calories" node="element"/>
+        </field>
+
+        <field name="user" type="ru.tandser.solution.domain.User">
+            <bind-xml name="user" node="element"/>
+        </field>
+
+    </class>
 
 </mapping>
