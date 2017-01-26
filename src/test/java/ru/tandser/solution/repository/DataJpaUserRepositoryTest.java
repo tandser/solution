@@ -4,13 +4,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import ru.tandser.solution.UserTestData;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.UserTestData.*;
 
 public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
@@ -24,7 +24,7 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        UserTestData.loadMocks();
+        loadMocks();
     }
 
     @Test

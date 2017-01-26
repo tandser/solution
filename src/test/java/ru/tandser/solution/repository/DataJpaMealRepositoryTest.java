@@ -4,11 +4,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import ru.tandser.solution.MealTestData;
 
 import javax.validation.ConstraintViolationException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.*;
 
 public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
@@ -22,7 +22,7 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        MealTestData.loadMocks();
+        loadMocks();
     }
 
     @Test
