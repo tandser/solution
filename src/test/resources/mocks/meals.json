@@ -1,0 +1,102 @@
+[
+  {
+    "dateTime":"2017-01-09T10:00:00",
+    "description":"Breakfast",
+    "calories":700
+  },
+
+  {
+    "dateTime":"2017-01-09T13:00:00",
+    "description":"Launch",
+    "calories":1000
+  },
+
+  {
+    "dateTime":"2017-01-09T19:00:00",
+    "description":"Supper",
+    "calories":1200
+  },
+
+  {
+    "dateTime":"2017-01-10T10:00:00",
+    "description":"Breakfast",
+    "calories":800
+  },
+
+  {
+    "dateTime":"2017-01-10T13:00:00",
+    "description":"Launch",
+    "calories":1500
+  },
+
+  {
+    "dateTime":"2017-01-10T19:00:00",
+    "description":"Supper",
+    "calories":1000
+  },
+
+  {
+    "dateTime":"2017-01-11T10:00:00",
+    "description":"Breakfast",
+    "calories":500
+  },
+
+  {
+    "dateTime":"2017-01-11T13:00:00",
+    "description":"Launch",
+    "calories":1100
+  },
+
+  {
+    "dateTime":"2017-01-11T19:00:00",
+    "description":"Supper",
+    "calories":1000
+  },
+
+  {
+    "dateTime":"2017-01-12T10:00:00",
+    "description":"Breakfast",
+    "calories":500
+  },
+
+  {
+    "dateTime":"2017-01-12T13:00:00",
+    "description":"Launch",
+    "calories":1000
+  },
+
+  {
+    "dateTime":"2017-01-12T19:00:00",
+    "description":"Supper",
+    "calories":1200
+  },
+
+  {
+    "dateTime":"2017-01-13T10:00:00",
+    "description":"Breakfast",
+    "calories":400
+  },
+
+  {
+    "dateTime":"2017-01-09T10:00:00",
+    "description":"Breakfast",
+    "calories":1000
+  },
+
+  {
+    "description":"Breakfast",
+    "calories":500
+  },
+
+  {
+    "dateTime":"2017-01-13T13:00:00",
+    "description":"",
+    "calories":1200
+  },
+
+  {
+    "dateTime":"2017-01-13T19:00:00",
+    "description":"Supper",
+    "calories":-1
+  }
+]

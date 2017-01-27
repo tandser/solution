@@ -1,9 +1,14 @@
 package ru.tandser.solution;
 
+import org.springframework.util.ResourceUtils;
 import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.util.Matcher;
+import ru.tandser.solution.util.json.JacksonUtil;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,6 +32,21 @@ public class MealTestData {
     private MealTestData() {}
 
     public static void loadMocks() throws Exception {
+        BufferedInputStream input = new BufferedInputStream(
+                new FileInputStream(ResourceUtils.getFile("classpath:mocks/meals.json")));
 
+        List<Meal> mocks = JacksonUtil.readValues(input, Meal.class);
+
+        input.close();
+
+        meals                  = mocks.subList(0, 12);
+        newMeal                = mocks.get(12);
+        duplicateMeal          = mocks.get(13);
+        invalidDateTimeMeal    = mocks.get(14);
+        invalidDescriptionMeal = mocks.get(15);
+        invalidCaloriesMeal    = mocks.get(16);
+
+        from = LocalDateTime.of(2017, 1, 9,  10, 0);
+        to   = LocalDateTime.of(2017, 1, 10, 19, 0);
     }
 }
