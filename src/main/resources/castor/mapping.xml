@@ -4,9 +4,9 @@
 
 <mapping>
 
-    <!-- ru.tandser.solution.util.Users -->
+    <!-- ru.tandser.solution.dto.Users -->
 
-    <class name="ru.tandser.solution.util.Users">
+    <class name="ru.tandser.solution.dto.Users">
         <field name="users" type="ru.tandser.solution.domain.User" collection="arraylist">
             <bind-xml name="user"/>
         </field>
@@ -54,9 +54,9 @@
 
     </class>
 
-    <!-- ru.tandser.solution.util.Meals -->
+    <!-- ru.tandser.solution.dto.Meals -->
 
-    <class name="ru.tandser.solution.util.Meals">
+    <class name="ru.tandser.solution.dto.Meals">
         <field name="meals" type="ru.tandser.solution.domain.Meal" collection="arraylist">
             <bind-xml name="meal"/>
         </field>

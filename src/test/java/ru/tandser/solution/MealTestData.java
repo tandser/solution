@@ -6,7 +6,7 @@ import org.exolab.castor.xml.XMLContext;
 import org.springframework.util.ResourceUtils;
 import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.util.Matcher;
-import ru.tandser.solution.util.Meals;
+import ru.tandser.solution.dto.Meals;
 
 import java.io.FileReader;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package ru.tandser.solution.util;
+package ru.tandser.solution.dto;
 
 import ru.tandser.solution.domain.User;
 

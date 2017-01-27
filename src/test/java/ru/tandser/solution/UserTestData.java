@@ -6,7 +6,7 @@ import org.exolab.castor.xml.XMLContext;
 import org.springframework.util.ResourceUtils;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.util.Matcher;
-import ru.tandser.solution.util.Users;
+import ru.tandser.solution.dto.Users;
 
 import java.io.FileReader;
 import java.util.Objects;
