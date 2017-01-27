@@ -3,7 +3,6 @@ package ru.tandser.solution.repository.datajpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
-import ru.tandser.solution.domain.Role;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.repository.UserRepository;
 
@@ -45,7 +44,7 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     @Override
     public User put(User user) {
         if (user.getCreated()        == null) user.setCreated(LocalDateTime.now());
-        if (user.getRole()           == null) user.setRole(Role.USER);
+        if (user.getRole()           == null) user.setRole(User.Role.USER);
         if (user.getNormOfCalories() == null) user.setNormOfCalories(defaultNormOfCalories);
 
         return userRepository.save(user);

@@ -1,8 +1,13 @@
 package ru.tandser.solution;
 
+import org.springframework.util.ResourceUtils;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.util.Matcher;
+import ru.tandser.solution.util.json.JacksonUtil;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class UserTestData {
@@ -26,6 +31,20 @@ public class UserTestData {
     private UserTestData() {}
 
     public static void loadMocks() throws Exception {
+        BufferedInputStream input = new BufferedInputStream(
+                new FileInputStream(ResourceUtils.getFile("classpath:mocks/users.json")));
 
+        Iterator<User> mocks = JacksonUtil.readValues(input, User.class).iterator();
+
+        input.close();
+
+        admin                     = mocks.next();
+        user                      = mocks.next();
+        newUser                   = mocks.next();
+        duplicateUser             = mocks.next();
+        invalidNameUser           = mocks.next();
+        invalidEmailUser          = mocks.next();
+        invalidPasswordUser       = mocks.next();
+        invalidNormOfCaloriesUser = mocks.next();
     }
 }

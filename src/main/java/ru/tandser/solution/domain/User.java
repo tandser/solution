@@ -24,6 +24,10 @@ public class User extends AbstractEntity {
     private Integer       normOfCalories;
     private List<Meal>    meals;
 
+    public enum Role {
+        ADMIN, USER
+    }
+
     @NotBlank
     @Column(name = "name")
     public String getName() {
