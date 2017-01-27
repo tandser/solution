@@ -15,5 +15,5 @@ public interface MealRepository {
 
     Meal put(Meal meal, int userId);
 
-    List<Meal> between(LocalDateTime from, LocalDateTime to, int userId);
+    List<Meal> getBetween(LocalDateTime from, LocalDateTime to, int userId);
 }

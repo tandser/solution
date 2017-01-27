@@ -68,8 +68,8 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
 
     @Test
     public void testBetween() throws Exception {
-        assertTrue(mealRepository.between(from, to, 0).isEmpty());
-        assertTrue(MEAL_MATCHER.equals(meals.subList(0, 6), mealRepository.between(from, to, 2)));
+        assertTrue(mealRepository.getBetween(from, to, 0).isEmpty());
+        assertTrue(MEAL_MATCHER.equals(meals.subList(0, 6), mealRepository.getBetween(from, to, 2)));
     }
 
     @Test
