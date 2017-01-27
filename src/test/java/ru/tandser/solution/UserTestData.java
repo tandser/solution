@@ -1,14 +1,8 @@
 package ru.tandser.solution;
 
-import org.exolab.castor.mapping.Mapping;
-import org.exolab.castor.xml.Unmarshaller;
-import org.exolab.castor.xml.XMLContext;
-import org.springframework.util.ResourceUtils;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.util.Matcher;
-import ru.tandser.solution.dto.Users;
 
-import java.io.FileReader;
 import java.util.Objects;
 
 public class UserTestData {
@@ -32,28 +26,6 @@ public class UserTestData {
     private UserTestData() {}
 
     public static void loadMocks() throws Exception {
-        FileReader reader = new FileReader(ResourceUtils.getFile("classpath:mocks/users.xml"));
 
-        Mapping mapping = new Mapping();
-        mapping.loadMapping(ResourceUtils.getURL("classpath:castor/mapping.xml"));
-
-        XMLContext xmlContext = new XMLContext();
-        xmlContext.addMapping(mapping);
-
-        Unmarshaller unmarshaller = xmlContext.createUnmarshaller();
-        unmarshaller.setClass(Users.class);
-
-        Users users = (Users) unmarshaller.unmarshal(reader);
-
-        reader.close();
-
-        admin                     = users.getUsers().get(0);
-        user                      = users.getUsers().get(1);
-        newUser                   = users.getUsers().get(2);
-        duplicateUser             = users.getUsers().get(3);
-        invalidNameUser           = users.getUsers().get(4);
-        invalidEmailUser          = users.getUsers().get(5);
-        invalidPasswordUser       = users.getUsers().get(6);
-        invalidNormOfCaloriesUser = users.getUsers().get(7);
     }
 }
