@@ -4,6 +4,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import ru.tandser.solution.MealTestData;
+import ru.tandser.solution.UserTestData;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Arrays;
@@ -11,6 +13,8 @@ import java.util.Collections;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static ru.tandser.solution.MealTestData.MEAL_MATCHER;
+import static ru.tandser.solution.MealTestData.mealsReverseOrder;
 import static ru.tandser.solution.UserTestData.*;
 
 public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
@@ -24,7 +28,8 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        loadMocks();
+        UserTestData.loadMocks();
+        MealTestData.loadMocks();
     }
 
     @Test
@@ -37,6 +42,18 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
     @Test
     public void testGetAll() throws Exception {
         assertTrue(USER_MATCHER.equals(Arrays.asList(admin, user), userRepository.getAll()));
+    }
+
+    @Test
+    public void testGetByEmail() throws Exception {
+        assertNull(userRepository.getByEmail("r.bass@gmail.com"));
+        assertTrue(USER_MATCHER.equals(user, userRepository.getByEmail("s.welch@gmail.com")));
+    }
+
+    @Test
+    public void testGetWithMeals() throws Exception {
+        assertNull(userRepository.getWithMeals(0));
+        assertTrue(MEAL_MATCHER.equals(mealsReverseOrder, userRepository.getWithMeals(2).getMeals()));
     }
 
     @Test

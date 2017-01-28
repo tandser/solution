@@ -8,12 +8,14 @@ import ru.tandser.solution.web.json.JacksonObjectMapper;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class MealTestData {
 
     public static List<Meal> meals;
+    public static List<Meal> mealsReverseOrder;
     public static Meal       newMeal;
     public static Meal       duplicateMeal;
     public static Meal       invalidDateTimeMeal;
@@ -45,6 +47,9 @@ public class MealTestData {
         invalidDateTimeMeal    = mocks.get(14);
         invalidDescriptionMeal = mocks.get(15);
         invalidCaloriesMeal    = mocks.get(16);
+
+        mealsReverseOrder = new ArrayList<>(meals);
+        mealsReverseOrder.sort((m1, m2) -> m2.getDateTime().compareTo(m1.getDateTime()));
 
         from = LocalDateTime.of(2017, 1, 9,  10, 0);
         to   = LocalDateTime.of(2017, 1, 10, 19, 0);

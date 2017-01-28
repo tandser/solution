@@ -15,7 +15,8 @@
     "normOfCalories":2000
   },
 
-  {"name":"Ralph Bass",
+  {
+    "name":"Ralph Bass",
     "email":"r.bass@gmail.com",
     "password":"9Mn5Z6x",
     "role":"USER",

@@ -1,18 +1,28 @@
 package ru.tandser.solution.repository;
 
 import org.hamcrest.CoreMatchers;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import ru.tandser.solution.MealTestData;
+import ru.tandser.solution.UserTestData;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/repository.xml")
 @Sql(scripts = "classpath:scripts/insert.ddl", config = @SqlConfig(encoding = "UTF-8"))
 public abstract class AbstractRepositoryTest {
+
+    @BeforeClass
+    public static void beforeClass() throws Exception {
+        MealTestData.loadMocks();
+        UserTestData.loadMocks();
+    }
 
     public static <T extends Throwable> void validateRootCause(Runnable task, Class<T> exceptionType) {
         try {

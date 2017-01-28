@@ -1,4 +1,4 @@
-package ru.tandser.solution.service.exceptions;
+package ru.tandser.solution.service.exc;
 
 public class NotFoundException extends RuntimeException {
 

@@ -31,13 +31,19 @@ public class DataJpaMealRepositoryImpl implements MealRepository {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Meal> getAll(int userId) {
-        return mealRepository.findAllByUserId(userId);
+        return userRepository.exists(userId)
+                ? mealRepository.findAllByUserId(userId)
+                : null;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Meal> getBetween(LocalDateTime from, LocalDateTime to, int userId) {
-        return mealRepository.findByUserIdAndDateTimeBetween(userId, from, to);
+        return userRepository.exists(userId)
+                ? mealRepository.findByUserIdAndDateTimeBetween(userId, from, to)
+                : null;
     }
 
     @Override

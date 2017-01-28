@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tandser.solution.domain.User;
 
-import javax.persistence.NamedEntityGraph;
 import java.util.List;
 
 @Transactional(readOnly = true)

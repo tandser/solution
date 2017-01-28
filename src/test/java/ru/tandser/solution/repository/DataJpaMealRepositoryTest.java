@@ -1,6 +1,5 @@
 package ru.tandser.solution.repository;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -10,6 +9,8 @@ import javax.validation.ConstraintViolationException;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.*;
+import static ru.tandser.solution.UserTestData.USER_MATCHER;
+import static ru.tandser.solution.UserTestData.user;
 
 public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
 
@@ -18,11 +19,6 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
     @Autowired
     public void setMealRepository(MealRepository mealRepository) {
         this.mealRepository = mealRepository;
-    }
-
-    @BeforeClass
-    public static void beforeClass() throws Exception {
-        loadMocks();
     }
 
     @Test
@@ -34,8 +30,21 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
 
     @Test
     public void testGetAll() throws Exception {
-        assertTrue(mealRepository.getAll(0).isEmpty());
+        assertNull(mealRepository.getAll(0));
         assertTrue(MEAL_MATCHER.equals(meals, mealRepository.getAll(2)));
+    }
+
+    @Test
+    public void testBetween() throws Exception {
+        assertNull(mealRepository.getBetween(from, to, 0));
+        assertTrue(MEAL_MATCHER.equals(meals.subList(0, 6), mealRepository.getBetween(from, to, 2)));
+    }
+
+    @Test
+    public void testGetWithUser() throws Exception {
+        assertNull(mealRepository.getWithUser(0, 2));
+        assertNull(mealRepository.getWithUser(2, 0));
+        assertTrue(USER_MATCHER.equals(user, mealRepository.getWithUser(1, 2).getUser()));
     }
 
     @Test
@@ -64,12 +73,6 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
     @Test(expected = DataAccessException.class)
     public void testPutDuplicateUserIdDateTime() throws Exception {
         mealRepository.put(duplicateMeal, 2);
-    }
-
-    @Test
-    public void testBetween() throws Exception {
-        assertTrue(mealRepository.getBetween(from, to, 0).isEmpty());
-        assertTrue(MEAL_MATCHER.equals(meals.subList(0, 6), mealRepository.getBetween(from, to, 2)));
     }
 
     @Test

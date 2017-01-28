@@ -7,13 +7,17 @@ import java.util.List;
 
 public interface MealService {
 
-//    Meal get(int id, int userId);
+    Meal get(int id, int userId);
 
-//    List<Meal> getAll(int userId);
+    List<Meal> getAll(int userId);
 
-//    List<Meal> getBetween(LocalDateTime from, LocalDateTime to, int userId);
+    List<Meal> getBetween(LocalDateTime from, LocalDateTime to, int userId);
 
-//    Meal delete(int id, int userId);
+    Meal getWithUser(int id, int userId);
 
-//    Meal save(Meal meal, int userId);
+    void remove(int id, int userId);
+
+    Meal save(Meal meal, int userId);
+
+    void update(Meal meal, int userId);
 }
