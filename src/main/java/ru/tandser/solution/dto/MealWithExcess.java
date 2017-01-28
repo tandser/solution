@@ -1,6 +1,8 @@
 package ru.tandser.solution.dto;
 
 import com.google.common.base.MoreObjects;
+import org.springframework.util.Assert;
+import ru.tandser.solution.domain.Meal;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +13,18 @@ public class MealWithExcess {
     private String        description;
     private int           calories;
     private boolean       excess;
+
+    public MealWithExcess() {}
+
+    public MealWithExcess(Meal meal, boolean excess) {
+        Assert.notNull(meal);
+
+        id          = meal.getId();
+        dateTime    = meal.getDateTime();
+        description = meal.getDescription();
+        calories    = meal.getCalories();
+        this.excess = excess;
+    }
 
     public Integer getId() {
         return id;
@@ -55,11 +69,11 @@ public class MealWithExcess {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("id", id)
-                .add("date_time", dateTime)
+                .add("id",          id)
+                .add("date_time",   dateTime)
                 .add("description", description)
-                .add("calories", calories)
-                .add("excess", excess)
+                .add("calories",    calories)
+                .add("excess",      excess)
                 .toString();
     }
 }

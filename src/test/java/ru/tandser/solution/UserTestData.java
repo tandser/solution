@@ -5,8 +5,6 @@ import ru.tandser.solution.domain.User;
 import ru.tandser.solution.util.Matcher;
 import ru.tandser.solution.web.json.JacksonObjectMapper;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -31,13 +29,8 @@ public class UserTestData {
     private UserTestData() {}
 
     public static void loadMocks() throws Exception {
-        BufferedInputStream input = new BufferedInputStream(
-                new FileInputStream(ResourceUtils.getFile("classpath:mocks/users.json")));
-
         Iterator<User> mocks = JacksonObjectMapper.getInstance()
-                .readerFor(User.class).<User>readValues(input).readAll().iterator();
-
-        input.close();
+                .readerFor(User.class).<User>readValues(ResourceUtils.getFile("classpath:mocks/users.json")).readAll().iterator();
 
         admin                     = mocks.next();
         user                      = mocks.next();

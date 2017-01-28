@@ -7,7 +7,9 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "meals")
@@ -59,6 +61,16 @@ public class Meal extends AbstractEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Transient
+    public LocalDate getDate() {
+        return dateTime.toLocalDate();
+    }
+
+    @Transient
+    public LocalTime getTime() {
+        return dateTime.toLocalTime();
     }
 
     @Override

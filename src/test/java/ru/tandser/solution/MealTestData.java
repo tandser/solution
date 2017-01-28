@@ -5,8 +5,6 @@ import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.util.Matcher;
 import ru.tandser.solution.web.json.JacksonObjectMapper;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +31,8 @@ public class MealTestData {
     private MealTestData() {}
 
     public static void loadMocks() throws Exception {
-        BufferedInputStream input = new BufferedInputStream(
-                new FileInputStream(ResourceUtils.getFile("classpath:mocks/meals.json")));
-
         List<Meal> mocks = JacksonObjectMapper.getInstance()
-                .readerFor(Meal.class).<Meal>readValues(input).readAll();
-
-        input.close();
+                .readerFor(Meal.class).<Meal>readValues(ResourceUtils.getFile("classpath:mocks/meals.json")).readAll();
 
         meals                  = mocks.subList(0, 12);
         newMeal                = mocks.get(12);
