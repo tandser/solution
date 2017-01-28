@@ -1,11 +1,8 @@
 package ru.tandser.solution.repository;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import ru.tandser.solution.MealTestData;
-import ru.tandser.solution.UserTestData;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Arrays;
@@ -24,12 +21,6 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
-    }
-
-    @BeforeClass
-    public static void beforeClass() throws Exception {
-        UserTestData.loadMocks();
-        MealTestData.loadMocks();
     }
 
     @Test
