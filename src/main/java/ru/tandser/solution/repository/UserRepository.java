@@ -10,6 +10,10 @@ public interface UserRepository {
 
     List<User> getAll();
 
+    User getByEmail(String email);
+
+    User getWithMeals(int id);
+
     User remove(int id);
 
     User put(User user);

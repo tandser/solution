@@ -1,4 +1,4 @@
-package ru.tandser.solution.util.json;
+package ru.tandser.solution.web.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,16 +8,16 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class JacksonObjectMapper extends ObjectMapper {
 
-    private static final ObjectMapper MAPPER = new JacksonObjectMapper();
-
-    public static ObjectMapper getMapper() {
-        return MAPPER;
-    }
+    private static final ObjectMapper INSTANCE = new JacksonObjectMapper();
 
     private JacksonObjectMapper() {
         registerModule(new Hibernate5Module());
         registerModule(new JavaTimeModule());
         configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    }
+
+    public static ObjectMapper getInstance() {
+        return INSTANCE;
     }
 }

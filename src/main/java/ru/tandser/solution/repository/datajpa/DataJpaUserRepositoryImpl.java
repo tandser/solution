@@ -36,6 +36,16 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User getByEmail(String email) {
+        return userRepository.findOneByEmail(email);
+    }
+
+    @Override
+    public User getWithMeals(int id) {
+        return userRepository.findOneWithMeals(id);
+    }
+
+    @Override
     public User remove(int id) {
         List<User> result = userRepository.removeById(id);
         return result.isEmpty() ? null : result.get(0);

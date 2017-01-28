@@ -36,6 +36,16 @@ public class DataJpaMealRepositoryImpl implements MealRepository {
     }
 
     @Override
+    public List<Meal> getBetween(LocalDateTime from, LocalDateTime to, int userId) {
+        return mealRepository.findByUserIdAndDateTimeBetween(userId, from, to);
+    }
+
+    @Override
+    public Meal getWithUser(int id, int userId) {
+        return mealRepository.findOneByIdAndUserIdWithUser(id, userId);
+    }
+
+    @Override
     public Meal remove(int id, int userId) {
         List<Meal> result = mealRepository.removeByIdAndUserId(id, userId);
         return result.isEmpty() ? null : result.get(0);
@@ -55,10 +65,5 @@ public class DataJpaMealRepositoryImpl implements MealRepository {
         meal.setUser(userRepository.getOne(userId));
 
         return mealRepository.save(meal);
-    }
-
-    @Override
-    public List<Meal> getBetween(LocalDateTime from, LocalDateTime to, int userId) {
-        return mealRepository.findByUserIdAndDateTimeBetween(userId, from, to);
     }
 }

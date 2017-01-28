@@ -3,7 +3,7 @@ package ru.tandser.solution;
 import org.springframework.util.ResourceUtils;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.util.Matcher;
-import ru.tandser.solution.util.json.JacksonUtil;
+import ru.tandser.solution.web.json.JacksonObjectMapper;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -34,7 +34,8 @@ public class UserTestData {
         BufferedInputStream input = new BufferedInputStream(
                 new FileInputStream(ResourceUtils.getFile("classpath:mocks/users.json")));
 
-        Iterator<User> mocks = JacksonUtil.readValues(input, User.class).iterator();
+        Iterator<User> mocks = JacksonObjectMapper.getInstance()
+                .readerFor(User.class).<User>readValues(input).readAll().iterator();
 
         input.close();
 

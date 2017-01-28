@@ -1,5 +1,6 @@
 package ru.tandser.solution.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.Hibernate;
 import org.springframework.data.domain.Persistable;
 
@@ -23,6 +24,7 @@ public abstract class AbstractEntity implements Persistable<Integer> {
         this.id = id;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     @Version
     @Column(name = "version")
     public int getVersion() {

@@ -11,7 +11,8 @@
     "name":"Scott Welch",
     "email":"s.welch@gmail.com",
     "password":"Izhyw29",
-    "role":"USER","normOfCalories":2000
+    "role":"USER",
+    "normOfCalories":2000
   },
 
   {"name":"Ralph Bass",
