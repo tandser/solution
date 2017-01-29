@@ -9,8 +9,7 @@ import javax.validation.ConstraintViolationException;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.*;
-import static ru.tandser.solution.UserTestData.USER_MATCHER;
-import static ru.tandser.solution.UserTestData.user;
+import static ru.tandser.solution.UserTestData.*;
 
 public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
 
@@ -23,62 +22,62 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
 
     @Test
     public void testGet() {
-        assertNull(mealRepository.get(0, 2));
-        assertNull(mealRepository.get(2, 0));
-        assertTrue(MEAL_MATCHER.equals(meals.get(0), mealRepository.get(1, 2)));
+        assertNull(mealRepository.get(existingMeal.getId(), nonExistentUser.getId()));
+        assertNull(mealRepository.get(nonExistentMeal.getId(), user.getId()));
+        assertTrue(MEAL_MATCHER.equals(existingMeal, mealRepository.get(existingMeal.getId(), user.getId())));
     }
 
     @Test
     public void testGetAll() {
-        assertNull(mealRepository.getAll(0));
-        assertTrue(MEAL_MATCHER.equals(meals, mealRepository.getAll(2)));
+        assertNull(mealRepository.getAll(nonExistentUser.getId()));
+        assertTrue(MEAL_MATCHER.equals(meals, mealRepository.getAll(user.getId())));
     }
 
     @Test
     public void testBetween() {
-        assertNull(mealRepository.getBetween(from, to, 0));
-        assertTrue(MEAL_MATCHER.equals(meals.subList(0, 6), mealRepository.getBetween(from, to, 2)));
+        assertNull(mealRepository.getBetween(from, to, nonExistentUser.getId()));
+        assertTrue(MEAL_MATCHER.equals(betweenMeals, mealRepository.getBetween(from, to, user.getId())));
     }
 
     @Test
     public void testGetWithUser() {
-        assertNull(mealRepository.getWithUser(0, 2));
-        assertNull(mealRepository.getWithUser(2, 0));
-        assertTrue(USER_MATCHER.equals(user, mealRepository.getWithUser(1, 2).getUser()));
+        assertNull(mealRepository.getWithUser(existingMeal.getId(), nonExistentUser.getId()));
+        assertNull(mealRepository.getWithUser(nonExistentMeal.getId(), user.getId()));
+        assertTrue(USER_MATCHER.equals(user, mealRepository.getWithUser(existingMeal.getId(), user.getId()).getUser()));
     }
 
     @Test
     public void testRemove() {
-        assertNull(mealRepository.remove(0, 2));
-        assertNull(mealRepository.remove(2, 0));
+        assertNull(mealRepository.remove(existingMeal.getId(), nonExistentUser.getId()));
+        assertNull(mealRepository.remove(nonExistentMeal.getId(), user.getId()));
 
-        assertTrue(MEAL_MATCHER.equals(meals.get(0), mealRepository.remove(1, 2)));
-        assertTrue(MEAL_MATCHER.equals(meals.subList(1, meals.size()), mealRepository.getAll(2)));
+        assertTrue(MEAL_MATCHER.equals(existingMeal, mealRepository.remove(existingMeal.getId(), user.getId())));
+        assertTrue(MEAL_MATCHER.equals(updatedMeals, mealRepository.getAll(user.getId())));
     }
 
     @Test
     public void testPut() {
-        assertNull(mealRepository.put(newMeal1, 0));
-        assertNull(newMeal1.getId());
+        assertNull(mealRepository.put(newMeal, nonExistentUser.getId()));
+        assertNull(newMeal.getId());
 
-        assertTrue(MEAL_MATCHER.equals(newMeal1, mealRepository.put(newMeal1, 2)));
-        assertTrue(MEAL_MATCHER.equals(newMeal1, mealRepository.get(newMeal1.getId(), 2)));
+        assertTrue(MEAL_MATCHER.equals(newMeal, mealRepository.put(newMeal, user.getId())));
+        assertTrue(MEAL_MATCHER.equals(newMeal, mealRepository.get(newMeal.getId(), user.getId())));
 
-        newMeal1.setCalories(500);
+        newMeal.setId(null);
 
-        assertTrue(MEAL_MATCHER.equals(newMeal1, mealRepository.put(newMeal1, 2)));
-        assertTrue(MEAL_MATCHER.equals(newMeal1, mealRepository.get(newMeal1.getId(), 2)));
+        assertTrue(MEAL_MATCHER.equals(notNewMeal, mealRepository.put(notNewMeal, user.getId())));
+        assertTrue(MEAL_MATCHER.equals(notNewMeal, mealRepository.get(notNewMeal.getId(), user.getId())));
     }
 
     @Test(expected = DataAccessException.class)
-    public void testPutDuplicateUserIdDateTime() {
-        mealRepository.put(duplicateMeal, 2);
+    public void testPutDuplicateMeal() {
+        mealRepository.put(duplicateMeal, user.getId());
     }
 
     @Test
     public void testValidation() {
-        validateRootCause(() -> mealRepository.put(invalidDateTimeMeal,    2), ConstraintViolationException.class);
-        validateRootCause(() -> mealRepository.put(invalidDescriptionMeal, 2), ConstraintViolationException.class);
-        validateRootCause(() -> mealRepository.put(invalidCaloriesMeal,    2), ConstraintViolationException.class);
+        validateRootCause(() -> mealRepository.put(invalidDateTimeMeal,    user.getId()), ConstraintViolationException.class);
+        validateRootCause(() -> mealRepository.put(invalidDescriptionMeal, user.getId()), ConstraintViolationException.class);
+        validateRootCause(() -> mealRepository.put(invalidCaloriesMeal,    user.getId()), ConstraintViolationException.class);
     }
 }

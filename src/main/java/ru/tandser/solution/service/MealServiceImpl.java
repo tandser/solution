@@ -15,7 +15,7 @@ import static ru.tandser.solution.service.util.Inspector.*;
 @Service
 public class MealServiceImpl implements MealService {
 
-    public static final String MESSAGE_1 = "Meal with id = %d for user with id = %d not found";
+    public static final String MESSAGE_1 = "Meal with id = %d for user with id = %d does not exist";
     public static final String MESSAGE_2 = "User with id = %d does not exist";
     public static final String MESSAGE_3 = "Meal id = %d, must be null";
     public static final String MESSAGE_4 = "Meal id must not be null";

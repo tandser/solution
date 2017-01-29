@@ -11,7 +11,7 @@ import java.util.Collections;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.MEAL_MATCHER;
-import static ru.tandser.solution.MealTestData.mealsReverseOrder;
+import static ru.tandser.solution.MealTestData.reverseOrderMeals;
 import static ru.tandser.solution.UserTestData.*;
 
 public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
@@ -25,9 +25,9 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
 
     @Test
     public void testGet() {
-        assertNull(userRepository.get(0));
-        assertTrue(USER_MATCHER.equals(admin, userRepository.get(1)));
-        assertTrue(USER_MATCHER.equals(user,  userRepository.get(2)));
+        assertNull(userRepository.get(nonExistentUser.getId()));
+        assertTrue(USER_MATCHER.equals(admin, userRepository.get(admin.getId())));
+        assertTrue(USER_MATCHER.equals(user,  userRepository.get(user.getId())));
     }
 
     @Test
@@ -37,21 +37,21 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
 
     @Test
     public void testGetByEmail() {
-        assertNull(userRepository.getByEmail("r.bass@gmail.com"));
-        assertTrue(USER_MATCHER.equals(user, userRepository.getByEmail("s.welch@gmail.com")));
+        assertNull(userRepository.getByEmail(nonExistentUser.getEmail()));
+        assertTrue(USER_MATCHER.equals(user, userRepository.getByEmail(user.getEmail())));
     }
 
     @Test
     public void testGetWithMeals() {
-        assertNull(userRepository.getWithMeals(0));
-        assertTrue(MEAL_MATCHER.equals(mealsReverseOrder, userRepository.getWithMeals(2).getMeals()));
+        assertNull(userRepository.getWithMeals(nonExistentUser.getId()));
+        assertTrue(MEAL_MATCHER.equals(reverseOrderMeals, userRepository.getWithMeals(user.getId()).getMeals()));
     }
 
     @Test
     public void testRemove() {
-        assertNull(userRepository.remove(0));
-        assertTrue(USER_MATCHER.equals(admin, userRepository.remove(1)));
-        assertTrue(USER_MATCHER.equals(Collections.singletonList(user), userRepository.getAll()));
+        assertNull(userRepository.remove(nonExistentUser.getId()));
+        assertTrue(USER_MATCHER.equals(user, userRepository.remove(user.getId())));
+        assertTrue(USER_MATCHER.equals(Collections.singletonList(admin), userRepository.getAll()));
     }
 
     @Test
@@ -61,12 +61,14 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
         assertTrue(USER_MATCHER.equals(newUser, userRepository.put(newUser)));
         assertTrue(USER_MATCHER.equals(newUser, userRepository.get(newUser.getId())));
 
+        newUser.setId(null);
+
         assertTrue(USER_MATCHER.equals(notNewUser, userRepository.put(notNewUser)));
         assertTrue(USER_MATCHER.equals(notNewUser, userRepository.get(notNewUser.getId())));
     }
 
     @Test(expected = DataAccessException.class)
-    public void testPutDuplicateEmail() {
+    public void testPutDuplicateUser() {
         userRepository.put(duplicateUser);
     }
 

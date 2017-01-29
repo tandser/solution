@@ -13,10 +13,12 @@ import java.util.Objects;
 public class MealTestData {
 
     public static List<Meal> meals;
-    public static List<Meal> mealsReverseOrder;
-    public static Meal       newMeal1;
-    public static Meal       newMeal2;
-    public static Meal       newMeal3;
+    public static List<Meal> betweenMeals;
+    public static List<Meal> reverseOrderMeals;
+    public static List<Meal> updatedMeals;
+
+    public static Meal       existingMeal;
+    public static Meal       newMeal;
     public static Meal       notNewMeal;
     public static Meal       nonExistentMeal;
     public static Meal       duplicateMeal;
@@ -39,18 +41,19 @@ public class MealTestData {
                 .readerFor(Meal.class).<Meal>readValues(ResourceUtils.getFile("classpath:mocks/meals.json")).readAll();
 
         meals                  = mocks.subList(0, 12);
-        newMeal1               = mocks.get(12);
-        newMeal2               = mocks.get(13);
-        newMeal3               = mocks.get(14);
-        notNewMeal             = mocks.get(15);
-        nonExistentMeal        = mocks.get(16);
-        duplicateMeal          = mocks.get(17);
-        invalidDateTimeMeal    = mocks.get(18);
-        invalidDescriptionMeal = mocks.get(19);
-        invalidCaloriesMeal    = mocks.get(20);
+        betweenMeals           = mocks.subList(0, 6);
+        updatedMeals           = mocks.subList(1, 12);
+        existingMeal           = mocks.get(0);
+        newMeal                = mocks.get(12);
+        notNewMeal             = mocks.get(13);
+        nonExistentMeal        = mocks.get(14);
+        duplicateMeal          = mocks.get(15);
+        invalidDateTimeMeal    = mocks.get(16);
+        invalidDescriptionMeal = mocks.get(17);
+        invalidCaloriesMeal    = mocks.get(18);
 
-        mealsReverseOrder = new ArrayList<>(meals);
-        mealsReverseOrder.sort((m1, m2) -> m2.getDateTime().compareTo(m1.getDateTime()));
+        reverseOrderMeals = new ArrayList<>(meals);
+        reverseOrderMeals.sort((m1, m2) -> m2.getDateTime().compareTo(m1.getDateTime()));
 
         from = LocalDateTime.of(2017, 1, 9,  10, 0);
         to   = LocalDateTime.of(2017, 1, 10, 19, 0);

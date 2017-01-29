@@ -14,8 +14,8 @@ import static ru.tandser.solution.service.util.Inspector.*;
 @Service
 public class UserServiceImpl implements UserService {
 
-    public static final String MESSAGE_1 = "User with id = %d not found";
-    public static final String MESSAGE_2 = "User with email = %s not found";
+    public static final String MESSAGE_1 = "User with id = %d does not exist";
+    public static final String MESSAGE_2 = "User with email = %s does not exist";
     public static final String MESSAGE_3 = "User id = %d, must be null";
     public static final String MESSAGE_4 = "User id must not be null";
 

@@ -29,7 +29,7 @@
     </bean>
 
     <jdbc:initialize-database data-source="dataSource">
-        <jdbc:script location="classpath:scripts/create.ddl"/>
+        <jdbc:script location="classpath:ddl/create.ddl"/>
     </jdbc:initialize-database>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

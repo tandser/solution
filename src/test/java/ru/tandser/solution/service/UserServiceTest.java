@@ -10,7 +10,7 @@ import java.util.Collections;
 import static java.lang.String.format;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.MEAL_MATCHER;
-import static ru.tandser.solution.MealTestData.mealsReverseOrder;
+import static ru.tandser.solution.MealTestData.reverseOrderMeals;
 import static ru.tandser.solution.UserTestData.*;
 
 public class UserServiceTest extends AbstractServiceTest {
@@ -24,15 +24,15 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void testGet() {
-        assertTrue(USER_MATCHER.equals(admin, userService.get(1)));
-        assertTrue(USER_MATCHER.equals(user,  userService.get(2)));
+        assertTrue(USER_MATCHER.equals(admin, userService.get(admin.getId())));
+        assertTrue(USER_MATCHER.equals(user,  userService.get(user.getId())));
     }
 
     @Test
     public void testGetNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(UserServiceImpl.MESSAGE_1, 0));
-        userService.get(0);
+        thrown.expectMessage(format(UserServiceImpl.MESSAGE_1, nonExistentUser.getId()));
+        userService.get(nonExistentUser.getId());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void testGetByEmail() {
-        assertTrue(USER_MATCHER.equals(user, userService.getByEmail("s.welch@gmail.com")));
+        assertTrue(USER_MATCHER.equals(user, userService.getByEmail(user.getEmail())));
     }
 
     @Test
@@ -54,33 +54,33 @@ public class UserServiceTest extends AbstractServiceTest {
     @Test
     public void testGetByNonExistentEmail() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(UserServiceImpl.MESSAGE_2, "r.bass@gmail.com"));
-        userService.getByEmail("r.bass@gmail.com");
+        thrown.expectMessage(format(UserServiceImpl.MESSAGE_2, nonExistentUser.getEmail()));
+        userService.getByEmail(nonExistentUser.getEmail());
     }
 
     @Test
     public void testGetWithMeals() {
-        assertTrue(MEAL_MATCHER.equals(mealsReverseOrder, userService.getWithMeals(2).getMeals()));
+        assertTrue(MEAL_MATCHER.equals(reverseOrderMeals, userService.getWithMeals(user.getId()).getMeals()));
     }
 
     @Test
     public void testGetNonExistentUserWithMeals() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(UserServiceImpl.MESSAGE_1, 0));
-        userService.getWithMeals(0);
+        thrown.expectMessage(format(UserServiceImpl.MESSAGE_1, nonExistentUser.getId()));
+        userService.getWithMeals(nonExistentUser.getId());
     }
 
     @Test
     public void testRemove() {
-        userService.remove(1);
-        assertTrue(USER_MATCHER.equals(Collections.singletonList(user), userService.getAll()));
+        userService.remove(user.getId());
+        assertTrue(USER_MATCHER.equals(Collections.singletonList(admin), userService.getAll()));
     }
 
     @Test
     public void testRemoveNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(UserServiceImpl.MESSAGE_1, 0));
-        userService.remove(0);
+        thrown.expectMessage(format(UserServiceImpl.MESSAGE_1, nonExistentUser.getId()));
+        userService.remove(nonExistentUser.getId());
     }
 
     @Test

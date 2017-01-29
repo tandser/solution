@@ -15,7 +15,7 @@ import static org.junit.Assert.fail;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/repository.xml")
-@Sql(scripts = "classpath:scripts/insert.ddl", config = @SqlConfig(encoding = "UTF-8"))
+@Sql(scripts = "classpath:ddl/insert.ddl", config = @SqlConfig(encoding = "UTF-8"))
 public abstract class AbstractRepositoryTest {
 
     @BeforeClass

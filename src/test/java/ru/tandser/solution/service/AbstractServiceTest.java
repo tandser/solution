@@ -13,7 +13,7 @@ import ru.tandser.solution.UserTestData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/repository.xml", "classpath:spring/service.xml"})
-@Sql(scripts = "classpath:scripts/insert.ddl", config = @SqlConfig(encoding = "UTF-8"))
+@Sql(scripts = "classpath:ddl/insert.ddl", config = @SqlConfig(encoding = "UTF-8"))
 public abstract class AbstractServiceTest {
 
     @Rule
