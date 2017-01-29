@@ -3,6 +3,7 @@ package ru.tandser.solution.repository.datajpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.repository.UserRepository;
 
@@ -58,5 +59,13 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
         if (user.getNormOfCalories() == null) user.setNormOfCalories(defaultNormOfCalories);
 
         return userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public User update(User user) {
+        return user.getId() != null && userRepository.exists(user.getId())
+                ? put(user)
+                : null;
     }
 }

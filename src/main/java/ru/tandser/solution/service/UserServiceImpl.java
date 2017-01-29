@@ -14,10 +14,10 @@ import static ru.tandser.solution.service.util.Inspector.*;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private static final String MESSAGE_1 = "User with id = %d not found";
-    private static final String MESSAGE_2 = "User with email = %s not found";
-    private static final String MESSAGE_3 = "User id = %d, must be null";
-    private static final String MESSAGE_4 = "User id must not be null";
+    public static final String MESSAGE_1 = "User with id = %d not found";
+    public static final String MESSAGE_2 = "User with email = %s not found";
+    public static final String MESSAGE_3 = "User id = %d, must be null";
+    public static final String MESSAGE_4 = "User id must not be null";
 
     private UserRepository userRepository;
 
@@ -63,6 +63,6 @@ public class UserServiceImpl implements UserService {
     public void update(User user) {
         Assert.notNull(user);
         checkThatNotNew(user, MESSAGE_4);
-        checkThatFound(userRepository.put(user), format(MESSAGE_1, user.getId()));
+        checkThatFound(userRepository.update(user), format(MESSAGE_1, user.getId()));
     }
 }

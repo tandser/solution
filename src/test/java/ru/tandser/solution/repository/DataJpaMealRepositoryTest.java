@@ -22,33 +22,33 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
     }
 
     @Test
-    public void testGet() throws Exception {
+    public void testGet() {
         assertNull(mealRepository.get(0, 2));
         assertNull(mealRepository.get(2, 0));
         assertTrue(MEAL_MATCHER.equals(meals.get(0), mealRepository.get(1, 2)));
     }
 
     @Test
-    public void testGetAll() throws Exception {
+    public void testGetAll() {
         assertNull(mealRepository.getAll(0));
         assertTrue(MEAL_MATCHER.equals(meals, mealRepository.getAll(2)));
     }
 
     @Test
-    public void testBetween() throws Exception {
+    public void testBetween() {
         assertNull(mealRepository.getBetween(from, to, 0));
         assertTrue(MEAL_MATCHER.equals(meals.subList(0, 6), mealRepository.getBetween(from, to, 2)));
     }
 
     @Test
-    public void testGetWithUser() throws Exception {
+    public void testGetWithUser() {
         assertNull(mealRepository.getWithUser(0, 2));
         assertNull(mealRepository.getWithUser(2, 0));
         assertTrue(USER_MATCHER.equals(user, mealRepository.getWithUser(1, 2).getUser()));
     }
 
     @Test
-    public void testRemove() throws Exception {
+    public void testRemove() {
         assertNull(mealRepository.remove(0, 2));
         assertNull(mealRepository.remove(2, 0));
 
@@ -57,7 +57,7 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
     }
 
     @Test
-    public void testPut() throws Exception {
+    public void testPut() {
         assertNull(mealRepository.put(newMeal, 0));
         assertNull(newMeal.getId());
 
@@ -71,12 +71,12 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
     }
 
     @Test(expected = DataAccessException.class)
-    public void testPutDuplicateUserIdDateTime() throws Exception {
+    public void testPutDuplicateUserIdDateTime() {
         mealRepository.put(duplicateMeal, 2);
     }
 
     @Test
-    public void testValidation() throws Exception {
+    public void testValidation() {
         validateRootCause(() -> mealRepository.put(invalidDateTimeMeal,    2), ConstraintViolationException.class);
         validateRootCause(() -> mealRepository.put(invalidDescriptionMeal, 2), ConstraintViolationException.class);
         validateRootCause(() -> mealRepository.put(invalidCaloriesMeal,    2), ConstraintViolationException.class);

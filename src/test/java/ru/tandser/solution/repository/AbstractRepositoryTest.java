@@ -20,8 +20,8 @@ public abstract class AbstractRepositoryTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        MealTestData.loadMocks();
         UserTestData.loadMocks();
+        MealTestData.loadMocks();
     }
 
     public static <T extends Throwable> void validateRootCause(Runnable task, Class<T> exceptionType) {

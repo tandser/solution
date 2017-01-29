@@ -24,6 +24,24 @@
   },
 
   {
+    "id":2,
+    "name":"Scott Welch",
+    "email":"s.welch@gmail.com",
+    "password":"lgZtBlx",
+    "role":"USER",
+    "normOfCalories":2000
+  },
+
+  {
+    "id":3,
+    "name":"Arnold Shaw",
+    "email":"a.shaw@gmail.com",
+    "password":"gVw4WrY",
+    "role":"USER",
+    "normOfCalories":2000
+  },
+
+  {
     "name":"Steven Welch",
     "email":"s.welch@gmail.com",
     "password":"Y9rpqov",

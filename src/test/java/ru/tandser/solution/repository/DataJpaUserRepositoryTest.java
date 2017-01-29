@@ -24,38 +24,38 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
     }
 
     @Test
-    public void testGet() throws Exception {
+    public void testGet() {
         assertNull(userRepository.get(0));
         assertTrue(USER_MATCHER.equals(admin, userRepository.get(1)));
         assertTrue(USER_MATCHER.equals(user,  userRepository.get(2)));
     }
 
     @Test
-    public void testGetAll() throws Exception {
+    public void testGetAll() {
         assertTrue(USER_MATCHER.equals(Arrays.asList(admin, user), userRepository.getAll()));
     }
 
     @Test
-    public void testGetByEmail() throws Exception {
+    public void testGetByEmail() {
         assertNull(userRepository.getByEmail("r.bass@gmail.com"));
         assertTrue(USER_MATCHER.equals(user, userRepository.getByEmail("s.welch@gmail.com")));
     }
 
     @Test
-    public void testGetWithMeals() throws Exception {
+    public void testGetWithMeals() {
         assertNull(userRepository.getWithMeals(0));
         assertTrue(MEAL_MATCHER.equals(mealsReverseOrder, userRepository.getWithMeals(2).getMeals()));
     }
 
     @Test
-    public void testRemove() throws Exception {
+    public void testRemove() {
         assertNull(userRepository.remove(0));
         assertTrue(USER_MATCHER.equals(admin, userRepository.remove(1)));
         assertTrue(USER_MATCHER.equals(Collections.singletonList(user), userRepository.getAll()));
     }
 
     @Test
-    public void testPut() throws Exception {
+    public void testPut() {
         assertTrue(USER_MATCHER.equals(newUser, userRepository.put(newUser)));
         assertTrue(USER_MATCHER.equals(newUser, userRepository.get(newUser.getId())));
 
@@ -66,12 +66,20 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
     }
 
     @Test(expected = DataAccessException.class)
-    public void testPutDuplicateEmail() throws Exception {
+    public void testPutDuplicateEmail() {
         userRepository.put(duplicateUser);
     }
 
     @Test
-    public void testValidation() throws Exception {
+    public void testUpdate() {
+        assertNull(userRepository.update(newUser));
+        assertNull(userRepository.update(nonExistentUser));
+        assertTrue(USER_MATCHER.equals(notNewUser, userRepository.update(notNewUser)));
+        assertTrue(USER_MATCHER.equals(notNewUser, userRepository.get(notNewUser.getId())));
+    }
+
+    @Test
+    public void testValidation() {
         validateRootCause(() -> userRepository.put(invalidNameUser),           ConstraintViolationException.class);
         validateRootCause(() -> userRepository.put(invalidEmailUser),          ConstraintViolationException.class);
         validateRootCause(() -> userRepository.put(invalidPasswordUser),       ConstraintViolationException.class);
