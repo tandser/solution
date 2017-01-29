@@ -56,26 +56,18 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
 
     @Test
     public void testPut() {
-        assertTrue(USER_MATCHER.equals(newUser, userRepository.put(newUser)));
-        assertTrue(USER_MATCHER.equals(newUser, userRepository.get(newUser.getId())));
-
-        newUser.setPassword("lgZtBlx");
+        assertNull(userRepository.put(nonExistentUser));
 
         assertTrue(USER_MATCHER.equals(newUser, userRepository.put(newUser)));
         assertTrue(USER_MATCHER.equals(newUser, userRepository.get(newUser.getId())));
+
+        assertTrue(USER_MATCHER.equals(notNewUser, userRepository.put(notNewUser)));
+        assertTrue(USER_MATCHER.equals(notNewUser, userRepository.get(notNewUser.getId())));
     }
 
     @Test(expected = DataAccessException.class)
     public void testPutDuplicateEmail() {
         userRepository.put(duplicateUser);
-    }
-
-    @Test
-    public void testUpdate() {
-        assertNull(userRepository.update(newUser));
-        assertNull(userRepository.update(nonExistentUser));
-        assertTrue(USER_MATCHER.equals(notNewUser, userRepository.update(notNewUser)));
-        assertTrue(USER_MATCHER.equals(notNewUser, userRepository.get(notNewUser.getId())));
     }
 
     @Test

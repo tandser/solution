@@ -14,7 +14,11 @@ public class MealTestData {
 
     public static List<Meal> meals;
     public static List<Meal> mealsReverseOrder;
-    public static Meal       newMeal;
+    public static Meal       newMeal1;
+    public static Meal       newMeal2;
+    public static Meal       newMeal3;
+    public static Meal       notNewMeal;
+    public static Meal       nonExistentMeal;
     public static Meal       duplicateMeal;
     public static Meal       invalidDateTimeMeal;
     public static Meal       invalidDescriptionMeal;
@@ -35,11 +39,15 @@ public class MealTestData {
                 .readerFor(Meal.class).<Meal>readValues(ResourceUtils.getFile("classpath:mocks/meals.json")).readAll();
 
         meals                  = mocks.subList(0, 12);
-        newMeal                = mocks.get(12);
-        duplicateMeal          = mocks.get(13);
-        invalidDateTimeMeal    = mocks.get(14);
-        invalidDescriptionMeal = mocks.get(15);
-        invalidCaloriesMeal    = mocks.get(16);
+        newMeal1               = mocks.get(12);
+        newMeal2               = mocks.get(13);
+        newMeal3               = mocks.get(14);
+        notNewMeal             = mocks.get(15);
+        nonExistentMeal        = mocks.get(16);
+        duplicateMeal          = mocks.get(17);
+        invalidDateTimeMeal    = mocks.get(18);
+        invalidDescriptionMeal = mocks.get(19);
+        invalidCaloriesMeal    = mocks.get(20);
 
         mealsReverseOrder = new ArrayList<>(meals);
         mealsReverseOrder.sort((m1, m2) -> m2.getDateTime().compareTo(m1.getDateTime()));

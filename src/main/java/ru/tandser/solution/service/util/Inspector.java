@@ -7,7 +7,7 @@ public class Inspector {
 
     private Inspector() {}
 
-    public static <T> T checkThatFound(T object, String message) {
+    public static <T> T requireExist(T object, String message) {
         if (object == null) {
             throw new NotFoundException(message);
         }
@@ -15,13 +15,13 @@ public class Inspector {
         return object;
     }
 
-    public static void checkThatNew(AbstractEntity entity, String message) {
+    public static void requireNew(AbstractEntity entity, String message) {
         if (!entity.isNew()) {
             throw new IllegalArgumentException(message);
         }
     }
 
-    public static void checkThatNotNew(AbstractEntity entity, String message) {
+    public static void requireNotNew(AbstractEntity entity, String message) {
         if (entity.isNew()) {
             throw new IllegalArgumentException(message);
         }

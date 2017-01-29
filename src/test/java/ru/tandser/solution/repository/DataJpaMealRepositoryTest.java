@@ -58,16 +58,16 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
 
     @Test
     public void testPut() {
-        assertNull(mealRepository.put(newMeal, 0));
-        assertNull(newMeal.getId());
+        assertNull(mealRepository.put(newMeal1, 0));
+        assertNull(newMeal1.getId());
 
-        assertTrue(MEAL_MATCHER.equals(newMeal, mealRepository.put(newMeal, 2)));
-        assertTrue(MEAL_MATCHER.equals(newMeal, mealRepository.get(newMeal.getId(), 2)));
+        assertTrue(MEAL_MATCHER.equals(newMeal1, mealRepository.put(newMeal1, 2)));
+        assertTrue(MEAL_MATCHER.equals(newMeal1, mealRepository.get(newMeal1.getId(), 2)));
 
-        newMeal.setCalories(500);
+        newMeal1.setCalories(500);
 
-        assertTrue(MEAL_MATCHER.equals(newMeal, mealRepository.put(newMeal, 2)));
-        assertTrue(MEAL_MATCHER.equals(newMeal, mealRepository.get(newMeal.getId(), 2)));
+        assertTrue(MEAL_MATCHER.equals(newMeal1, mealRepository.put(newMeal1, 2)));
+        assertTrue(MEAL_MATCHER.equals(newMeal1, mealRepository.get(newMeal1.getId(), 2)));
     }
 
     @Test(expected = DataAccessException.class)

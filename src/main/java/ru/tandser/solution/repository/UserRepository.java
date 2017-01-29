@@ -17,6 +17,4 @@ public interface UserRepository {
     User remove(int id);
 
     User put(User user);
-
-    User update(User user);
 }

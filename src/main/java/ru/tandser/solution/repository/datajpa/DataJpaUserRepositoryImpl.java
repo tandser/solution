@@ -53,19 +53,16 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    @Transactional
     public User put(User user) {
+        if (!user.isNew() && get(user.getId()) == null) {
+            return null;
+        }
+
         if (user.getCreated()        == null) user.setCreated(LocalDateTime.now());
         if (user.getRole()           == null) user.setRole(User.Role.USER);
         if (user.getNormOfCalories() == null) user.setNormOfCalories(defaultNormOfCalories);
 
         return userRepository.save(user);
-    }
-
-    @Override
-    @Transactional
-    public User update(User user) {
-        return user.getId() != null && userRepository.exists(user.getId())
-                ? put(user)
-                : null;
     }
 }
