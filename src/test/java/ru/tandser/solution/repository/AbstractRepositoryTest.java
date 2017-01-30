@@ -34,7 +34,7 @@ public abstract class AbstractRepositoryTest {
     }
 
     private static Throwable getRootCause(Throwable exc) {
-        Throwable result = exc, cause;
+        Throwable cause, result = exc;
 
         while ((cause = result.getCause()) != null && (result != cause)) {
             result = cause;

@@ -12,8 +12,7 @@ public class Matcher<T> {
     private BiPredicate<T, T> comparator;
 
     public Matcher(BiPredicate<T, T> comparator) {
-        Assert.notNull(comparator);
-        this.comparator = comparator;
+        this.comparator = Objects.requireNonNull(comparator);
     }
 
     private class Wrapper {
