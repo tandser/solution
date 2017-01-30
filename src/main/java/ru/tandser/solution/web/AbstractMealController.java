@@ -21,8 +21,6 @@ public abstract class AbstractMealController {
         this.mealService = mealService;
     }
 
-    // TODO: доработать
-
     public Meal get(int id) {
         return mealService.get(id, 2);
     }
@@ -41,12 +39,10 @@ public abstract class AbstractMealController {
     }
 
     public Meal save(Meal meal) {
-        meal.setId(null);
         return mealService.save(meal, 2);
     }
 
     public void update(Meal meal, int id) {
-        meal.setId(id);
         mealService.update(meal, 2);
     }
 }

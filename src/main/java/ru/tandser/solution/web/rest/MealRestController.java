@@ -9,6 +9,7 @@ import ru.tandser.solution.dto.MealWithExcess;
 import ru.tandser.solution.web.AbstractMealController;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -29,8 +30,11 @@ public class MealRestController extends AbstractMealController {
         return super.getAll();
     }
 
-    // TODO: getBetween
-
+    @Override
+    @GetMapping(value = "/between", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<MealWithExcess> getBetween(@RequestParam LocalDateTime from, @RequestParam LocalDateTime to) {
+        return super.getBetween(from, to);
+    }
 
     @Override
     @DeleteMapping("/{id}")
