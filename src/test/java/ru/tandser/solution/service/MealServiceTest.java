@@ -7,9 +7,7 @@ import ru.tandser.solution.service.exc.NotFoundException;
 import static java.lang.String.format;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.*;
-import static ru.tandser.solution.UserTestData.USER_MATCHER;
-import static ru.tandser.solution.UserTestData.nonExistentUser;
-import static ru.tandser.solution.UserTestData.user;
+import static ru.tandser.solution.UserTestData.*;
 
 public class MealServiceTest extends AbstractServiceTest {
 

@@ -23,7 +23,11 @@ public class MealUtils {
                 .collect(Collectors.toList());
     }
 
-    public static MealWithExcess toMealWithExcess(Meal meal, boolean excess) {
+    public static List<MealWithExcess> toMealWithExcess(List<Meal> meals, int normOfCalories) {
+        return toMealWithExcess(meals, LocalTime.MIN, LocalTime.MAX, normOfCalories);
+    }
+
+    private static MealWithExcess toMealWithExcess(Meal meal, boolean excess) {
         return new MealWithExcess(meal, excess);
     }
 }

@@ -3,7 +3,7 @@ package ru.tandser.solution;
 import org.springframework.util.ResourceUtils;
 import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.util.Matcher;
-import ru.tandser.solution.web.json.JacksonObjectMapper;
+import ru.tandser.solution.web.rest.json.JacksonObjectMapper;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
