@@ -3,7 +3,7 @@ package ru.tandser.solution;
 import org.springframework.util.ResourceUtils;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.util.Matcher;
-import ru.tandser.solution.web.json.JacksonObjectMapper;
+import ru.tandser.solution.web.json.JsonUtils;
 
 import java.util.Iterator;
 import java.util.Objects;
@@ -31,8 +31,7 @@ public class UserTestData {
     private UserTestData() {}
 
     public static void loadMocks() throws Exception {
-        Iterator<User> mocks = JacksonObjectMapper.getInstance()
-                .readerFor(User.class).<User>readValues(ResourceUtils.getFile("classpath:mocks/users.json")).readAll().iterator();
+        Iterator<User> mocks = JsonUtils.readValues(ResourceUtils.getFile("classpath:mocks/users.json"), User.class).iterator();
 
         admin                     = mocks.next();
         user                      = mocks.next();
