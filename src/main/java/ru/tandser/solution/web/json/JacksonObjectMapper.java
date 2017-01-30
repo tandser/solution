@@ -1,4 +1,4 @@
-package ru.tandser.solution.web.rest.json;
+package ru.tandser.solution.web.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

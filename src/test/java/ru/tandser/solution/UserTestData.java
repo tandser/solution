@@ -3,7 +3,7 @@ package ru.tandser.solution;
 import org.springframework.util.ResourceUtils;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.util.Matcher;
-import ru.tandser.solution.web.rest.json.JacksonObjectMapper;
+import ru.tandser.solution.web.json.JacksonObjectMapper;
 
 import java.util.Iterator;
 import java.util.Objects;

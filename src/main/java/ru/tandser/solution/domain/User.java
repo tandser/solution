@@ -17,6 +17,8 @@ import java.util.List;
 @NamedEntityGraph(name = User.WITH_MEALS, attributeNodes = @NamedAttributeNode("meals"))
 public class User extends AbstractEntity {
 
+    public static final String WITH_MEALS = "User.withMeals";
+
     private String        name;
     private String        email;
     private String        password;
@@ -24,8 +26,6 @@ public class User extends AbstractEntity {
     private Role          role;
     private Integer       normOfCalories;
     private List<Meal>    meals;
-
-    public static final String WITH_MEALS = "User.withMeals";
 
     public enum Role {
         ADMIN, USER

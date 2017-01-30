@@ -16,12 +16,12 @@ import java.time.LocalTime;
 @NamedEntityGraph(name = Meal.WITH_USER, attributeNodes = @NamedAttributeNode("user"))
 public class Meal extends AbstractEntity {
 
+    public static final String WITH_USER = "Meal.withUser";
+
     private LocalDateTime dateTime;
     private String        description;
     private int           calories;
     private User          user;
-
-    public static final String WITH_USER = "Meal.withUser";
 
     @NotNull
     @Column(name = "date_time")

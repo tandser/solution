@@ -37,6 +37,12 @@ public class MealRestController extends AbstractMealController {
     }
 
     @Override
+    @GetMapping(value = "/details/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Meal getWithUser(@PathVariable int id) {
+        return super.getWithUser(id);
+    }
+
+    @Override
     @DeleteMapping("/{id}")
     public void remove(@PathVariable int id) {
         super.remove(id);

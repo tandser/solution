@@ -34,6 +34,10 @@ public abstract class AbstractMealController {
         return MealUtils.toMealWithExcess(meals, from.toLocalTime(), to.toLocalTime(), 2000);
     }
 
+    public Meal getWithUser(int id) {
+        return mealService.getWithUser(id, 2);
+    }
+
     public void remove(int id) {
         mealService.remove(id, 2);
     }

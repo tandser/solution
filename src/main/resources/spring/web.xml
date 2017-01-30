@@ -13,7 +13,7 @@
 
     <context:component-scan base-package="ru.tandser.solution.web"/>
 
-    <bean id="objectMapper" class="ru.tandser.solution.web.rest.json.JacksonObjectMapper" factory-method="getInstance"/>
+    <bean id="objectMapper" class="ru.tandser.solution.web.json.JacksonObjectMapper" factory-method="getInstance"/>
 
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
