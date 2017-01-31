@@ -2,7 +2,6 @@ package ru.tandser.solution.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.repository.MealRepository;
 
@@ -10,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.lang.String.format;
+import static org.springframework.util.Assert.notNull;
 import static ru.tandser.solution.service.util.Inspector.*;
 
 @Service
@@ -39,8 +39,8 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public List<Meal> getBetween(LocalDateTime from, LocalDateTime to, int userId) {
-        Assert.notNull(from);
-        Assert.notNull(to);
+        notNull(from);
+        notNull(to);
         return requireExist(mealRepository.getBetween(from, to, userId), format(MESSAGE_2, userId));
     }
 
@@ -56,14 +56,14 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public Meal save(Meal meal, int userId) {
-        Assert.notNull(meal);
+        notNull(meal);
         requireNew(meal, format(MESSAGE_3, meal.getId()));
         return requireExist(mealRepository.put(meal, userId), format(MESSAGE_2, userId));
     }
 
     @Override
     public void update(Meal meal, int userId) {
-        Assert.notNull(meal);
+        notNull(meal);
         requireNotNew(meal, MESSAGE_4);
         requireExist(mealRepository.put(meal, userId), format(MESSAGE_1, meal.getId(), userId));
     }

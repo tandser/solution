@@ -2,13 +2,13 @@ package ru.tandser.solution.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.repository.UserRepository;
 
 import java.util.List;
 
 import static java.lang.String.format;
+import static org.springframework.util.Assert.notNull;
 import static ru.tandser.solution.service.util.Inspector.*;
 
 @Service
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByEmail(String email) {
-        Assert.notNull(email);
+        notNull(email);
         return requireExist(userRepository.getByEmail(email), format(MESSAGE_2, email));
     }
 
@@ -54,14 +54,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-        Assert.notNull(user);
+        notNull(user);
         requireNew(user, format(MESSAGE_3, user.getId()));
         return userRepository.put(user);
     }
 
     @Override
     public void update(User user) {
-        Assert.notNull(user);
+        notNull(user);
         requireNotNew(user, MESSAGE_4);
         requireExist(userRepository.put(user), format(MESSAGE_1, user.getId()));
     }
