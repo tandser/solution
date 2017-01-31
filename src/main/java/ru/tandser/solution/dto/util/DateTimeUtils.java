@@ -11,11 +11,11 @@ public class DateTimeUtils {
         return value.compareTo(from) >= 0 && value.compareTo(to) <= 0;
     }
 
-    public static LocalDateTime withMinTime(LocalDateTime dateTime) {
+    public static LocalDateTime atStartOfDay(LocalDateTime dateTime) {
         return LocalDateTime.of(dateTime.toLocalDate(), LocalTime.MIN);
     }
 
-    public static LocalDateTime withMaxTime(LocalDateTime dateTime) {
+    public static LocalDateTime atEndOfDay(LocalDateTime dateTime) {
         return LocalDateTime.of(dateTime.toLocalDate(), LocalTime.MAX);
     }
 }

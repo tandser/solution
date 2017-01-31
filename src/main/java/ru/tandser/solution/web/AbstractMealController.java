@@ -8,8 +8,8 @@ import ru.tandser.solution.service.MealService;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static ru.tandser.solution.dto.util.DateTimeUtils.withMaxTime;
-import static ru.tandser.solution.dto.util.DateTimeUtils.withMinTime;
+import static ru.tandser.solution.dto.util.DateTimeUtils.atEndOfDay;
+import static ru.tandser.solution.dto.util.DateTimeUtils.atStartOfDay;
 
 // TODO: привести в порядок
 
@@ -31,7 +31,7 @@ public abstract class AbstractMealController {
     }
 
     public List<MealWithExcess> getBetween(LocalDateTime from, LocalDateTime to) {
-        List<Meal> meals = mealService.getBetween(withMinTime(from), withMaxTime(to), 2);
+        List<Meal> meals = mealService.getBetween(atStartOfDay(from), atEndOfDay(to), 2);
         return MealWithExcess.filter(meals, from.toLocalTime(), to.toLocalTime(), 2000);
     }
 
