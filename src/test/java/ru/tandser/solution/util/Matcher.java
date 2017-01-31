@@ -1,7 +1,5 @@
 package ru.tandser.solution.util;
 
-import org.springframework.util.Assert;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.function.BiPredicate;

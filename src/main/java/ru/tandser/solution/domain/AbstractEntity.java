@@ -14,7 +14,8 @@ public abstract class AbstractEntity implements Persistable<Integer> {
     private int     version;
 
     @Override
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;

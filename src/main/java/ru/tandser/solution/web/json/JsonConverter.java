@@ -3,9 +3,9 @@ package ru.tandser.solution.web.json;
 import java.io.File;
 import java.util.List;
 
-public class JsonUtils {
+public class JsonConverter {
 
-    public static String writeValue(Object obj) {
+    public static String toJson(Object obj) {
         try {
             return JacksonObjectMapper.getInstance().writer().writeValueAsString(obj);
         } catch (Exception exc) {
@@ -13,7 +13,7 @@ public class JsonUtils {
         }
     }
 
-    public static <T> T readValue(String json, Class<T> type) {
+    public static <T> T fromJson(String json, Class<T> type) {
         try {
             return JacksonObjectMapper.getInstance().readerFor(type).readValue(json);
         } catch (Exception exc) {
@@ -21,7 +21,7 @@ public class JsonUtils {
         }
     }
 
-    public static <T> T readValue(File json, Class<T> type) {
+    public static <T> T fromJson(File json, Class<T> type) {
         try {
             return JacksonObjectMapper.getInstance().readerFor(type).readValue(json);
         } catch (Exception exc) {
@@ -29,7 +29,7 @@ public class JsonUtils {
         }
     }
 
-    public static <T> List<T> readValues(String json, Class<T> type) {
+    public static <T> List<T> fromJsonToList(String json, Class<T> type) {
         try {
             return JacksonObjectMapper.getInstance().readerFor(type).<T>readValues(json).readAll();
         } catch (Exception exc) {
@@ -37,7 +37,7 @@ public class JsonUtils {
         }
     }
 
-    public static <T> List<T> readValues(File json, Class<T> type) {
+    public static <T> List<T> fromJsonToList(File json, Class<T> type) {
         try {
             return JacksonObjectMapper.getInstance().readerFor(type).<T>readValues(json).readAll();
         } catch (Exception exc) {

@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -31,7 +30,7 @@ public class User extends AbstractEntity {
         ADMIN, USER
     }
 
-    @NotBlank
+    @NotBlank(message = "{validation.User.NotBlank.name}")
     @Column(name = "name")
     public String getName() {
         return name;
@@ -41,7 +40,8 @@ public class User extends AbstractEntity {
         this.name = name;
     }
 
-    @NotBlank @Email
+    @NotBlank(message = "{validation.User.NotBlank.email}")
+    @Email(message = "{validation.User.Email.email}")
     @Column(name = "email")
     public String getEmail() {
         return email;
@@ -51,7 +51,8 @@ public class User extends AbstractEntity {
         this.email = email;
     }
 
-    @NotNull @Length(min = 7)
+    @NotNull(message = "{validation.User.NotNull.password}")
+    @Length(min = 7, message = "{validation.User.Length.password}")
     @Column(name = "password")
     public String getPassword() {
         return password;
@@ -61,7 +62,7 @@ public class User extends AbstractEntity {
         this.password = password;
     }
 
-    @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @NotNull(message = "{validation.User.NotNull.created}")
     @Column(name = "created")
     public LocalDateTime getCreated() {
         return created;
@@ -71,7 +72,7 @@ public class User extends AbstractEntity {
         this.created = created;
     }
 
-    @NotNull
+    @NotNull(message = "{validation.User.NotNull.role}")
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     public Role getRole() {
@@ -82,7 +83,8 @@ public class User extends AbstractEntity {
         this.role = role;
     }
 
-    @NotNull @Range(min = 0, max = 5000)
+    @NotNull(message = "{validation.User.NotNull.normOfCalories}")
+    @Range(min = 0, max = 5000, message = "{validation.User.Range.normOfCalories}")
     @Column(name = "norm_of_calories")
     public Integer getNormOfCalories() {
         return normOfCalories;

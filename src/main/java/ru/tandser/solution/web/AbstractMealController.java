@@ -3,7 +3,6 @@ package ru.tandser.solution.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.dto.MealWithExcess;
-import ru.tandser.solution.dto.util.MealUtils;
 import ru.tandser.solution.service.MealService;
 
 import java.time.LocalDateTime;
@@ -11,6 +10,8 @@ import java.util.List;
 
 import static ru.tandser.solution.dto.util.DateTimeUtils.withMaxTime;
 import static ru.tandser.solution.dto.util.DateTimeUtils.withMinTime;
+
+// TODO: привести в порядок
 
 public abstract class AbstractMealController {
 
@@ -26,12 +27,12 @@ public abstract class AbstractMealController {
     }
 
     public List<MealWithExcess> getAll() {
-        return MealUtils.toMealWithExcess(mealService.getAll(2), 2000);
+        return MealWithExcess.convert(mealService.getAll(2), 2000);
     }
 
     public List<MealWithExcess> getBetween(LocalDateTime from, LocalDateTime to) {
         List<Meal> meals = mealService.getBetween(withMinTime(from), withMaxTime(to), 2);
-        return MealUtils.toMealWithExcess(meals, from.toLocalTime(), to.toLocalTime(), 2000);
+        return MealWithExcess.filter(meals, from.toLocalTime(), to.toLocalTime(), 2000);
     }
 
     public Meal getWithUser(int id) {

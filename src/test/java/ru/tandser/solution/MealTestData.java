@@ -3,7 +3,7 @@ package ru.tandser.solution;
 import org.springframework.util.ResourceUtils;
 import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.util.Matcher;
-import ru.tandser.solution.web.json.JsonUtils;
+import ru.tandser.solution.web.json.JsonConverter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class MealTestData {
     private MealTestData() {}
 
     public static void loadMocks() throws Exception {
-        List<Meal> mocks = JsonUtils.readValues(ResourceUtils.getFile("classpath:mocks/meals.json"), Meal.class);
+        List<Meal> mocks = JsonConverter.fromJsonToList(ResourceUtils.getFile("classpath:mocks/meals.json"), Meal.class);
 
         meals                  = mocks.subList(0, 12);
         betweenMeals           = mocks.subList(0, 6);

@@ -23,7 +23,7 @@ public class Meal extends AbstractEntity {
     private int           calories;
     private User          user;
 
-    @NotNull
+    @NotNull(message = "{validation.Meal.NotNull.dateTime}")
     @Column(name = "date_time")
     public LocalDateTime getDateTime() {
         return dateTime;
@@ -33,7 +33,7 @@ public class Meal extends AbstractEntity {
         this.dateTime = dateTime;
     }
 
-    @NotBlank
+    @NotBlank(message = "{validation.Meal.NotBlank.description}")
     @Column(name = "description")
     public String getDescription() {
         return description;
@@ -44,7 +44,7 @@ public class Meal extends AbstractEntity {
     }
 
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    @Range(min = 0, max = 5000)
+    @Range(min = 0, max = 5000, message = "{validation.Meal.Range.calories}")
     @Column(name = "calories")
     public int getCalories() {
         return calories;
@@ -54,7 +54,8 @@ public class Meal extends AbstractEntity {
         this.calories = calories;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
     }

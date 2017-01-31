@@ -3,8 +3,14 @@ package ru.tandser.solution.dto;
 import com.google.common.base.MoreObjects;
 import org.springframework.util.Assert;
 import ru.tandser.solution.domain.Meal;
+import ru.tandser.solution.dto.util.DateTimeUtils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class MealWithExcess {
 
@@ -24,6 +30,24 @@ public class MealWithExcess {
         description = meal.getDescription();
         calories    = meal.getCalories();
         this.excess = excess;
+    }
+
+    public static MealWithExcess valueOf(Meal meal, boolean excess) {
+        return new MealWithExcess(meal, excess);
+    }
+
+    public static List<MealWithExcess> filter(List<Meal> meals, LocalTime from, LocalTime to, int normOfCalories) {
+        Map<LocalDate, Integer> caloriesPerDay = meals.stream()
+                .collect(Collectors.groupingBy(Meal::getDate, Collectors.summingInt(Meal::getCalories)));
+
+        return meals.stream()
+                .filter(meal -> DateTimeUtils.isBetween(meal.getTime(), from, to))
+                .map(meal -> valueOf(meal, caloriesPerDay.get(meal.getDate()) > normOfCalories))
+                .collect(Collectors.toList());
+    }
+
+    public static List<MealWithExcess> convert(List<Meal> meals, int normOfCalories) {
+        return filter(meals, LocalTime.MIN, LocalTime.MAX, normOfCalories);
     }
 
     public Integer getId() {
