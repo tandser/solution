@@ -10,6 +10,7 @@ import java.util.List;
 
 import static ru.tandser.solution.dto.util.DateTimeUtils.atEndOfDay;
 import static ru.tandser.solution.dto.util.DateTimeUtils.atStartOfDay;
+import static ru.tandser.solution.service.util.Inspector.requireConsistency;
 
 // TODO: привести в порядок
 
@@ -48,6 +49,7 @@ public abstract class AbstractMealController {
     }
 
     public void update(Meal meal, int id) {
+        requireConsistency(meal, id);
         mealService.update(meal, 2);
     }
 }

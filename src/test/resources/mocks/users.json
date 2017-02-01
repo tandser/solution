@@ -44,6 +44,16 @@
   },
 
   {
+    "id":1,
+    "name":"Lynn Douglas",
+    "email":"l.douglas@gmail.com",
+    "password":"cAHavYl",
+    "role":"ADMIN",
+    "normOfCalories":2000,
+    "version":1
+  },
+
+  {
     "name":"Steven Welch",
     "email":"s.welch@gmail.com",
     "password":"Y9rpqov",

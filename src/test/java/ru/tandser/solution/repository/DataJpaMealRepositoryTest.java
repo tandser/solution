@@ -3,6 +3,7 @@ package ru.tandser.solution.repository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import ru.tandser.solution.repository.exc.ConflictException;
 
 import javax.validation.ConstraintViolationException;
 
@@ -67,6 +68,12 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
 
         assertTrue(MEAL_MATCHER.equals(notNewMeal, mealRepository.put(notNewMeal, user.getId())));
         assertTrue(MEAL_MATCHER.equals(notNewMeal, mealRepository.get(notNewMeal.getId(), user.getId())));
+    }
+
+    @Test
+    public void testPutNotConsistentMeal() {
+        thrown.expect(ConflictException.class);
+        mealRepository.put(notConsistentMeal, user.getId());
     }
 
     @Test

@@ -15,6 +15,7 @@ public class UserTestData {
     public static User newUser;
     public static User notNewUser;
     public static User nonExistentUser;
+    public static User notConsistentUser;
     public static User duplicateUser;
     public static User invalidNameUser;
     public static User invalidEmailUser;
@@ -38,6 +39,7 @@ public class UserTestData {
         newUser                   = mocks.next();
         notNewUser                = mocks.next();
         nonExistentUser           = mocks.next();
+        notConsistentUser         = mocks.next();
         duplicateUser             = mocks.next();
         invalidNameUser           = mocks.next();
         invalidEmailUser          = mocks.next();

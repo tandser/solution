@@ -26,6 +26,14 @@ public class Inspector {
         }
     }
 
+    public static void requireConsistency(AbstractEntity entity, int id) {
+        if (!entity.isNew() && entity.getId() != id) {
+            throw new BadRequestException();
+        }
+
+        entity.setId(id);
+    }
+
     public static <T> T requireExist(T result) {
         if (result == null) {
             throw new NotFoundException();
