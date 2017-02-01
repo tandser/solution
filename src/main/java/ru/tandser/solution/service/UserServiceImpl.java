@@ -7,17 +7,10 @@ import ru.tandser.solution.repository.UserRepository;
 
 import java.util.List;
 
-import static java.lang.String.format;
-import static org.springframework.util.Assert.notNull;
 import static ru.tandser.solution.service.util.Inspector.*;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-    static final String MESSAGE_1 = "User with id = %d does not exist";
-    static final String MESSAGE_2 = "User with email = %s does not exist";
-    static final String MESSAGE_3 = "User id = %d, must be null";
-    static final String MESSAGE_4 = "User id must not be null";
 
     private UserRepository userRepository;
 
@@ -28,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User get(int id) {
-        return requireExist(userRepository.get(id), format(MESSAGE_1, id));
+        return requireExist(userRepository.get(id));
     }
 
     @Override
@@ -38,31 +31,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByEmail(String email) {
-        notNull(email);
-        return requireExist(userRepository.getByEmail(email), format(MESSAGE_2, email));
+        requireNotNull(email);
+        return requireExist(userRepository.getByEmail(email));
     }
 
     @Override
     public User getWithMeals(int id) {
-        return requireExist(userRepository.getWithMeals(id), format(MESSAGE_1, id));
+        return requireExist(userRepository.getWithMeals(id));
     }
 
     @Override
     public void remove(int id) {
-        requireExist(userRepository.remove(id), format(MESSAGE_1, id));
+        requireExist(userRepository.remove(id));
     }
 
     @Override
     public User save(User user) {
-        notNull(user);
-        requireNew(user, format(MESSAGE_3, user.getId()));
+        requireNotNull(user);
+        requireNew(user);
         return userRepository.put(user);
     }
 
     @Override
     public void update(User user) {
-        notNull(user);
-        requireNotNew(user, MESSAGE_4);
-        requireExist(userRepository.put(user), format(MESSAGE_1, user.getId()));
+        requireNotNull(user);
+        requireNotNew(user);
+        requireExist(userRepository.put(user));
     }
 }

@@ -2,12 +2,12 @@ package ru.tandser.solution.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.tandser.solution.service.exc.BadRequestException;
 import ru.tandser.solution.service.exc.NotFoundException;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static java.lang.String.format;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.MEAL_MATCHER;
 import static ru.tandser.solution.MealTestData.reverseOrderMeals;
@@ -31,7 +31,6 @@ public class UserServiceTest extends AbstractServiceTest {
     @Test
     public void testGetNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(UserServiceImpl.MESSAGE_1, nonExistentUser.getId()));
         userService.get(nonExistentUser.getId());
     }
 
@@ -47,14 +46,13 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void testGetByNullEmail() {
-        thrown.expect(IllegalArgumentException.class);
+        thrown.expect(BadRequestException.class);
         userService.getByEmail(null);
     }
 
     @Test
     public void testGetByNonExistentEmail() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(UserServiceImpl.MESSAGE_2, nonExistentUser.getEmail()));
         userService.getByEmail(nonExistentUser.getEmail());
     }
 
@@ -66,7 +64,6 @@ public class UserServiceTest extends AbstractServiceTest {
     @Test
     public void testGetNonExistentUserWithMeals() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(UserServiceImpl.MESSAGE_1, nonExistentUser.getId()));
         userService.getWithMeals(nonExistentUser.getId());
     }
 
@@ -79,7 +76,6 @@ public class UserServiceTest extends AbstractServiceTest {
     @Test
     public void testRemoveNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(UserServiceImpl.MESSAGE_1, nonExistentUser.getId()));
         userService.remove(nonExistentUser.getId());
     }
 
@@ -91,14 +87,13 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void testSaveNull() {
-        thrown.expect(IllegalArgumentException.class);
+        thrown.expect(BadRequestException.class);
         userService.save(null);
     }
 
     @Test
     public void testSaveNotNewUser() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage(format(UserServiceImpl.MESSAGE_3, notNewUser.getId()));
+        thrown.expect(BadRequestException.class);
         userService.save(notNewUser);
     }
 
@@ -110,21 +105,19 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void testUpdateNull() {
-        thrown.expect(IllegalArgumentException.class);
+        thrown.expect(BadRequestException.class);
         userService.update(null);
     }
 
     @Test
     public void testUpdateNewUser() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage(UserServiceImpl.MESSAGE_4);
+        thrown.expect(BadRequestException.class);
         userService.update(newUser);
     }
 
     @Test
     public void testUpdateNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(UserServiceImpl.MESSAGE_1, nonExistentUser.getId()));
         userService.update(nonExistentUser);
     }
 }

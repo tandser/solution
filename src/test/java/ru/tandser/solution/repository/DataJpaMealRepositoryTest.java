@@ -69,8 +69,9 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
         assertTrue(MEAL_MATCHER.equals(notNewMeal, mealRepository.get(notNewMeal.getId(), user.getId())));
     }
 
-    @Test(expected = DataAccessException.class)
+    @Test
     public void testPutDuplicateMeal() {
+        thrown.expect(DataAccessException.class);
         mealRepository.put(duplicateMeal, user.getId());
     }
 

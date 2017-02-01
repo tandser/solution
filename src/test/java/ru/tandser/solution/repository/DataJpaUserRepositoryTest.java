@@ -67,8 +67,9 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
         assertTrue(USER_MATCHER.equals(notNewUser, userRepository.get(notNewUser.getId())));
     }
 
-    @Test(expected = DataAccessException.class)
+    @Test
     public void testPutDuplicateUser() {
+        thrown.expect(DataAccessException.class);
         userRepository.put(duplicateUser);
     }
 

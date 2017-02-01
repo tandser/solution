@@ -8,17 +8,10 @@ import ru.tandser.solution.repository.MealRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static java.lang.String.format;
-import static org.springframework.util.Assert.notNull;
 import static ru.tandser.solution.service.util.Inspector.*;
 
 @Service
 public class MealServiceImpl implements MealService {
-
-    static final String MESSAGE_1 = "Meal with id = %d for user with id = %d does not exist";
-    static final String MESSAGE_2 = "User with id = %d does not exist";
-    static final String MESSAGE_3 = "Meal id = %d, must be null";
-    static final String MESSAGE_4 = "Meal id must not be null";
 
     private MealRepository mealRepository;
 
@@ -29,42 +22,42 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public Meal get(int id, int userId) {
-        return requireExist(mealRepository.get(id, userId), format(MESSAGE_1, id, userId));
+        return requireExist(mealRepository.get(id, userId));
     }
 
     @Override
     public List<Meal> getAll(int userId) {
-        return requireExist(mealRepository.getAll(userId), format(MESSAGE_2, userId));
+        return requireExist(mealRepository.getAll(userId));
     }
 
     @Override
     public List<Meal> getBetween(LocalDateTime from, LocalDateTime to, int userId) {
-        notNull(from);
-        notNull(to);
-        return requireExist(mealRepository.getBetween(from, to, userId), format(MESSAGE_2, userId));
+        requireNotNull(from);
+        requireNotNull(to);
+        return requireExist(mealRepository.getBetween(from, to, userId));
     }
 
     @Override
     public Meal getWithUser(int id, int userId) {
-        return requireExist(mealRepository.getWithUser(id, userId), format(MESSAGE_1, id, userId));
+        return requireExist(mealRepository.getWithUser(id, userId));
     }
 
     @Override
     public void remove(int id, int userId) {
-        requireExist(mealRepository.remove(id, userId), format(MESSAGE_1, id, userId));
+        requireExist(mealRepository.remove(id, userId));
     }
 
     @Override
     public Meal save(Meal meal, int userId) {
-        notNull(meal);
-        requireNew(meal, format(MESSAGE_3, meal.getId()));
-        return requireExist(mealRepository.put(meal, userId), format(MESSAGE_2, userId));
+        requireNotNull(meal);
+        requireNew(meal);
+        return requireExist(mealRepository.put(meal, userId));
     }
 
     @Override
     public void update(Meal meal, int userId) {
-        notNull(meal);
-        requireNotNew(meal, MESSAGE_4);
-        requireExist(mealRepository.put(meal, userId), format(MESSAGE_1, meal.getId(), userId));
+        requireNotNull(meal);
+        requireNotNew(meal);
+        requireExist(mealRepository.put(meal, userId));
     }
 }

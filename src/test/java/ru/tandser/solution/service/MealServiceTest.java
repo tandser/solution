@@ -2,9 +2,9 @@ package ru.tandser.solution.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.tandser.solution.service.exc.BadRequestException;
 import ru.tandser.solution.service.exc.NotFoundException;
 
-import static java.lang.String.format;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.*;
 import static ru.tandser.solution.UserTestData.*;
@@ -26,14 +26,12 @@ public class MealServiceTest extends AbstractServiceTest {
     @Test
     public void testGetForNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_1, existingMeal.getId(), nonExistentUser.getId()));
         mealService.get(existingMeal.getId(), nonExistentUser.getId());
     }
 
     @Test
     public void testGetNonExistentMeal() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_1, nonExistentMeal.getId(), user.getId()));
         mealService.get(nonExistentMeal.getId(), user.getId());
     }
 
@@ -45,7 +43,6 @@ public class MealServiceTest extends AbstractServiceTest {
     @Test
     public void testGetAllForNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_2, nonExistentUser.getId()));
         mealService.getAll(nonExistentUser.getId());
     }
 
@@ -56,20 +53,19 @@ public class MealServiceTest extends AbstractServiceTest {
 
     @Test
     public void testBetweenNullFrom() {
-        thrown.expect(IllegalArgumentException.class);
+        thrown.expect(BadRequestException.class);
         mealService.getBetween(null, to, user.getId());
     }
 
     @Test
     public void testBetweenNullTo() {
-        thrown.expect(IllegalArgumentException.class);
+        thrown.expect(BadRequestException.class);
         mealService.getBetween(from, null, user.getId());
     }
 
     @Test
     public void testBetweenForNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_2, nonExistentUser.getId()));
         mealService.getBetween(from, to, nonExistentUser.getId());
     }
 
@@ -81,14 +77,12 @@ public class MealServiceTest extends AbstractServiceTest {
     @Test
     public void testGetWithNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_1, existingMeal.getId(), nonExistentUser.getId()));
         mealService.getWithUser(existingMeal.getId(), nonExistentUser.getId());
     }
 
     @Test
     public void testGetNonExistentMealWithUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_1, nonExistentMeal.getId(), user.getId()));
         mealService.getWithUser(nonExistentMeal.getId(), user.getId());
     }
 
@@ -101,14 +95,12 @@ public class MealServiceTest extends AbstractServiceTest {
     @Test
     public void testRemoveForNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_1, existingMeal.getId(), nonExistentUser.getId()));
         mealService.remove(existingMeal.getId(), nonExistentUser.getId());
     }
 
     @Test
     public void testRemoveNonExistentMeal() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_1, nonExistentMeal.getId(), user.getId()));
         mealService.remove(nonExistentMeal.getId(), user.getId());
     }
 
@@ -121,21 +113,19 @@ public class MealServiceTest extends AbstractServiceTest {
 
     @Test
     public void testSaveNull() {
-        thrown.expect(IllegalArgumentException.class);
+        thrown.expect(BadRequestException.class);
         mealService.save(null, user.getId());
     }
 
     @Test
     public void testSaveNotNewMeal() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_3, notNewMeal.getId()));
+        thrown.expect(BadRequestException.class);
         mealService.save(notNewMeal, user.getId());
     }
 
     @Test
     public void testSaveForNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_2, nonExistentUser.getId()));
         mealService.save(newMeal, nonExistentUser.getId());
     }
 
@@ -147,28 +137,25 @@ public class MealServiceTest extends AbstractServiceTest {
 
     @Test
     public void testUpdateNull() {
-        thrown.expect(IllegalArgumentException.class);
+        thrown.expect(BadRequestException.class);
         mealService.update(null, user.getId());
     }
 
     @Test
     public void testUpdateNewMeal() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage(MealServiceImpl.MESSAGE_4);
+        thrown.expect(BadRequestException.class);
         mealService.update(newMeal, user.getId());
     }
 
     @Test
     public void testUpdateForNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_1, notNewMeal.getId(), nonExistentUser.getId()));
         mealService.update(notNewMeal, nonExistentUser.getId());
     }
 
     @Test
     public void testUpdateNonExistentMeal() {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage(format(MealServiceImpl.MESSAGE_1, nonExistentMeal.getId(), user.getId()));
         mealService.update(nonExistentMeal, user.getId());
     }
 }

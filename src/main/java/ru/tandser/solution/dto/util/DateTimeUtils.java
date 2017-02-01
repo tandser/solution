@@ -12,10 +12,14 @@ public class DateTimeUtils {
     }
 
     public static LocalDateTime atStartOfDay(LocalDateTime dateTime) {
-        return LocalDateTime.of(dateTime.toLocalDate(), LocalTime.MIN);
+        return dateTime != null
+                ? LocalDateTime.of(dateTime.toLocalDate(), LocalTime.MIN)
+                : null;
     }
 
     public static LocalDateTime atEndOfDay(LocalDateTime dateTime) {
-        return LocalDateTime.of(dateTime.toLocalDate(), LocalTime.MAX);
+        return dateTime != null
+                ? LocalDateTime.of(dateTime.toLocalDate(), LocalTime.MAX)
+                : null;
     }
 }

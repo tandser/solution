@@ -1,29 +1,36 @@
 package ru.tandser.solution.service.util;
 
 import ru.tandser.solution.domain.AbstractEntity;
+import ru.tandser.solution.service.exc.BadRequestException;
 import ru.tandser.solution.service.exc.NotFoundException;
 
 public class Inspector {
 
     private Inspector() {}
 
-    public static <T> T requireExist(T object, String message) {
-        if (object == null) {
-            throw new NotFoundException(message);
+    public static void requireNotNull(Object obj) {
+        if (obj == null) {
+            throw new BadRequestException();
         }
-
-        return object;
     }
 
-    public static void requireNew(AbstractEntity entity, String message) {
+    public static void requireNew(AbstractEntity entity) {
         if (!entity.isNew()) {
-            throw new IllegalArgumentException(message);
+            throw new BadRequestException();
         }
     }
 
-    public static void requireNotNew(AbstractEntity entity, String message) {
+    public static void requireNotNew(AbstractEntity entity) {
         if (entity.isNew()) {
-            throw new IllegalArgumentException(message);
+            throw new BadRequestException();
         }
+    }
+
+    public static <T> T requireExist(T result) {
+        if (result == null) {
+            throw new NotFoundException();
+        }
+
+        return result;
     }
 }

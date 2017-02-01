@@ -15,8 +15,12 @@ public class LocalDateTimeConverter implements Converter<String, LocalDateTime> 
 
     @Override
     public LocalDateTime convert(String source) {
-        return source == null || source.isEmpty()
-                ? null
-                : LocalDateTime.parse(source, formatter);
+        LocalDateTime result = null;
+
+        try {
+            result = LocalDateTime.parse(source, formatter);
+        } catch (Exception ignored) {}
+
+        return result;
     }
 }

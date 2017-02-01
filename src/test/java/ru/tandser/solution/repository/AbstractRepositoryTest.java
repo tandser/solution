@@ -2,6 +2,8 @@ package ru.tandser.solution.repository;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
@@ -17,6 +19,9 @@ import static org.junit.Assert.fail;
 @ContextConfiguration("classpath:spring/repository.xml")
 @Sql(scripts = "classpath:ddl/insert.ddl", config = @SqlConfig(encoding = "UTF-8"))
 public abstract class AbstractRepositoryTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @BeforeClass
     public static void beforeClass() throws Exception {
