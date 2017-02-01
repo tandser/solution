@@ -54,6 +54,7 @@ public class Meal extends AbstractEntity {
         this.calories = calories;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     public User getUser() {

@@ -4,7 +4,6 @@
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <charset>UTF-8</charset>
             <pattern>%date{dd-MM-yyyy HH:mm:ss} %highlight(%-4.-4level) %-30.-30logger{0} - %message%n</pattern>
         </encoder>
     </appender>

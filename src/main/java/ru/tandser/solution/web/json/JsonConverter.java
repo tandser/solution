@@ -5,6 +5,8 @@ import java.util.List;
 
 public class JsonConverter {
 
+    private JsonConverter() {}
+
     public static String toJson(Object obj) {
         try {
             return JacksonObjectMapper.getInstance().writer().writeValueAsString(obj);
