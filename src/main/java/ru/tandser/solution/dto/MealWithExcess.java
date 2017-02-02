@@ -23,11 +23,11 @@ public class MealWithExcess {
     private boolean       excess;
 
     @JsonCreator
-    public MealWithExcess(@JsonProperty("id")          Integer id,
+    public MealWithExcess(@JsonProperty("id")          Integer       id,
                           @JsonProperty("dateTime")    LocalDateTime dateTime,
-                          @JsonProperty("description") String description,
-                          @JsonProperty("calories")    int calories,
-                          @JsonProperty("excess")      boolean excess) {
+                          @JsonProperty("description") String        description,
+                          @JsonProperty("calories")    int           calories,
+                          @JsonProperty("excess")      boolean       excess) {
 
         this.id          = id;
         this.dateTime    = dateTime;
