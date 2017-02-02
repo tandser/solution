@@ -1,7 +1,9 @@
 package ru.tandser.solution.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
-import org.springframework.util.Assert;
 import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.dto.util.DateTimeUtils;
 
@@ -20,20 +22,22 @@ public class MealWithExcess {
     private int           calories;
     private boolean       excess;
 
-    public MealWithExcess() {}
+    @JsonCreator
+    public MealWithExcess(@JsonProperty("id")          Integer id,
+                          @JsonProperty("dateTime")    LocalDateTime dateTime,
+                          @JsonProperty("description") String description,
+                          @JsonProperty("calories")    int calories,
+                          @JsonProperty("excess")      boolean excess) {
 
-    public MealWithExcess(Meal meal, boolean excess) {
-        Assert.notNull(meal);
-
-        id          = meal.getId();
-        dateTime    = meal.getDateTime();
-        description = meal.getDescription();
-        calories    = meal.getCalories();
-        this.excess = excess;
+        this.id          = id;
+        this.dateTime    = dateTime;
+        this.description = description;
+        this.calories    = calories;
+        this.excess      = excess;
     }
 
-    public static MealWithExcess valueOf(Meal meal, boolean excess) {
-        return new MealWithExcess(meal, excess);
+    public MealWithExcess(Meal meal, boolean excess) {
+        this(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
     }
 
     public static List<MealWithExcess> filter(List<Meal> meals, LocalTime from, LocalTime to, int normOfCalories) {
@@ -42,7 +46,7 @@ public class MealWithExcess {
 
         return meals.stream()
                 .filter(meal -> DateTimeUtils.isBetween(meal.getTime(), from, to))
-                .map(meal -> valueOf(meal, caloriesPerDay.get(meal.getDate()) > normOfCalories))
+                .map(meal -> new MealWithExcess(meal, caloriesPerDay.get(meal.getDate()) > normOfCalories))
                 .collect(Collectors.toList());
     }
 
@@ -54,50 +58,32 @@ public class MealWithExcess {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public LocalDateTime getDateTime() {
         return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public int getCalories() {
         return calories;
     }
 
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
-
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public boolean isExcess() {
         return excess;
-    }
-
-    public void setExcess(boolean excess) {
-        this.excess = excess;
     }
 
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("id",          id)
-                .add("date_time",   dateTime)
-                .add("description", description)
-                .add("calories",    calories)
-                .add("excess",      excess)
+                .add("id",          getId())
+                .add("date_time",   getDateTime())
+                .add("description", getDescription())
+                .add("calories",    getCalories())
+                .add("excess",      isExcess())
                 .toString();
     }
 }
