@@ -82,6 +82,7 @@ public class Meal extends AbstractEntity {
                 .add("date_time",   getDateTime())
                 .add("description", getDescription())
                 .add("calories",    getCalories())
+                .add("version",     getVersion())
                 .toString();
     }
 }

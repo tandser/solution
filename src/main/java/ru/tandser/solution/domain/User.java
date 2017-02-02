@@ -116,12 +116,14 @@ public class User extends AbstractEntity {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("id",      getId())
-                .add("name",    getName())
-                .add("email",   getEmail())
-                .add("created", getCreated())
-                .add("role",    getRole())
-                .add("enabled", getEnabled())
+                .add("id",               getId())
+                .add("name",             getName())
+                .add("email",            getEmail())
+                .add("created",          getCreated())
+                .add("role",             getRole())
+                .add("norm_of_calories", getNormOfCalories())
+                .add("enabled",          getEnabled())
+                .add("version",          getVersion())
                 .toString();
     }
 }

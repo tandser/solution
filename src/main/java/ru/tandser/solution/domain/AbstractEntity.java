@@ -1,6 +1,7 @@
 package ru.tandser.solution.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.google.common.base.MoreObjects;
 import org.hibernate.Hibernate;
 import org.springframework.data.domain.Persistable;
 
@@ -60,5 +61,13 @@ public abstract class AbstractEntity implements Persistable<Integer> {
     @Override
     public int hashCode() {
         return getId() != null ? getId() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id",      getId())
+                .add("version", getVersion())
+                .toString();
     }
 }
