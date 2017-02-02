@@ -1,16 +1,20 @@
 package ru.tandser.solution.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.repository.UserRepository;
+import ru.tandser.solution.web.Principal;
 
 import java.util.List;
 
 import static ru.tandser.solution.service.util.Inspector.*;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private UserRepository userRepository;
 
@@ -57,5 +61,16 @@ public class UserServiceImpl implements UserService {
         requireNotNull(user);
         requireNotNew(user);
         requireExist(userRepository.put(user));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.getByEmail(email.toLowerCase());
+
+        if (user == null) {
+            throw new UsernameNotFoundException(email);
+        }
+
+        return new Principal(user);
     }
 }

@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,8 +29,13 @@ public class User extends AbstractEntity {
     private List<Meal>    meals;
     private Boolean       enabled;
 
-    public enum Role {
-        ADMIN, USER
+    public enum Role implements GrantedAuthority {
+        ADMIN, USER;
+
+        @Override
+        public String getAuthority() {
+            return name();
+        }
     }
 
     @NotBlank(message = "{validation.User.NotBlank.name}")
