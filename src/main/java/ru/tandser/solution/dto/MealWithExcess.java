@@ -72,7 +72,7 @@ public class MealWithExcess {
     }
 
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    public boolean isExcess() {
+    public boolean getExcess() {
         return excess;
     }
 
@@ -83,7 +83,7 @@ public class MealWithExcess {
                 .add("date_time",   getDateTime())
                 .add("description", getDescription())
                 .add("calories",    getCalories())
-                .add("excess",      isExcess())
+                .add("excess",      getExcess())
                 .toString();
     }
 }

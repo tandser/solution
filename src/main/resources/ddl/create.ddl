@@ -16,7 +16,8 @@ CREATE TABLE users (
   created          TIMESTAMP NOT NULL DEFAULT now(),
   role             VARCHAR   NOT NULL,
   norm_of_calories INTEGER   NOT NULL DEFAULT 2000,
-  version          INTEGER   NOT NULL DEFAULT 0
+  version          INTEGER   NOT NULL DEFAULT 0,
+  enabled          BOOLEAN   NOT NULL DEFAULT TRUE
 );
 
 CREATE UNIQUE INDEX unique_users ON users (email);

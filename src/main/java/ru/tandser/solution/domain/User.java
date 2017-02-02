@@ -26,6 +26,7 @@ public class User extends AbstractEntity {
     private Role          role;
     private Integer       normOfCalories;
     private List<Meal>    meals;
+    private Boolean       enabled;
 
     public enum Role {
         ADMIN, USER
@@ -63,7 +64,6 @@ public class User extends AbstractEntity {
         this.password = password;
     }
 
-    @NotNull(message = "{validation.User.NotNull.created}")
     @Column(name = "created")
     public LocalDateTime getCreated() {
         return created;
@@ -73,7 +73,6 @@ public class User extends AbstractEntity {
         this.created = created;
     }
 
-    @NotNull(message = "{validation.User.NotNull.role}")
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     public Role getRole() {
@@ -84,7 +83,6 @@ public class User extends AbstractEntity {
         this.role = role;
     }
 
-    @NotNull(message = "{validation.User.NotNull.normOfCalories}")
     @Range(min = 0, max = 5000, message = "{validation.User.Range.normOfCalories}")
     @Column(name = "norm_of_calories")
     public Integer getNormOfCalories() {
@@ -106,6 +104,15 @@ public class User extends AbstractEntity {
         this.meals = meals;
     }
 
+    @Column(name = "enabled")
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -114,6 +121,7 @@ public class User extends AbstractEntity {
                 .add("email",   getEmail())
                 .add("created", getCreated())
                 .add("role",    getRole())
+                .add("enabled", getEnabled())
                 .toString();
     }
 }

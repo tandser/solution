@@ -5,7 +5,8 @@
     "email":"l.douglas@gmail.com",
     "password":"Mr01LRc",
     "role":"ADMIN",
-    "normOfCalories":2000
+    "normOfCalories":2000,
+    "enabled":true
   },
 
   {
@@ -14,7 +15,8 @@
     "email":"s.welch@gmail.com",
     "password":"Izhyw29",
     "role":"USER",
-    "normOfCalories":2000
+    "normOfCalories":2000,
+    "enabled":true
   },
 
   {
