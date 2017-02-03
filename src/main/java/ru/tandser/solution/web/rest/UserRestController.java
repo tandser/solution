@@ -1,47 +1,44 @@
 package ru.tandser.solution.web.rest;
 
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import ru.tandser.solution.domain.Meal;
-import ru.tandser.solution.dto.MealWithExcess;
-import ru.tandser.solution.web.controller.AbstractMealController;
+import ru.tandser.solution.domain.User;
+import ru.tandser.solution.web.controller.AbstractUserController;
 
 import java.net.URI;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(MealRestController.REST_PATH)
-public class MealRestController extends AbstractMealController {
+@RequestMapping(UserRestController.REST_PATH)
+public class UserRestController extends AbstractUserController {
 
-    public static final String REST_PATH = "/rest/meals";
+    public static final String REST_PATH = "/rest/users";
 
     @Override
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
-    public Meal get(@PathVariable int id) {
+    public User get(@PathVariable int id) {
         return super.get(id);
     }
 
     @Override
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public List<MealWithExcess> getAll() {
+    public List<User> getAll() {
         return super.getAll();
     }
 
     @Override
-    @GetMapping(value = "/between", produces = APPLICATION_JSON_VALUE)
-    public List<MealWithExcess> getBetween(@RequestParam LocalDateTime from, @RequestParam LocalDateTime to) {
-        return super.getBetween(from, to);
+    @GetMapping(value = "/by", produces = APPLICATION_JSON_VALUE)
+    public User getByEmail(@RequestParam String email) {
+        return super.getByEmail(email);
     }
 
     @Override
     @GetMapping(value = "/details/{id}", produces = APPLICATION_JSON_VALUE)
-    public Meal getWithUser(@PathVariable int id) {
-        return super.getWithUser(id);
+    public User getWithMeals(@PathVariable int id) {
+        return super.getWithMeals(id);
     }
 
     @Override
@@ -51,8 +48,8 @@ public class MealRestController extends AbstractMealController {
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Meal> saveWithLocation(@RequestBody Meal meal) {
-        Meal created = save(meal);
+    public ResponseEntity<User> saveWithLocation(@RequestBody User user) {
+        User created = save(user);
 
         URI newResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_PATH + "/{id}")
@@ -64,7 +61,7 @@ public class MealRestController extends AbstractMealController {
 
     @Override
     @PutMapping(value = "/{id}", consumes = APPLICATION_JSON_VALUE)
-    public void update(@RequestBody Meal meal, @PathVariable int id) {
-        super.update(meal, id);
+    public void update(@RequestBody User user, @PathVariable int id) {
+        super.update(user, id);
     }
 }

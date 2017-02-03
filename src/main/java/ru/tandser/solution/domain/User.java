@@ -34,7 +34,7 @@ public class User extends AbstractEntity {
 
         @Override
         public String getAuthority() {
-            return name();
+            return "ROLE_" + name();
         }
     }
 
