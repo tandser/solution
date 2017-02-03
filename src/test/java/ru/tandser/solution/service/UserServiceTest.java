@@ -2,7 +2,6 @@ package ru.tandser.solution.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.tandser.solution.service.exc.BadRequestException;
 import ru.tandser.solution.service.exc.NotFoundException;
 
 import java.util.Arrays;
@@ -45,12 +44,6 @@ public class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void testGetByNullEmail() {
-        thrown.expect(BadRequestException.class);
-        userService.getByEmail(null);
-    }
-
-    @Test
     public void testGetByNonExistentEmail() {
         thrown.expect(NotFoundException.class);
         userService.getByEmail(nonExistentUser.getEmail());
@@ -86,33 +79,9 @@ public class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void testSaveNull() {
-        thrown.expect(BadRequestException.class);
-        userService.save(null);
-    }
-
-    @Test
-    public void testSaveNotNewUser() {
-        thrown.expect(BadRequestException.class);
-        userService.save(notNewUser);
-    }
-
-    @Test
     public void testUpdate() {
         userService.update(notNewUser);
         assertTrue(USER_MATCHER.equals(notNewUser, userService.get(notNewUser.getId())));
-    }
-
-    @Test
-    public void testUpdateNull() {
-        thrown.expect(BadRequestException.class);
-        userService.update(null);
-    }
-
-    @Test
-    public void testUpdateNewUser() {
-        thrown.expect(BadRequestException.class);
-        userService.update(newUser);
     }
 
     @Test

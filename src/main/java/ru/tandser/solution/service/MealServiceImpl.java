@@ -8,7 +8,7 @@ import ru.tandser.solution.repository.MealRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static ru.tandser.solution.service.util.Inspector.*;
+import static ru.tandser.solution.util.Inspector.requireExist;
 
 @Service
 public class MealServiceImpl implements MealService {
@@ -32,8 +32,6 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public List<Meal> getBetween(LocalDateTime from, LocalDateTime to, int userId) {
-        requireNotNull(from);
-        requireNotNull(to);
         return requireExist(mealRepository.getBetween(from, to, userId));
     }
 
@@ -44,15 +42,11 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public Meal save(Meal meal, int userId) {
-        requireNotNull(meal);
-        requireNew(meal);
         return requireExist(mealRepository.put(meal, userId));
     }
 
     @Override
     public void update(Meal meal, int userId) {
-        requireNotNull(meal);
-        requireNotNew(meal);
         requireExist(mealRepository.put(meal, userId));
     }
 }

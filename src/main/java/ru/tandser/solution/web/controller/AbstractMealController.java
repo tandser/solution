@@ -11,9 +11,9 @@ import ru.tandser.solution.web.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static ru.tandser.solution.dto.util.DateTimeUtils.atEndOfDay;
-import static ru.tandser.solution.dto.util.DateTimeUtils.atStartOfDay;
-import static ru.tandser.solution.service.util.Inspector.requireConsistency;
+import static ru.tandser.solution.util.DateTimeUtils.atEndOfDay;
+import static ru.tandser.solution.util.DateTimeUtils.atStartOfDay;
+import static ru.tandser.solution.util.Inspector.*;
 
 public abstract class AbstractMealController {
 
@@ -39,6 +39,7 @@ public abstract class AbstractMealController {
     }
 
     public List<MealWithExcess> getBetween(LocalDateTime from, LocalDateTime to) {
+        requireNotNull(from, to);
         Principal principal = Principal.get();
         log.info("{}: .getBetween({}, {})", principal.getUsername(), from, to);
         List<Meal> meals = mealService.getBetween(atStartOfDay(from), atEndOfDay(to), principal.getId());
@@ -52,15 +53,16 @@ public abstract class AbstractMealController {
     }
 
     public Meal save(Meal meal) {
+        requireNew(meal);
         Principal principal = Principal.get();
         log.info("{}: .save({})", principal.getUsername(), meal);
         return mealService.save(meal, principal.getId());
     }
 
     public void update(Meal meal, int id) {
+        requireConsistency(meal, id);
         Principal principal = Principal.get();
         log.info("{}: .update({}, {})", principal.getUsername(), meal, id);
-        requireConsistency(meal, id);
         mealService.update(meal, principal.getId());
     }
 }

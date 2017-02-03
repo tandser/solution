@@ -1,4 +1,4 @@
-package ru.tandser.solution.dto.util;
+package ru.tandser.solution.util;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;

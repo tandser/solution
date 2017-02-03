@@ -2,7 +2,6 @@ package ru.tandser.solution.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.tandser.solution.service.exc.BadRequestException;
 import ru.tandser.solution.service.exc.NotFoundException;
 
 import static org.junit.Assert.assertTrue;
@@ -53,18 +52,6 @@ public class MealServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void testBetweenNullFrom() {
-        thrown.expect(BadRequestException.class);
-        mealService.getBetween(null, to, user.getId());
-    }
-
-    @Test
-    public void testBetweenNullTo() {
-        thrown.expect(BadRequestException.class);
-        mealService.getBetween(from, null, user.getId());
-    }
-
-    @Test
     public void testBetweenForNonExistentUser() {
         thrown.expect(NotFoundException.class);
         mealService.getBetween(from, to, nonExistentUser.getId());
@@ -96,18 +83,6 @@ public class MealServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void testSaveNull() {
-        thrown.expect(BadRequestException.class);
-        mealService.save(null, user.getId());
-    }
-
-    @Test
-    public void testSaveNotNewMeal() {
-        thrown.expect(BadRequestException.class);
-        mealService.save(notNewMeal, user.getId());
-    }
-
-    @Test
     public void testSaveForNonExistentUser() {
         thrown.expect(NotFoundException.class);
         mealService.save(newMeal, nonExistentUser.getId());
@@ -117,18 +92,6 @@ public class MealServiceTest extends AbstractServiceTest {
     public void testUpdate() {
         mealService.update(notNewMeal, user.getId());
         assertTrue(MEAL_MATCHER.equals(notNewMeal, mealService.get(notNewMeal.getId(), user.getId())));
-    }
-
-    @Test
-    public void testUpdateNull() {
-        thrown.expect(BadRequestException.class);
-        mealService.update(null, user.getId());
-    }
-
-    @Test
-    public void testUpdateNewMeal() {
-        thrown.expect(BadRequestException.class);
-        mealService.update(newMeal, user.getId());
     }
 
     @Test

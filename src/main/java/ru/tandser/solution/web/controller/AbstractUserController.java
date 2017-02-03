@@ -9,7 +9,7 @@ import ru.tandser.solution.web.Principal;
 
 import java.util.List;
 
-import static ru.tandser.solution.service.util.Inspector.requireConsistency;
+import static ru.tandser.solution.util.Inspector.*;
 
 public abstract class AbstractUserController {
 
@@ -35,6 +35,7 @@ public abstract class AbstractUserController {
     }
 
     public User getByEmail(String email) {
+        requireNotNull(email);
         Principal principal = Principal.get();
         log.info("{}: .getByEmail({})", principal.getUsername(), email);
         return userService.getByEmail(email);
@@ -53,15 +54,16 @@ public abstract class AbstractUserController {
     }
 
     public User save(User user) {
+        requireNew(user);
         Principal principal = Principal.get();
         log.info("{}: .save({})", principal.getUsername(), user);
         return userService.save(user);
     }
 
     public void update(User user, int id) {
+        requireConsistency(user, id);
         Principal principal = Principal.get();
         log.info("{}: .update({})", principal.getUsername(), user);
-        requireConsistency(user, id);
         userService.update(user);
     }
 }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import ru.tandser.solution.domain.Meal;
-import ru.tandser.solution.dto.util.DateTimeUtils;
+import ru.tandser.solution.util.DateTimeUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -21,7 +21,10 @@
     <http use-expressions="true">
         <intercept-url pattern="/index" access="permitAll"/>
         <intercept-url pattern="/**"    access="isAuthenticated()"/>
-        <form-login login-page="/index" login-processing-url="/spring_security_check" default-target-url="/meals"/>
+        <form-login login-page="/index"
+                    login-processing-url="/spring_security_check"
+                    default-target-url="/meals"
+                    authentication-failure-url="/index?error=true"/>
         <logout logout-success-url="/index"/>
         <csrf disabled="true"/>
     </http>

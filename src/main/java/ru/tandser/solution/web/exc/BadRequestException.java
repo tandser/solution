@@ -1,4 +1,4 @@
-package ru.tandser.solution.service.exc;
+package ru.tandser.solution.web.exc;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
