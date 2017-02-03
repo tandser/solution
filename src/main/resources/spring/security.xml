@@ -13,14 +13,16 @@
 
     <http pattern="/rest/**" create-session="stateless" use-expressions="true">
         <http-basic/>
-        <intercept-url pattern="/rest/admin/**" access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/rest/users/**" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/**"            access="isAuthenticated()"/>
         <csrf disabled="true"/>
     </http>
 
+    <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
     <authentication-manager>
         <authentication-provider>
-
+            <password-encoder ref="passwordEncoder"/>
         </authentication-provider>
     </authentication-manager>
 

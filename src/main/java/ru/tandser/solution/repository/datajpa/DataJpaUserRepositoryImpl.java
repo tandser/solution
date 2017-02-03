@@ -65,6 +65,7 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
             }
         }
 
+        if (user.getEmail()          != null) user.setEmail(user.getEmail().toLowerCase());
         if (user.getCreated()        == null) user.setCreated(LocalDateTime.now());
         if (user.getRole()           == null) user.setRole(User.Role.USER);
         if (user.getNormOfCalories() == null) user.setNormOfCalories(defaultNormOfCalories);

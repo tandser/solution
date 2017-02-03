@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.repository.UserRepository;
@@ -16,11 +17,17 @@ import static ru.tandser.solution.service.util.Inspector.*;
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private UserRepository userRepository;
+    private UserRepository  userRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -53,6 +60,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User save(User user) {
         requireNotNull(user);
         requireNew(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.put(user);
     }
 
@@ -60,6 +68,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void update(User user) {
         requireNotNull(user);
         requireNotNew(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         requireExist(userRepository.put(user));
     }
 

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.dto.MealWithExcess;
-import ru.tandser.solution.web.AbstractMealController;
+import ru.tandser.solution.web.controller.AbstractMealController;
 
 import java.net.URI;
 import java.time.LocalDateTime;
