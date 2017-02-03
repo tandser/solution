@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.service.UserService;
-import ru.tandser.solution.service.util.Inspector;
 import ru.tandser.solution.web.Principal;
 
 import java.util.List;

@@ -1,5 +1,6 @@
 package ru.tandser.solution.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.base.MoreObjects;
 import org.hibernate.validator.constraints.NotBlank;
@@ -13,10 +14,7 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "meals")
-@NamedEntityGraph(name = Meal.WITH_USER, attributeNodes = @NamedAttributeNode("user"))
 public class Meal extends AbstractEntity {
-
-    public static final String WITH_USER = "Meal.withUser";
 
     private LocalDateTime dateTime;
     private String        description;
@@ -55,6 +53,7 @@ public class Meal extends AbstractEntity {
     }
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     public User getUser() {

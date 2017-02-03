@@ -38,11 +38,6 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public Meal getWithUser(int id, int userId) {
-        return requireExist(mealRepository.getWithUser(id, userId));
-    }
-
-    @Override
     public void remove(int id, int userId) {
         requireExist(mealRepository.remove(id, userId));
     }

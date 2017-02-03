@@ -13,8 +13,6 @@ public interface MealRepository {
 
     List<Meal> getBetween(LocalDateTime from, LocalDateTime to, int userId);
 
-    Meal getWithUser(int id, int userId);
-
     Meal remove(int id, int userId);
 
     Meal put(Meal meal, int userId);

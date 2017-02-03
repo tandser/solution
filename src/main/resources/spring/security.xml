@@ -18,8 +18,6 @@
         <csrf disabled="true"/>
     </http>
 
-    <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-
     <authentication-manager>
         <authentication-provider user-service-ref="userServiceImpl">
             <password-encoder ref="passwordEncoder"/>

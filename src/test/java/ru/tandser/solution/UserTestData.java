@@ -25,7 +25,6 @@ public class UserTestData {
     public static final Matcher<User> USER_MATCHER = new Matcher<>((expected, actual) ->
             expected == actual || (Objects.equals(expected.getName(),           actual.getName())           &&
                                    Objects.equals(expected.getEmail(),          actual.getEmail())          &&
-                                   Objects.equals(expected.getPassword(),       actual.getPassword())       &&
                                    Objects.equals(expected.getRole(),           actual.getRole())           &&
                                    Objects.equals(expected.getNormOfCalories(), actual.getNormOfCalories()) &&
                                    Objects.equals(expected.getEnabled(),        actual.getEnabled())));

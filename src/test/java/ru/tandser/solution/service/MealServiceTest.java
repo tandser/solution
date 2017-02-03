@@ -7,7 +7,8 @@ import ru.tandser.solution.service.exc.NotFoundException;
 
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.*;
-import static ru.tandser.solution.UserTestData.*;
+import static ru.tandser.solution.UserTestData.nonExistentUser;
+import static ru.tandser.solution.UserTestData.user;
 
 public class MealServiceTest extends AbstractServiceTest {
 
@@ -67,23 +68,6 @@ public class MealServiceTest extends AbstractServiceTest {
     public void testBetweenForNonExistentUser() {
         thrown.expect(NotFoundException.class);
         mealService.getBetween(from, to, nonExistentUser.getId());
-    }
-
-    @Test
-    public void testGetWithUser() {
-        assertTrue(USER_MATCHER.equals(user, mealService.getWithUser(existingMeal.getId(), user.getId()).getUser()));
-    }
-
-    @Test
-    public void testGetWithNonExistentUser() {
-        thrown.expect(NotFoundException.class);
-        mealService.getWithUser(existingMeal.getId(), nonExistentUser.getId());
-    }
-
-    @Test
-    public void testGetNonExistentMealWithUser() {
-        thrown.expect(NotFoundException.class);
-        mealService.getWithUser(nonExistentMeal.getId(), user.getId());
     }
 
     @Test

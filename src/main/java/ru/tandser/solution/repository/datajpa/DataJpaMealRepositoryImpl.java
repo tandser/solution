@@ -48,11 +48,6 @@ public class DataJpaMealRepositoryImpl implements MealRepository {
     }
 
     @Override
-    public Meal getWithUser(int id, int userId) {
-        return mealRepository.findOneByIdAndUserIdWithUser(id, userId);
-    }
-
-    @Override
     public Meal remove(int id, int userId) {
         List<Meal> result = mealRepository.removeByIdAndUserId(id, userId);
         return result.isEmpty() ? null : result.get(0);

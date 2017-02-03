@@ -10,7 +10,8 @@ import javax.validation.ConstraintViolationException;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.*;
-import static ru.tandser.solution.UserTestData.*;
+import static ru.tandser.solution.UserTestData.nonExistentUser;
+import static ru.tandser.solution.UserTestData.user;
 
 public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
 
@@ -38,13 +39,6 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
     public void testBetween() {
         assertNull(mealRepository.getBetween(from, to, nonExistentUser.getId()));
         assertTrue(MEAL_MATCHER.equals(betweenMeals, mealRepository.getBetween(from, to, user.getId())));
-    }
-
-    @Test
-    public void testGetWithUser() {
-        assertNull(mealRepository.getWithUser(existingMeal.getId(), nonExistentUser.getId()));
-        assertNull(mealRepository.getWithUser(nonExistentMeal.getId(), user.getId()));
-        assertTrue(USER_MATCHER.equals(user, mealRepository.getWithUser(existingMeal.getId(), user.getId()).getUser()));
     }
 
     @Test

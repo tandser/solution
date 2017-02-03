@@ -1,6 +1,7 @@
 package ru.tandser.solution.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.common.base.MoreObjects;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -100,6 +101,7 @@ public class User extends AbstractEntity {
     }
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @JsonManagedReference
     @OneToMany(mappedBy = "user")
     @OrderBy("dateTime DESC")
     public List<Meal> getMeals() {

@@ -1,6 +1,5 @@
 package ru.tandser.solution.web.rest;
 
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -36,12 +35,6 @@ public class MealRestController extends AbstractMealController {
     @GetMapping(value = "/between", produces = APPLICATION_JSON_VALUE)
     public List<MealWithExcess> getBetween(@RequestParam LocalDateTime from, @RequestParam LocalDateTime to) {
         return super.getBetween(from, to);
-    }
-
-    @Override
-    @GetMapping(value = "/details/{id}", produces = APPLICATION_JSON_VALUE)
-    public Meal getWithUser(@PathVariable int id) {
-        return super.getWithUser(id);
     }
 
     @Override

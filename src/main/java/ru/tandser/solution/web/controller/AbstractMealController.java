@@ -45,12 +45,6 @@ public abstract class AbstractMealController {
         return MealWithExcess.filter(meals, from.toLocalTime(), to.toLocalTime(), principal.getNormOfCalories());
     }
 
-    public Meal getWithUser(int id) {
-        Principal principal = Principal.get();
-        log.info("{}: .getWithUser({})", principal.getUsername(), id);
-        return mealService.getWithUser(id, principal.getId());
-    }
-
     public void remove(int id) {
         Principal principal = Principal.get();
         log.info("{}: .remove({})", principal.getUsername(), id);

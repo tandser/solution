@@ -3,7 +3,7 @@
     "id":1,
     "name":"Lynn Douglas",
     "email":"l.douglas@gmail.com",
-    "password":"Mr01LRc",
+    "password":"$2a$10$cqshpRXyPwKV19/p6hy8f.UD0eW08aLyjXEbeosxIXvC/pkov9hiS",
     "role":"ADMIN",
     "normOfCalories":2000,
     "enabled":true
@@ -13,7 +13,7 @@
     "id":2,
     "name":"Scott Welch",
     "email":"s.welch@gmail.com",
-    "password":"Izhyw29",
+    "password":"$2a$10$IJCpBm3bSRpufGZOKNuL1eC1rGDBSrOUSvjr2dADkRNaQBG63/ioS",
     "role":"USER",
     "normOfCalories":2000,
     "enabled":true
