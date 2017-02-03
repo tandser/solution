@@ -18,6 +18,14 @@
         <csrf disabled="true"/>
     </http>
 
+    <http use-expressions="true">
+        <intercept-url pattern="/index" access="permitAll"/>
+        <intercept-url pattern="/**"    access="isAuthenticated()"/>
+        <form-login login-page="/index" login-processing-url="/spring_security_check" default-target-url="/meals"/>
+        <logout logout-success-url="/index"/>
+        <csrf disabled="true"/>
+    </http>
+
     <authentication-manager>
         <authentication-provider user-service-ref="userServiceImpl">
             <password-encoder ref="passwordEncoder"/>

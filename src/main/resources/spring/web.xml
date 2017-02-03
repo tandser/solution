@@ -11,6 +11,8 @@
                            http://www.springframework.org/schema/mvc
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <mvc:default-servlet-handler/>
+
     <context:component-scan base-package="ru.tandser.solution.web"/>
 
     <bean id="objectMapper" class="ru.tandser.solution.web.json.JacksonObjectMapper" factory-method="getInstance"/>
@@ -42,6 +44,7 @@
     </mvc:annotation-driven>
     
     <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:resources mapping="/webjars/**"   location="classpath:/META-INF/resources/webjars/"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
@@ -58,6 +61,10 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="basename" value="WEB-INF/i18n/vocabulary"/>
         <property name="fallbackToSystemLocale" value="false"/>
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="ru"/>
     </bean>
 
 </beans>
