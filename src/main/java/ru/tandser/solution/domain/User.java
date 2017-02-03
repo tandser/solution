@@ -39,7 +39,7 @@ public class User extends AbstractEntity {
         }
     }
 
-    @NotBlank(message = "{validation.User.NotBlank.name}")
+    @NotBlank
     @Column(name = "name")
     public String getName() {
         return name;
@@ -49,8 +49,8 @@ public class User extends AbstractEntity {
         this.name = name;
     }
 
-    @NotBlank(message = "{validation.User.NotBlank.email}")
-    @Email(message = "{validation.User.Email.email}")
+    @NotBlank
+    @Email
     @Column(name = "email")
     public String getEmail() {
         return email;
@@ -60,8 +60,8 @@ public class User extends AbstractEntity {
         this.email = email;
     }
 
-    @NotNull(message = "{validation.User.NotNull.password}")
-    @Length(min = 7, message = "{validation.User.Length.password}")
+    @NotNull
+    @Length(min = 7)
     @Column(name = "password")
     public String getPassword() {
         return password;
@@ -90,7 +90,7 @@ public class User extends AbstractEntity {
         this.role = role;
     }
 
-    @Range(min = 0, max = 5000, message = "{validation.User.Range.normOfCalories}")
+    @Range(min = 0, max = 5000)
     @Column(name = "norm_of_calories")
     public Integer getNormOfCalories() {
         return normOfCalories;
