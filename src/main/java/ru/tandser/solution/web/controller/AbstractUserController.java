@@ -66,4 +66,10 @@ public abstract class AbstractUserController {
         log.info("{}: .update({})", principal.getUsername(), user);
         userService.update(user);
     }
+
+    public void toggle(int id, boolean state) {
+        Principal principal = Principal.get();
+        log.info("{}: .toggle({}, {})", principal.getUsername(), id, state);
+        userService.toggle(id, state);
+    }
 }

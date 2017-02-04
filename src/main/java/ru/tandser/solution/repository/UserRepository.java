@@ -17,4 +17,6 @@ public interface UserRepository {
     User remove(int id);
 
     User put(User user);
+
+    int toggle(int id, boolean state);
 }

@@ -64,4 +64,10 @@ public class UserRestController extends AbstractUserController {
     public void update(@RequestBody User user, @PathVariable int id) {
         super.update(user, id);
     }
+
+    @Override
+    @PutMapping(value = "/toggle/{id}")
+    public void toggle(@PathVariable int id, @RequestParam boolean state) {
+        super.toggle(id, state);
+    }
 }

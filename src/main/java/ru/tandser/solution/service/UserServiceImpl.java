@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.repository.UserRepository;
+import ru.tandser.solution.service.exc.NotFoundException;
 import ru.tandser.solution.web.Principal;
 
 import java.util.List;
@@ -76,11 +77,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @Transactional
     public void toggle(int id, boolean state) {
-        User user = get(id);
-        user.setEnabled(state);
-        userRepository.put(user);
+        if (userRepository.toggle(id, state) == 0) {
+            throw new NotFoundException();
+        }
     }
 
     @Override

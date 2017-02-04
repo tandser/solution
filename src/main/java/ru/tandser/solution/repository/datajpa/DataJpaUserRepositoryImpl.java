@@ -59,4 +59,9 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
 
         return userRepository.save(user);
     }
+
+    @Override
+    public int toggle(int id, boolean state) {
+        return userRepository.setEnabled(id, state);
+    }
 }

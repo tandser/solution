@@ -2,6 +2,7 @@ package ru.tandser.solution.repository.datajpa;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tandser.solution.domain.User;
@@ -19,4 +20,9 @@ public interface JpaUserRepository extends JpaRepository<User, Integer> {
 
     @Transactional
     List<User> removeById(Integer id);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE User AS u SET u.enabled = ?2 WHERE u.id = ?1")
+    int setEnabled(int id, boolean state);
 }
