@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -119,6 +120,16 @@ public class User extends AbstractEntity {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public void prepare(PasswordEncoder passwordEncoder, int defaultNormOfCalories) {
+        setEmail(getEmail().toLowerCase());
+        setPassword(passwordEncoder.encode(getPassword()));
+
+        if (getCreated()        == null) setCreated(LocalDateTime.now());
+        if (getRole()           == null) setRole(Role.USER);
+        if (getNormOfCalories() == null) setNormOfCalories(defaultNormOfCalories);
+        if (getEnabled()        == null) setEnabled(Boolean.TRUE);
     }
 
     @Override

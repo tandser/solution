@@ -1,37 +1,22 @@
 package ru.tandser.solution.repository.datajpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.repository.UserRepository;
 import ru.tandser.solution.repository.exc.ConflictException;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
 public class DataJpaUserRepositoryImpl implements UserRepository {
 
     private JpaUserRepository userRepository;
-    private PasswordEncoder   passwordEncoder;
-    private Integer           defaultNormOfCalories;
 
     @Autowired
     public void setUserRepository(JpaUserRepository userRepository) {
         this.userRepository = userRepository;
-    }
-
-    @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
-
-    @Value("${default.normOfCalories}")
-    public void setDefaultNormOfCalories(Integer defaultNormOfCalories) {
-        this.defaultNormOfCalories = defaultNormOfCalories;
     }
 
     @Override
@@ -71,13 +56,6 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
                 throw new ConflictException();
             }
         }
-
-        if (user.getEmail()          != null) user.setEmail(user.getEmail().toLowerCase());
-        if (user.getPassword()       != null) user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if (user.getCreated()        == null) user.setCreated(LocalDateTime.now());
-        if (user.getRole()           == null) user.setRole(User.Role.USER);
-        if (user.getNormOfCalories() == null) user.setNormOfCalories(defaultNormOfCalories);
-        if (user.getEnabled()        == null) user.setEnabled(Boolean.TRUE);
 
         return userRepository.save(user);
     }
