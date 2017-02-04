@@ -1,15 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
-<spring:message code="jsp.Diary_calories" var="diaryCalories"/>
-<spring:message code='jsp.Login'          var="login"/>
-<spring:message code='jsp.Password'       var="password"/>
-<spring:message code="jsp.Sign_in"        var="signIn"/>
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${diaryCalories}</title>
+        <title><spring:message code="jsp.diaryCalories"/></title>
         <base href="${pageContext.request.contextPath}/"/>
         <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet">
         <script type="text/javascript" src="webjars/jquery/3.1.1-1/jquery.min.js" defer></script>
@@ -25,17 +20,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">${diaryCalories}</a>
+                    <a class="navbar-brand" href="#"><spring:message code="jsp.diaryCalories"/></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <form class="navbar-form navbar-right" action="spring_security_check" method="post">
                         <div class="form-group">
-                            <input type="text" placeholder="${login}" class="form-control" name="username">
+                            <input type="text" placeholder="<spring:message code='jsp.login'/>" class="form-control" name="username">
                         </div>
                         <div class="form-group">
-                            <input type="password" placeholder="${password}" class="form-control" name="password">
+                            <input type="password" placeholder="<spring:message code='jsp.password'/>" class="form-control" name="password">
                         </div>
-                        <button type="submit" class="btn btn-success">${signIn}</button>
+                        <button type="submit" class="btn btn-success"><spring:message code="jsp.signIn"/></button>
                     </form>
                 </div>
             </div>
