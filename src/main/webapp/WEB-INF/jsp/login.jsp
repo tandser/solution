@@ -1,15 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><spring:message code="jsp.diaryCalories"/></title>
-        <base href="${pageContext.request.contextPath}/"/>
-        <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet">
-        <script type="text/javascript" src="webjars/jquery/3.1.1-1/jquery.min.js" defer></script>
-        <script type="text/javascript" src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js" defer></script>
-    </head>
+    <jsp:include page="fragment/head.jsp"/>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -39,8 +32,28 @@
             <div class="container">
                 <h1>Hello, world!</h1>
                 <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button"><spring:message code="jsp.createAnAccount"/></a></p>
             </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Heading</h2>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Heading</h2>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Heading</h2>
+                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                </div>
+            </div>
+            <jsp:include page="fragment/footer.jsp"/>
         </div>
     </body>
 </html>
