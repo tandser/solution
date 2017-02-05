@@ -1,8 +1,10 @@
-package ru.tandser.solution.repository;
+package ru.tandser.solution.repository.datajpa;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import ru.tandser.solution.repository.AbstractRepositoryTest;
+import ru.tandser.solution.repository.MealRepository;
 import ru.tandser.solution.repository.exc.ConflictException;
 
 import javax.validation.ConstraintViolationException;
