@@ -1,97 +1,103 @@
 [
   {
-    "id":1,
-    "name":"Lynn Douglas",
-    "email":"l.douglas@gmail.com",
-    "password":"Mr01LRc",
-    "role":"ADMIN",
-    "normOfCalories":2000,
-    "enabled":true
+    "id"             : 1,
+    "name"           : "Lynn Douglas",
+    "email"          : "l.douglas@gmail.com",
+    "password"       : "$2a$10$cqshpRXyPwKV19/p6hy8f.UD0eW08aLyjXEbeosxIXvC/pkov9hiS",
+    "role"           : "ADMIN",
+    "normOfCalories" : 2000,
+    "enabled"        : true
   },
 
   {
-    "id":2,
-    "name":"Scott Welch",
-    "email":"s.welch@gmail.com",
-    "password":"Izhyw29",
-    "role":"USER",
-    "normOfCalories":2000,
-    "enabled":true
+    "id"             : 2,
+    "name"           : "Scott Welch",
+    "email"          : "s.welch@gmail.com",
+    "password"       : "$2a$10$IJCpBm3bSRpufGZOKNuL1eC1rGDBSrOUSvjr2dADkRNaQBG63/ioS",
+    "role"           : "USER",
+    "normOfCalories" : 2000,
+    "enabled"        : true
   },
 
   {
-    "name":"Ralph Bass",
-    "email":"r.bass@gmail.com",
-    "password":"9Mn5Z6x",
-    "role":"USER",
-    "normOfCalories":2000
+    "name"           : "Ralph Bass",
+    "email"          : "r.bass@gmail.com",
+    "password"       : "$2a$10$QucFanH/OE.F0boW/Z9dK.eNueKIgZ0b2C38oLmxU9tspCwIMMNVu",
+    "created"        : "2017-02-05T14:00",
+    "role"           : "USER",
+    "normOfCalories" : 2000,
+    "enabled"        : true
   },
 
   {
-    "id":2,
-    "name":"Scott Welch",
-    "email":"s.welch@gmail.com",
-    "password":"lgZtBlx",
-    "role":"USER",
-    "normOfCalories":2000
+    "id"             : 2,
+    "name"           : "Scott Welch",
+    "email"          : "s.welch@gmail.com",
+    "password"       : "$2a$10$IJCpBm3bSRpufGZOKNuL1eC1rGDBSrOUSvjr2dADkRNaQBG63/ioS",
+    "created"        : "2017-02-05T14:00",
+    "role"           : "USER",
+    "normOfCalories" : 2000,
+    "enabled"        : true
   },
 
   {
-    "id":3,
-    "name":"Arnold Shaw",
-    "email":"a.shaw@gmail.com",
-    "password":"gVw4WrY",
-    "role":"USER",
-    "normOfCalories":2000
+    "id"             : 3,
+    "name"           : "Arnold Shaw",
+    "email"          : "a.shaw@gmail.com",
+    "password"       : "gVw4WrY",
+    "role"           : "USER",
+    "normOfCalories" : 2000,
+    "enabled"        : true
   },
 
   {
-    "id":1,
-    "name":"Lynn Douglas",
-    "email":"l.douglas@gmail.com",
-    "password":"cAHavYl",
-    "role":"ADMIN",
-    "normOfCalories":2000,
-    "version":1
+    "id"             : 1,
+    "name"           : "Lynn Douglas",
+    "email"          : "l.douglas@gmail.com",
+    "password"       : "$2a$10$cqshpRXyPwKV19/p6hy8f.UD0eW08aLyjXEbeosxIXvC/pkov9hiS",
+    "created"        : "2017-02-05T14:00",
+    "role"           : "ADMIN",
+    "normOfCalories" : 2000,
+    "version"        : 1
   },
 
   {
-    "name":"Steven Welch",
-    "email":"s.welch@gmail.com",
-    "password":"Y9rpqov",
-    "role":"USER",
-    "normOfCalories":2000
+    "name"           : "Steven Welch",
+    "email"          : "s.welch@gmail.com",
+    "password"       : "$2a$10$WZc1yIIuJYLLa5.7Q6fqlO4M7m.GkDGOgkMBQ56YBFXIDtpQ8NHqu",
+    "created"        : "2017-02-05T14:00",
+    "role"           : "USER",
+    "normOfCalories" : 2000,
+    "enabled"        : true
   },
 
   {
-    "name":"",
-    "email":"l.jones@gmail.com",
-    "password":"uGbn0oU",
-    "role":"USER",
-    "normOfCalories":2000
+    "name"           : "",
+    "email"          : "l.jones@gmail.com",
+    "password"       : "$2a$10$cuOpHygBifJCEV7UIYPEvuMbUvMNacJ7YsKn/BI6Tmg2bSnc022EK",
+    "created"        : "2017-02-05T14:00",
+    "role"           : "USER",
+    "normOfCalories" : 2000,
+    "enabled"        : true
   },
 
   {
-    "name":"Cary Rhodes",
-    "email":"c.rhodesgmail.com",
-    "password":"lgZtBlx",
-    "role":"USER",
-    "normOfCalories":2000
+    "name"           : "Cary Rhodes",
+    "email"          : "c.rhodesgmail.com",
+    "password"       : "$2a$10$FvEInWgeS6lvZvPtV2ls4ecwpZNByypgX80qJj3P0VsrKBj9m0VYm",
+    "created"        : "2017-02-05T14:00",
+    "role"           : "USER",
+    "normOfCalories" : 2000,
+    "enabled"        : true
   },
 
   {
-    "name":"Nathaniel Perez",
-    "email":"n.perez@gmail.com",
-    "password":"SyDDH",
-    "role":"USER",
-    "normOfCalories":2000
-  },
-
-  {
-    "name":"Trevor Weaver",
-    "email":"t.weaver@gmail.com",
-    "password":"aE8hC4Y",
-    "role":"USER",
-    "normOfCalories":-1
+    "name"           : "Trevor Weaver",
+    "email"          : "t.weaver@gmail.com",
+    "password"       : "$2a$10$CNjTeO9zch1X.X1xHlk7welwyaQYvsA7.O/xuiJHZFxvBd0idbGn6",
+    "created"        : "2017-02-05T14:00",
+    "role"           : "USER",
+    "normOfCalories" : -1,
+    "enabled"        : true
   }
 ]

@@ -11,23 +11,23 @@
     <http pattern="/resources/**" security="none"/>
     <http pattern="/webjars/**"   security="none"/>
 
-    <http pattern="/rest/**" create-session="stateless" use-expressions="true">
-        <http-basic/>
-        <intercept-url pattern="/rest/admin/**" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/**"            access="isAuthenticated()"/>
-        <csrf disabled="true"/>
-    </http>
-
-    <!--<http use-expressions="true">-->
-        <!--<intercept-url pattern="/login" access="permitAll"/>-->
-        <!--<intercept-url pattern="/**"    access="isAuthenticated()"/>-->
-        <!--<form-login login-page="/login"-->
-                    <!--login-processing-url="/spring_security_check"-->
-                    <!--default-target-url="/meals"-->
-                    <!--authentication-failure-url="/login?error=true"/>-->
-        <!--<logout logout-success-url="/login"/>-->
+    <!--<http pattern="/rest/**" create-session="stateless" use-expressions="true">-->
+        <!--<http-basic/>-->
+        <!--<intercept-url pattern="/rest/admin/**" access="hasRole('ADMIN')"/>-->
+        <!--<intercept-url pattern="/**"            access="isAuthenticated()"/>-->
         <!--<csrf disabled="true"/>-->
     <!--</http>-->
+
+    <http use-expressions="true">
+        <intercept-url pattern="/login" access="permitAll"/>
+        <intercept-url pattern="/**"    access="isAuthenticated()"/>
+        <form-login login-page="/login"
+                    login-processing-url="/spring_security_check"
+                    default-target-url="/users"
+                    authentication-failure-url="/login?error=true"/>
+        <logout logout-success-url="/login"/>
+        <csrf disabled="true"/>
+    </http>
 
     <authentication-manager>
         <authentication-provider user-service-ref="userServiceImpl">

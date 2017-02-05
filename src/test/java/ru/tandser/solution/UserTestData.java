@@ -5,6 +5,7 @@ import ru.tandser.solution.domain.User;
 import ru.tandser.solution.util.Matcher;
 import ru.tandser.solution.web.json.JsonConverter;
 
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ public class UserTestData {
     public static User duplicateUser;
     public static User invalidNameUser;
     public static User invalidEmailUser;
-    public static User invalidPasswordUser;
+//    public static User invalidPasswordUser;
     public static User invalidNormOfCaloriesUser;
 
     public static final Matcher<User> USER_MATCHER = new Matcher<>((expected, actual) ->
@@ -43,7 +44,7 @@ public class UserTestData {
         duplicateUser             = mocks.next();
         invalidNameUser           = mocks.next();
         invalidEmailUser          = mocks.next();
-        invalidPasswordUser       = mocks.next();
+//        invalidPasswordUser       = mocks.next();
         invalidNormOfCaloriesUser = mocks.next();
     }
 }
