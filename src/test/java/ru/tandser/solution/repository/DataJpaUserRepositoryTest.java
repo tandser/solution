@@ -3,11 +3,9 @@ package ru.tandser.solution.repository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.tandser.solution.repository.exc.ConflictException;
 
 import javax.validation.ConstraintViolationException;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 

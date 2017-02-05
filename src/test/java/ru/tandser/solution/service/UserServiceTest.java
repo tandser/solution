@@ -7,7 +7,6 @@ import ru.tandser.solution.service.exc.NotFoundException;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.MEAL_MATCHER;
