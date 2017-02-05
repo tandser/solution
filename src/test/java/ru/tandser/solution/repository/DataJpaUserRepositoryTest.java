@@ -97,6 +97,7 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
     public void testValidation() {
         validateRootCause(() -> userRepository.put(invalidNameUser),           ConstraintViolationException.class);
         validateRootCause(() -> userRepository.put(invalidEmailUser),          ConstraintViolationException.class);
+        validateRootCause(() -> userRepository.put(invalidPasswordUser),       ConstraintViolationException.class);
         validateRootCause(() -> userRepository.put(invalidNormOfCaloriesUser), ConstraintViolationException.class);
     }
 }

@@ -7,6 +7,8 @@ import ru.tandser.solution.service.exc.NotFoundException;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static ru.tandser.solution.MealTestData.MEAL_MATCHER;
 import static ru.tandser.solution.MealTestData.reverseOrderMeals;
@@ -74,19 +76,34 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void testSave() {
-//        assertTrue(USER_MATCHER.equals(newUser, userService.save(newUser)));
-//        assertTrue(USER_MATCHER.equals(newUser, userService.get(newUser.getId())));
+        assertTrue(USER_MATCHER.equals(newUser, userService.save(newUser)));
+        assertTrue(USER_MATCHER.equals(newUser, userService.get(newUser.getId())));
     }
 
     @Test
     public void testUpdate() {
-//        userService.update(notNewUser);
-//        assertTrue(USER_MATCHER.equals(notNewUser, userService.get(notNewUser.getId())));
+        userService.update(notNewUser);
+        assertTrue(USER_MATCHER.equals(notNewUser, userService.get(notNewUser.getId())));
     }
 
     @Test
     public void testUpdateNonExistentUser() {
         thrown.expect(NotFoundException.class);
         userService.update(nonExistentUser);
+    }
+
+    @Test
+    public void testToggle() {
+        userService.toggle(admin.getId(), false);
+        assertFalse(userService.get(admin.getId()).getEnabled());
+
+        userService.toggle(admin.getId(), true);
+        assertTrue(userService.get(admin.getId()).getEnabled());
+    }
+
+    @Test
+    public void testNonExistentUser() {
+        thrown.expect(NotFoundException.class);
+        userService.toggle(nonExistentUser.getId(), false);
     }
 }

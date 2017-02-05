@@ -92,6 +92,16 @@
   },
 
   {
+    "name"           : "Nathaniel Perez",
+    "email"          : "n.perez@gmail.com",
+    "password"       : "SyDDH",
+    "created"        : "2017-02-05T14:00",
+    "role"           : "USER",
+    "normOfCalories" : 2000,
+    "enabled"        : true
+  },
+
+  {
     "name"           : "Trevor Weaver",
     "email"          : "t.weaver@gmail.com",
     "password"       : "$2a$10$CNjTeO9zch1X.X1xHlk7welwyaQYvsA7.O/xuiJHZFxvBd0idbGn6",
