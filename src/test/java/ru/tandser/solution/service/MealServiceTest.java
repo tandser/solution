@@ -2,6 +2,7 @@ package ru.tandser.solution.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.tandser.solution.repository.exc.ConflictException;
 import ru.tandser.solution.service.exc.NotFoundException;
 
 import static org.junit.Assert.assertTrue;
@@ -104,5 +105,11 @@ public class MealServiceTest extends AbstractServiceTest {
     public void testUpdateNonExistentMeal() {
         thrown.expect(NotFoundException.class);
         mealService.update(nonExistentMeal, user.getId());
+    }
+
+    @Test
+    public void testUpdateConflictMeal() {
+        thrown.expect(ConflictException.class);
+        mealService.update(conflictMeal, user.getId());
     }
 }

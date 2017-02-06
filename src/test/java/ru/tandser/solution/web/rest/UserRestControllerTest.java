@@ -11,12 +11,16 @@ import ru.tandser.solution.web.json.JsonConverter;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static ru.tandser.solution.MealTestData.MEAL_MATCHER;
+import static ru.tandser.solution.MealTestData.reverseOrderMeals;
 import static ru.tandser.solution.UserTestData.*;
 
 public class UserRestControllerTest extends AbstractControllerTest {
@@ -71,10 +75,14 @@ public class UserRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testGetWithMeals() throws Exception {
-        mockMvc.perform(get(REST_PATH + "details/" + user.getId()).with(adminAccount))
+        ResultActions response = mockMvc.perform(get(REST_PATH + "details/" + user.getId()).with(adminAccount))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-                .andExpect(USER_MATCHER.contentMatcher(user));
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
+
+        User returned = JsonConverter.fromJson(response.andReturn().getResponse().getContentAsString(), User.class);
+
+        assertTrue(USER_MATCHER.equals(user, returned));
+        assertTrue(MEAL_MATCHER.equals(reverseOrderMeals, returned.getMeals()));
 
         mockMvc.perform(get(REST_PATH + "details/" + nonExistentUser.getId()).with(adminAccount))
                 .andExpect(status().isNotFound());
@@ -116,6 +124,56 @@ public class UserRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post(REST_PATH).with(userAccount))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void testUpdate() throws Exception {
+        mockMvc.perform(put(REST_PATH + notNewUser.getId()).with(adminAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(notNewUser)))
+                .andExpect(status().isOk());
+
+        assertTrue(USER_MATCHER.equals(notNewUser, userService.get(notNewUser.getId())));
+
+        mockMvc.perform(put(REST_PATH + nonExistentUser.getId()).with(adminAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(nonExistentUser)))
+                .andExpect(status().isNotFound());
+
+        mockMvc.perform(put(REST_PATH + user.getId()).with(adminAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(nonExistentUser)))
+                .andExpect(status().isBadRequest());
+
+        mockMvc.perform(put(REST_PATH + conflictUser.getId()).with(adminAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(conflictUser)))
+                .andExpect(status().isConflict());
+
+        mockMvc.perform(put(REST_PATH + notNewUser.getId()).with(userAccount))
+                .andExpect(status().isUnauthorized());
+
+        mockMvc.perform(put(REST_PATH + notNewUser.getId()).with(httpBasic(notNewUser.getEmail(), notNewUser.getPassword())))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void testToggle() throws Exception {
+        mockMvc.perform(put(REST_PATH + "toggle/" + user.getId() + "?state=false").with(adminAccount))
+                .andExpect(status().isOk());
+
+        assertFalse(userService.get(user.getId()).getEnabled());
+
+        mockMvc.perform(put(REST_PATH + "toggle/" + user.getId() + "?state=true").with(adminAccount))
+                .andExpect(status().isOk());
+
+        assertTrue(userService.get(user.getId()).getEnabled());
+
+        mockMvc.perform(put(REST_PATH + "toggle/" + nonExistentUser.getId() + "?state=false").with(adminAccount))
+                .andExpect(status().isNotFound());
+
+        mockMvc.perform(put(REST_PATH + "toggle/" + user.getId() + "?state=false").with(userAccount))
                 .andExpect(status().isForbidden());
     }
 }

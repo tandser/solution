@@ -71,9 +71,9 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
     }
 
     @Test
-    public void testPutNotConsistentUser() {
+    public void testPutConflictUser() {
         thrown.expect(ConflictException.class);
-        userRepository.put(notConsistentUser);
+        userRepository.put(conflictUser);
     }
 
     @Test

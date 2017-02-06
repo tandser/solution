@@ -2,6 +2,7 @@ package ru.tandser.solution.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.tandser.solution.repository.exc.ConflictException;
 import ru.tandser.solution.service.exc.NotFoundException;
 
 import java.util.Arrays;
@@ -92,6 +93,12 @@ public class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
+    public void testUpdateConflictUser() {
+        thrown.expect(ConflictException.class);
+        userService.update(conflictUser);
+    }
+
+    @Test
     public void testToggle() {
         userService.toggle(admin.getId(), false);
         assertFalse(userService.get(admin.getId()).getEnabled());
@@ -101,7 +108,7 @@ public class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void testNonExistentUser() {
+    public void testToggleNonExistentUser() {
         thrown.expect(NotFoundException.class);
         userService.toggle(nonExistentUser.getId(), false);
     }

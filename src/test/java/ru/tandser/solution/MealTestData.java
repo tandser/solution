@@ -21,7 +21,7 @@ public class MealTestData {
     public static Meal newMeal;
     public static Meal notNewMeal;
     public static Meal nonExistentMeal;
-    public static Meal notConsistentMeal;
+    public static Meal conflictMeal;
     public static Meal duplicateMeal;
     public static Meal invalidDateTimeMeal;
     public static Meal invalidDescriptionMeal;
@@ -47,7 +47,7 @@ public class MealTestData {
         newMeal                = mocks.get(12);
         notNewMeal             = mocks.get(13);
         nonExistentMeal        = mocks.get(14);
-        notConsistentMeal      = mocks.get(15);
+        conflictMeal           = mocks.get(15);
         duplicateMeal          = mocks.get(16);
         invalidDateTimeMeal    = mocks.get(17);
         invalidDescriptionMeal = mocks.get(18);

@@ -67,9 +67,9 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
     }
 
     @Test
-    public void testPutNotConsistentMeal() {
+    public void testPutConflictMeal() {
         thrown.expect(ConflictException.class);
-        mealRepository.put(notConsistentMeal, user.getId());
+        mealRepository.put(conflictMeal, user.getId());
     }
 
     @Test
