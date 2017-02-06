@@ -3,12 +3,14 @@ package ru.tandser.solution.web;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -18,6 +20,8 @@ import ru.tandser.solution.UserTestData;
 import javax.annotation.PostConstruct;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static ru.tandser.solution.UserTestData.admin;
+import static ru.tandser.solution.UserTestData.user;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,6 +30,9 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 public abstract class AbstractControllerTest {
 
     private static final CharacterEncodingFilter CHARACTER_ENCODING_FILTER = new CharacterEncodingFilter();
+
+    public static RequestPostProcessor adminAccount;
+    public static RequestPostProcessor userAccount;
 
     private   WebApplicationContext webApplicationContext;
     protected MockMvc               mockMvc;
@@ -37,6 +44,9 @@ public abstract class AbstractControllerTest {
 
         UserTestData.loadMocks();
         MealTestData.loadMocks();
+
+        adminAccount = SecurityMockMvcRequestPostProcessors.httpBasic(admin.getEmail(), admin.getPassword());
+        userAccount  = SecurityMockMvcRequestPostProcessors.httpBasic(user.getEmail(),  user.getPassword());
     }
 
     @Autowired
