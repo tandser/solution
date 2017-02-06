@@ -22,11 +22,16 @@
 * [Jackson](https://github.com/FasterXML/jackson)
 * [JUnit](http://junit.org/junit4/)
 
-В приложении используется база данных PostgreSQL. Стандартная конфигурация JDBC-драйвера располагается в `src\main\resources\properties\database.properties` и выглядит следующим образом:
+## Конфигурация базы данных
+
+В приложении используется база данных PostgreSQL. Конфигурация JDBC-драйвера располагается в `src\main\resources\properties\database.properties` и выглядит следующим образом:
+
 ```
 postgresql.driverClassName = org.postgresql.Driver
 postgresql.url             = jdbc:postgresql://localhost:5432/postgres
 postgresql.username        = postgres
 postgresql.password        = postgres
 ```
+
+Инициализация базы данных осуществляется с помощью сценариев, которые могут быть обнаружены в `src\main\resources\ddl`.
 

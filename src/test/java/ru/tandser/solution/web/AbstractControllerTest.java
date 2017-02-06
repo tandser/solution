@@ -3,7 +3,6 @@ package ru.tandser.solution.web;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -19,6 +18,7 @@ import ru.tandser.solution.UserTestData;
 
 import javax.annotation.PostConstruct;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static ru.tandser.solution.UserTestData.admin;
 import static ru.tandser.solution.UserTestData.user;
@@ -31,8 +31,8 @@ public abstract class AbstractControllerTest {
 
     private static final CharacterEncodingFilter CHARACTER_ENCODING_FILTER = new CharacterEncodingFilter();
 
-    public static RequestPostProcessor adminAccount;
-    public static RequestPostProcessor userAccount;
+    protected static RequestPostProcessor adminAccount;
+    protected static RequestPostProcessor userAccount;
 
     private   WebApplicationContext webApplicationContext;
     protected MockMvc               mockMvc;
@@ -45,12 +45,12 @@ public abstract class AbstractControllerTest {
         UserTestData.loadMocks();
         MealTestData.loadMocks();
 
-        adminAccount = SecurityMockMvcRequestPostProcessors.httpBasic(admin.getEmail(), admin.getPassword());
-        userAccount  = SecurityMockMvcRequestPostProcessors.httpBasic(user.getEmail(),  user.getPassword());
+        adminAccount = httpBasic(admin.getEmail(), admin.getPassword());
+        userAccount  = httpBasic(user.getEmail(), user.getPassword());
     }
 
     @Autowired
-    public void setWebContext(WebApplicationContext webApplicationContext) {
+    public void setWebApplicationContext(WebApplicationContext webApplicationContext) {
         this.webApplicationContext = webApplicationContext;
     }
 

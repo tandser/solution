@@ -14,7 +14,7 @@
     <http pattern="/rest/**" create-session="stateless" use-expressions="true">
         <http-basic/>
         <intercept-url pattern="/rest/users/**" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/**"            access="isAuthenticated()"/>
+        <intercept-url pattern="/rest/meals/**" access="isAuthenticated()"/>
         <csrf disabled="true"/>
     </http>
 
