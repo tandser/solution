@@ -17,20 +17,20 @@ public class MealTestData {
     public static List<Meal> reverseOrderMeals;
     public static List<Meal> updatedMeals;
 
-    public static Meal       existingMeal;
-    public static Meal       newMeal;
-    public static Meal       notNewMeal;
-    public static Meal       nonExistentMeal;
-    public static Meal       notConsistentMeal;
-    public static Meal       duplicateMeal;
-    public static Meal       invalidDateTimeMeal;
-    public static Meal       invalidDescriptionMeal;
-    public static Meal       invalidCaloriesMeal;
+    public static Meal existingMeal;
+    public static Meal newMeal;
+    public static Meal notNewMeal;
+    public static Meal nonExistentMeal;
+    public static Meal notConsistentMeal;
+    public static Meal duplicateMeal;
+    public static Meal invalidDateTimeMeal;
+    public static Meal invalidDescriptionMeal;
+    public static Meal invalidCaloriesMeal;
 
     public static LocalDateTime from;
     public static LocalDateTime to;
 
-    public static final Matcher<Meal> MEAL_MATCHER = new Matcher<>((expected, actual) ->
+    public static final Matcher<Meal> MEAL_MATCHER = new Matcher<>(Meal.class, (expected, actual) ->
             expected == actual || (Objects.equals(expected.getDateTime(),    actual.getDateTime())    &&
                                    Objects.equals(expected.getDescription(), actual.getDescription()) &&
                                    Objects.equals(expected.getCalories(),    actual.getCalories())));

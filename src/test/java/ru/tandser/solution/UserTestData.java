@@ -22,7 +22,7 @@ public class UserTestData {
     public static User invalidPasswordUser;
     public static User invalidNormOfCaloriesUser;
 
-    public static final Matcher<User> USER_MATCHER = new Matcher<>((expected, actual) ->
+    public static final Matcher<User> USER_MATCHER = new Matcher<>(User.class, (expected, actual) ->
             expected == actual || (Objects.equals(expected.getName(),           actual.getName())           &&
                                    Objects.equals(expected.getEmail(),          actual.getEmail())          &&
                                    Objects.equals(expected.getRole(),           actual.getRole())           &&
