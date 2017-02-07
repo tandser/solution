@@ -4,11 +4,11 @@
 
 # Diary Calories
 
-Пример веб-приложения на популярном стеке технологий и инструментах Java Enterprise с авторизацией и правами доступа на основе ролей.
+Пример веб-приложения на популярном стеке технологий и инструментов Java Enterprise с авторизацией и правами доступа на основе ролей. Работа с приложением реализована через веб-сайт с применением AJAX, а также по REST-интерфейсу в формате JSON. Весь функционал приложения покрывается JUnit-тестами с применением [spring-test](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.springframework%22%20AND%20a%3A%22spring-test%22) и [spring-security-test](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.springframework.security%22%20AND%20a%3A%22spring-security-test%22).
 
 Проект разработан на языке Java 8 с использованием следующих фреймворков и инструментов:
 
-[Maven](https://maven.apache.org/)    [Spring Framework](http://projects.spring.io/spring-framework/)    [Spring Data JPA](http://projects.spring.io/spring-data-jpa/)    [Spring Security](http://projects.spring.io/spring-security/)    [Hibernate ORM](http://hibernate.org/orm/)    [Hibernate Validator](http://hibernate.org/validator/)    [Apache Tomcat](http://tomcat.apache.org/)    [PostgreSQL](https://www.postgresql.org/)    [SLF4J](https://www.slf4j.org/)    [Logback](https://logback.qos.ch/)    [JSP](https://jcp.org/aboutJava/communityprocess/final/jsr245/index.html)    [Jackson](https://github.com/FasterXML/jackson)    [JUnit](http://junit.org/junit4/)
+[Maven](https://maven.apache.org/), [Spring Framework](http://projects.spring.io/spring-framework/), [Spring Data JPA](http://projects.spring.io/spring-data-jpa/), [Spring Security](http://projects.spring.io/spring-security/), [Hibernate ORM](http://hibernate.org/orm/), [Hibernate Validator](http://hibernate.org/validator/), [Apache Tomcat](http://tomcat.apache.org/), [PostgreSQL](https://www.postgresql.org/), [SLF4J](https://www.slf4j.org/), [Logback](https://logback.qos.ch/), [JSP](https://jcp.org/aboutJava/communityprocess/final/jsr245/index.html), [Jackson](https://github.com/FasterXML/jackson), [JUnit](http://junit.org/junit4/)
 
 ## Конфигурация базы данных
 
@@ -21,5 +21,5 @@ postgresql.username        = postgres
 postgresql.password        = postgres
 ```
 
-Инициализация базы данных осуществляется с помощью сценариев, которые могут быть обнаружены в `src\main\resources\ddl`.
+Инициализация базы данных осуществляется с помощью сценариев, которые можно обнаружить в `src\main\resources\ddl`.
 

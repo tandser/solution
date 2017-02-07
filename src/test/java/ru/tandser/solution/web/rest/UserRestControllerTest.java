@@ -106,7 +106,9 @@ public class UserRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testSaveWithLocation() throws Exception {
-        mockMvc.perform(post(REST_PATH).with(userAccount))
+        mockMvc.perform(post(REST_PATH).with(userAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(newUser)))
                 .andExpect(status().isForbidden());
 
         ResultActions response = mockMvc.perform(post(REST_PATH).with(adminAccount)
@@ -128,7 +130,9 @@ public class UserRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-        mockMvc.perform(put(REST_PATH + updatedUser.getId()).with(userAccount))
+        mockMvc.perform(put(REST_PATH + updatedUser.getId()).with(userAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(updatedUser)))
                 .andExpect(status().isForbidden());
 
         mockMvc.perform(put(REST_PATH + updatedUser.getId()).with(adminAccount)
@@ -143,7 +147,7 @@ public class UserRestControllerTest extends AbstractControllerTest {
                 .content(JsonConverter.toJson(nonExistentUser)))
                 .andExpect(status().isNotFound());
 
-        mockMvc.perform(put(REST_PATH + user.getId()).with(adminAccount)
+        mockMvc.perform(put(REST_PATH + updatedUser.getId()).with(adminAccount)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(JsonConverter.toJson(nonExistentUser)))
                 .andExpect(status().isBadRequest());

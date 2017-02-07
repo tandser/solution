@@ -2,13 +2,16 @@ package ru.tandser.solution.web.rest;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.servlet.ResultActions;
+import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.service.MealService;
 import ru.tandser.solution.web.AbstractControllerTest;
+import ru.tandser.solution.web.json.JsonConverter;
 
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.tandser.solution.MealTestData.*;
@@ -76,5 +79,59 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
         mockMvc.perform(delete(REST_PATH + nonExistentMeal.getId()).with(userAccount))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testSaveWithLocation() throws Exception {
+        mockMvc.perform(post(REST_PATH)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(newMeal)))
+                .andExpect(status().isUnauthorized());
+
+        ResultActions response = mockMvc.perform(post(REST_PATH).with(userAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(newMeal)))
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
+
+        Meal returned = JsonConverter.fromJson(response.andReturn().getResponse().getContentAsString(), Meal.class);
+
+        assertTrue(MEAL_MATCHER.equals(newMeal, returned));
+        assertTrue(MEAL_MATCHER.equals(newMeal, mealService.get(returned.getId(), user.getId())));
+
+        mockMvc.perform(post(REST_PATH).with(userAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(updatedMeal)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testUpdate() throws Exception {
+        mockMvc.perform(put(REST_PATH + updatedMeal.getId())
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(updatedMeal)))
+                .andExpect(status().isUnauthorized());
+
+        mockMvc.perform(put(REST_PATH + updatedMeal.getId()).with(userAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(updatedMeal)))
+                .andExpect(status().isOk());
+
+        assertTrue(MEAL_MATCHER.equals(updatedMeal, mealService.get(updatedMeal.getId(), user.getId())));
+
+        mockMvc.perform(put(REST_PATH + nonExistentMeal.getId()).with(userAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(nonExistentMeal)))
+                .andExpect(status().isNotFound());
+
+        mockMvc.perform(put(REST_PATH + updatedMeal.getId()).with(userAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(nonExistentMeal)))
+                .andExpect(status().isBadRequest());
+
+        mockMvc.perform(put(REST_PATH + conflictedMeal.getId()).with(userAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(conflictedMeal)))
+                .andExpect(status().isConflict());
     }
 }
