@@ -14,7 +14,7 @@ public class Principal extends org.springframework.security.core.userdetails.Use
         super(user.getEmail(), user.getPassword(), user.getEnabled(), true, true, true,
                 Collections.singletonList(user.getRole()));
 
-        id             = user.getId();
+        id = user.getId();
         normOfCalories = user.getNormOfCalories();
     }
 

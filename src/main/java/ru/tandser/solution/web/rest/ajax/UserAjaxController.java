@@ -32,7 +32,7 @@ public class UserAjaxController extends AbstractUserController {
         super.remove(id);
     }
 
-
+    // TODO: save or update
 
     @Override
     @PutMapping(value = "/toggle/{id}")
