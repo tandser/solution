@@ -39,13 +39,13 @@
         <div class="container">
             <jsp:include page="fragment/footer.jsp"/>
         </div>
-        <div class="modal fade" id="edit">
+        <div class="modal fade" id="modalWindow">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2 class="modal-title">${i18n_editProfile}</h2>
                     </div>
-                    <form class="form-horizontal" id="details" method="post">
+                    <form class="form-horizontal" id="formInModalWindow" method="post">
                         <div class="modal-body">
                             <input id="id" name="id" type="hidden"/>
                             <div class="form-group">

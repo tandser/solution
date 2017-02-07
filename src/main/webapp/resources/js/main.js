@@ -1,7 +1,7 @@
 var form;
 
 function makeEditable() {
-    form = $("#details");
+    form = $("#formInModalWindow");
 }
 
 function append(opts) {
@@ -33,7 +33,7 @@ function update(id) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
-        $("#edit").modal();
+        $("#modalWindow").modal();
     });
 }
 
