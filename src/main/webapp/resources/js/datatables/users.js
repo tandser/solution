@@ -2,13 +2,7 @@ var ajaxPath = "ajax/users/";
 var table;
 
 $(function () {
-    table = $("#datatable").DataTable({
-        "ajax": {
-                "url": ajaxPath,
-                "dataSrc": ""
-        },
-        "paging": false,
-        "info": true,
+    table = $("#datatable").DataTable(append({
         "columns": [{
                 "data": "name"
             }, {
@@ -38,11 +32,13 @@ $(function () {
                     return data;
                 }
             }, {
-                "defaultContent": "Edit",
-                "orderable": false
+                "orderable": false,
+                "defaultContent": ""
+
             }, {
-                "defaultContent": "Delete",
-                "orderable": false
+                "orderable": false,
+                "defaultContent": "",
+                "render": removeButton
             }
         ],
         "order": [[ 0, "asc" ]],
@@ -52,5 +48,9 @@ $(function () {
             }
         },
         "initComplete": makeEditable
-    });
+    }));
 });
+
+function updateTable() {
+    $.get(ajaxPath, updateTableData);
+}
