@@ -7,12 +7,8 @@
 <spring:message code="jsp.profile" var="i18n_profile"/>
 <spring:message code="jsp.signOut" var="i18n_signOut"/>
 
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-        <div class="navbar-header navbar-brand">
-            <spring:message code="jsp.diaryCalories"/>
-        </div>
         <div class="navbar-collapse collapse">
             <jsp:include page="lang.jsp"/>
             <form class="navbar-form navbar-right" action="logout" method="post">
