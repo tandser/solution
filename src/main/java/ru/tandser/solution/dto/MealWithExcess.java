@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import ru.tandser.solution.domain.Meal;
-import ru.tandser.solution.util.DateTimeUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,6 +12,8 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static ru.tandser.solution.util.DateTimeUtil.isBetween;
 
 public class MealWithExcess {
 
@@ -45,7 +46,7 @@ public class MealWithExcess {
                 .collect(Collectors.groupingBy(Meal::getDate, Collectors.summingInt(Meal::getCalories)));
 
         return meals.stream()
-                .filter(meal -> DateTimeUtils.isBetween(meal.getTime(), from, to))
+                .filter(meal -> isBetween(meal.getTime(), from, to))
                 .map(meal -> new MealWithExcess(meal, caloriesPerDay.get(meal.getDate()) > normOfCalories))
                 .collect(Collectors.toList());
     }

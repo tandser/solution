@@ -11,13 +11,13 @@ import ru.tandser.solution.web.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static ru.tandser.solution.util.DateTimeUtils.atEndOfDay;
-import static ru.tandser.solution.util.DateTimeUtils.atStartOfDay;
+import static ru.tandser.solution.util.DateTimeUtil.atEndOfDay;
+import static ru.tandser.solution.util.DateTimeUtil.atStartOfDay;
 import static ru.tandser.solution.util.Inspector.*;
 
 public abstract class AbstractMealController {
 
-    protected final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     private MealService mealService;
 

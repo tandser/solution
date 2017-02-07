@@ -13,7 +13,7 @@ import static ru.tandser.solution.util.Inspector.*;
 
 public abstract class AbstractUserController {
 
-    protected final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     private UserService userService;
 
