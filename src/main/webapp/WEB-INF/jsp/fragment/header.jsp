@@ -3,9 +3,9 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <spring:message code="jsp.addUser" var="i18n_addUser"/>
-<spring:message code="jsp.users"   var="i18n_users"/>
 <spring:message code="jsp.profile" var="i18n_profile"/>
 <spring:message code="jsp.signOut" var="i18n_signOut"/>
+<spring:message code="jsp.users"   var="i18n_users"/>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">

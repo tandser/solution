@@ -1,5 +1,7 @@
-function makeEditable() {
+var form;
 
+function makeEditable() {
+    form = $("#details");
 }
 
 function append(opts) {
@@ -26,6 +28,15 @@ function toggle(checkbox, id) {
     });
 }
 
+function update(id) {
+    $.get(ajaxPath + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $("#edit").modal();
+    });
+}
+
 function remove(id) {
     $.ajax({
         url: ajaxPath + id,
@@ -38,6 +49,12 @@ function remove(id) {
 
 function updateTableData(data) {
     table.clear().rows.add(data).draw();
+}
+
+function updateButton(data, type, row) {
+    if (type == "display") {
+        return "<a class=\"btn btn-primary btn-xs\" onclick=\"update(" + row.id + ")\">" + "Edit" + "</a>";
+    }
 }
 
 function removeButton(data, type, row) {

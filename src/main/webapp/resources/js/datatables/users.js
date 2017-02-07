@@ -33,7 +33,8 @@ $(function () {
                 }
             }, {
                 "orderable": false,
-                "defaultContent": ""
+                "defaultContent": "",
+                "render": updateButton
 
             }, {
                 "orderable": false,
