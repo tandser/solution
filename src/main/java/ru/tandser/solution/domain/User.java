@@ -2,6 +2,7 @@ package ru.tandser.solution.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.google.common.base.MoreObjects;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -9,6 +10,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import ru.tandser.solution.web.json.Views;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -61,6 +63,7 @@ public class User extends AbstractEntity {
         this.email = email;
     }
 
+    @JsonView(Views.Rest.class)
     @NotNull
     @Length(min = 7)
     @Column(name = "password")
