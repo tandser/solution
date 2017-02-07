@@ -2,6 +2,7 @@ package ru.tandser.solution;
 
 import org.springframework.util.ResourceUtils;
 import ru.tandser.solution.domain.Meal;
+import ru.tandser.solution.dto.MealWithExcess;
 import ru.tandser.solution.util.Matcher;
 import ru.tandser.solution.web.json.JsonConverter;
 
@@ -9,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static ru.tandser.solution.UserTestData.user;
 
 public class MealTestData {
 
@@ -30,10 +33,19 @@ public class MealTestData {
     public static LocalDateTime from;
     public static LocalDateTime to;
 
+    public static List<MealWithExcess> mealsWithExcess;
+    public static List<MealWithExcess> betweenMealsWithExcess;
+
     public static final Matcher<Meal> MEAL_MATCHER = new Matcher<>(Meal.class, (expected, actual) ->
             expected == actual || (Objects.equals(expected.getDateTime(),    actual.getDateTime())    &&
                                    Objects.equals(expected.getDescription(), actual.getDescription()) &&
                                    Objects.equals(expected.getCalories(),    actual.getCalories())));
+
+    public static final Matcher<MealWithExcess> MEAL_WITH_EXCESS_MATCHER = new Matcher<>(MealWithExcess.class, (expected, actual) ->
+            expected == actual || (Objects.equals(expected.getDateTime(),    actual.getDateTime())    &&
+                                   Objects.equals(expected.getDescription(), actual.getDescription()) &&
+                                   Objects.equals(expected.getCalories(),    actual.getCalories())    &&
+                                   Objects.equals(expected.getExcess(),      actual.getExcess())));
 
     private MealTestData() {}
 
@@ -58,5 +70,8 @@ public class MealTestData {
 
         from = LocalDateTime.of(2017, 1, 9,  10, 0);
         to   = LocalDateTime.of(2017, 1, 10, 19, 0);
+
+        mealsWithExcess        = MealWithExcess.convert(meals, user.getNormOfCalories());
+        betweenMealsWithExcess = MealWithExcess.filter(betweenMeals, from.toLocalTime(), to.toLocalTime(), user.getNormOfCalories());
     }
 }
