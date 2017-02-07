@@ -4,7 +4,7 @@
 
 # Diary Calories
 
-Пример веб-приложения на популярном стеке технологий и инструментов Java Enterprise с авторизацией и правами доступа на основе ролей. Работа с приложением реализована через веб-сайт с применением AJAX, а также по REST-интерфейсу в формате JSON. Весь функционал приложения покрывается JUnit-тестами с применением [spring-test](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.springframework%22%20AND%20a%3A%22spring-test%22) и [spring-security-test](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.springframework.security%22%20AND%20a%3A%22spring-security-test%22).
+Пример веб-приложения на популярном стеке технологий и инструментов Java Enterprise с авторизацией и правами доступа на основе ролей. Работа с приложением реализована через веб-сайт с применением Ajax, а также по REST-интерфейсу в формате JSON. Весь функционал приложения покрывается JUnit-тестами с применением [spring-test](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.springframework%22%20AND%20a%3A%22spring-test%22) и [spring-security-test](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.springframework.security%22%20AND%20a%3A%22spring-security-test%22).
 
 Проект разработан на языке Java 8 с использованием следующих фреймворков и инструментов:
 
