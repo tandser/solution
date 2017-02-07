@@ -13,10 +13,10 @@ public class UserTestData {
     public static User admin;
     public static User user;
     public static User newUser;
-    public static User notNewUser;
+    public static User updatedUser;
     public static User nonExistentUser;
-    public static User conflictUser;
-    public static User duplicateUser;
+    public static User conflictedUser;
+    public static User duplicatedUser;
     public static User invalidNameUser;
     public static User invalidEmailUser;
     public static User invalidPasswordUser;
@@ -37,10 +37,10 @@ public class UserTestData {
         admin                     = mocks.next();
         user                      = mocks.next();
         newUser                   = mocks.next();
-        notNewUser                = mocks.next();
+        updatedUser               = mocks.next();
         nonExistentUser           = mocks.next();
-        conflictUser              = mocks.next();
-        duplicateUser             = mocks.next();
+        conflictedUser            = mocks.next();
+        duplicatedUser            = mocks.next();
         invalidNameUser           = mocks.next();
         invalidEmailUser          = mocks.next();
         invalidPasswordUser       = mocks.next();

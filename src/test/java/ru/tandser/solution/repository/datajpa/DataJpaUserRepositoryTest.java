@@ -66,20 +66,20 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
 
         newUser.setId(null);
 
-        assertTrue(USER_MATCHER.equals(notNewUser, userRepository.put(notNewUser)));
-        assertTrue(USER_MATCHER.equals(notNewUser, userRepository.get(notNewUser.getId())));
+        assertTrue(USER_MATCHER.equals(updatedUser, userRepository.put(updatedUser)));
+        assertTrue(USER_MATCHER.equals(updatedUser, userRepository.get(updatedUser.getId())));
     }
 
     @Test
-    public void testPutConflictUser() {
+    public void testPutConflictedUser() {
         thrown.expect(ConflictException.class);
-        userRepository.put(conflictUser);
+        userRepository.put(conflictedUser);
     }
 
     @Test
-    public void testPutDuplicateUser() {
+    public void testPutDuplicatedUser() {
         thrown.expect(DataAccessException.class);
-        userRepository.put(duplicateUser);
+        userRepository.put(duplicatedUser);
     }
 
     @Test

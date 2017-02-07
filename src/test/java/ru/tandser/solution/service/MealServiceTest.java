@@ -91,14 +91,14 @@ public class MealServiceTest extends AbstractServiceTest {
 
     @Test
     public void testUpdate() {
-        mealService.update(notNewMeal, user.getId());
-        assertTrue(MEAL_MATCHER.equals(notNewMeal, mealService.get(notNewMeal.getId(), user.getId())));
+        mealService.update(updatedMeal, user.getId());
+        assertTrue(MEAL_MATCHER.equals(updatedMeal, mealService.get(updatedMeal.getId(), user.getId())));
     }
 
     @Test
     public void testUpdateForNonExistentUser() {
         thrown.expect(NotFoundException.class);
-        mealService.update(notNewMeal, nonExistentUser.getId());
+        mealService.update(updatedMeal, nonExistentUser.getId());
     }
 
     @Test
@@ -108,8 +108,8 @@ public class MealServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void testUpdateConflictMeal() {
+    public void testUpdateConflictedMeal() {
         thrown.expect(ConflictException.class);
-        mealService.update(conflictMeal, user.getId());
+        mealService.update(conflictedMeal, user.getId());
     }
 }

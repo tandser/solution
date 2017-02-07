@@ -15,7 +15,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,6 +35,9 @@ public class UserRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testGet() throws Exception {
+        mockMvc.perform(get(REST_PATH + user.getId()).with(userAccount))
+                .andExpect(status().isForbidden());
+
         mockMvc.perform(get(REST_PATH + user.getId()).with(adminAccount))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8))
@@ -43,24 +45,24 @@ public class UserRestControllerTest extends AbstractControllerTest {
 
         mockMvc.perform(get(REST_PATH + nonExistentUser.getId()).with(adminAccount))
                 .andExpect(status().isNotFound());
-
-        mockMvc.perform(get(REST_PATH + user.getId()).with(userAccount))
-                .andExpect(status().isForbidden());
     }
 
     @Test
     public void testGetAll() throws Exception {
+        mockMvc.perform(get(REST_PATH).with(userAccount))
+                .andExpect(status().isForbidden());
+
         mockMvc.perform(get(REST_PATH).with(adminAccount))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8))
                 .andExpect(USER_MATCHER.contentMatcher(Arrays.asList(admin, user)));
-
-        mockMvc.perform(get(REST_PATH).with(userAccount))
-                .andExpect(status().isForbidden());
     }
 
     @Test
     public void testGetByEmail() throws Exception {
+        mockMvc.perform(get(REST_PATH + "by?email=" + user.getEmail()).with(userAccount))
+                .andExpect(status().isForbidden());
+
         mockMvc.perform(get(REST_PATH + "by?email=" + user.getEmail()).with(adminAccount))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8))
@@ -68,13 +70,13 @@ public class UserRestControllerTest extends AbstractControllerTest {
 
         mockMvc.perform(get(REST_PATH + "by?email=" + nonExistentUser.getEmail()).with(adminAccount))
                 .andExpect(status().isNotFound());
-
-        mockMvc.perform(get(REST_PATH + "by?email=" + user.getEmail()).with(userAccount))
-                .andExpect(status().isForbidden());
     }
 
     @Test
     public void testGetWithMeals() throws Exception {
+        mockMvc.perform(get(REST_PATH + "details/" + user.getId()).with(userAccount))
+                .andExpect(status().isForbidden());
+
         ResultActions response = mockMvc.perform(get(REST_PATH + "details/" + user.getId()).with(adminAccount))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8));
@@ -86,13 +88,13 @@ public class UserRestControllerTest extends AbstractControllerTest {
 
         mockMvc.perform(get(REST_PATH + "details/" + nonExistentUser.getId()).with(adminAccount))
                 .andExpect(status().isNotFound());
-
-        mockMvc.perform(get(REST_PATH + "details/" + user.getId()).with(userAccount))
-                .andExpect(status().isForbidden());
     }
 
     @Test
     public void testRemove() throws Exception {
+        mockMvc.perform(delete(REST_PATH + user.getId()).with(userAccount))
+                .andExpect(status().isForbidden());
+
         mockMvc.perform(delete(REST_PATH + user.getId()).with(adminAccount))
                 .andExpect(status().isOk());
 
@@ -100,13 +102,13 @@ public class UserRestControllerTest extends AbstractControllerTest {
 
         mockMvc.perform(delete(REST_PATH + nonExistentUser.getId()).with(adminAccount))
                 .andExpect(status().isNotFound());
-
-        mockMvc.perform(delete(REST_PATH + user.getId()).with(userAccount))
-                .andExpect(status().isUnauthorized());
     }
 
     @Test
     public void testSaveWithLocation() throws Exception {
+        mockMvc.perform(post(REST_PATH).with(userAccount))
+                .andExpect(status().isForbidden());
+
         ResultActions response = mockMvc.perform(post(REST_PATH).with(adminAccount)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(JsonConverter.toJson(newUser)))
@@ -120,21 +122,21 @@ public class UserRestControllerTest extends AbstractControllerTest {
 
         mockMvc.perform(post(REST_PATH).with(adminAccount)
                 .contentType(APPLICATION_JSON_VALUE)
-                .content(JsonConverter.toJson(notNewUser)))
+                .content(JsonConverter.toJson(updatedUser)))
                 .andExpect(status().isBadRequest());
-
-        mockMvc.perform(post(REST_PATH).with(userAccount))
-                .andExpect(status().isForbidden());
     }
 
     @Test
     public void testUpdate() throws Exception {
-        mockMvc.perform(put(REST_PATH + notNewUser.getId()).with(adminAccount)
+        mockMvc.perform(put(REST_PATH + updatedUser.getId()).with(userAccount))
+                .andExpect(status().isForbidden());
+
+        mockMvc.perform(put(REST_PATH + updatedUser.getId()).with(adminAccount)
                 .contentType(APPLICATION_JSON_VALUE)
-                .content(JsonConverter.toJson(notNewUser)))
+                .content(JsonConverter.toJson(updatedUser)))
                 .andExpect(status().isOk());
 
-        assertTrue(USER_MATCHER.equals(notNewUser, userService.get(notNewUser.getId())));
+        assertTrue(USER_MATCHER.equals(updatedUser, userService.get(updatedUser.getId())));
 
         mockMvc.perform(put(REST_PATH + nonExistentUser.getId()).with(adminAccount)
                 .contentType(APPLICATION_JSON_VALUE)
@@ -146,16 +148,10 @@ public class UserRestControllerTest extends AbstractControllerTest {
                 .content(JsonConverter.toJson(nonExistentUser)))
                 .andExpect(status().isBadRequest());
 
-        mockMvc.perform(put(REST_PATH + conflictUser.getId()).with(adminAccount)
+        mockMvc.perform(put(REST_PATH + conflictedUser.getId()).with(adminAccount)
                 .contentType(APPLICATION_JSON_VALUE)
-                .content(JsonConverter.toJson(conflictUser)))
+                .content(JsonConverter.toJson(conflictedUser)))
                 .andExpect(status().isConflict());
-
-        mockMvc.perform(put(REST_PATH + notNewUser.getId()).with(userAccount))
-                .andExpect(status().isUnauthorized());
-
-        mockMvc.perform(put(REST_PATH + notNewUser.getId()).with(httpBasic(notNewUser.getEmail(), notNewUser.getPassword())))
-                .andExpect(status().isForbidden());
     }
 
     @Test

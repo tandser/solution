@@ -82,8 +82,8 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void testUpdate() {
-        userService.update(notNewUser);
-        assertTrue(USER_MATCHER.equals(notNewUser, userService.get(notNewUser.getId())));
+        userService.update(updatedUser);
+        assertTrue(USER_MATCHER.equals(updatedUser, userService.get(updatedUser.getId())));
     }
 
     @Test
@@ -93,9 +93,9 @@ public class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void testUpdateConflictUser() {
+    public void testUpdateConflictedUser() {
         thrown.expect(ConflictException.class);
-        userService.update(conflictUser);
+        userService.update(conflictedUser);
     }
 
     @Test

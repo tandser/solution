@@ -62,20 +62,20 @@ public class DataJpaMealRepositoryTest extends AbstractRepositoryTest {
 
         newMeal.setId(null);
 
-        assertTrue(MEAL_MATCHER.equals(notNewMeal, mealRepository.put(notNewMeal, user.getId())));
-        assertTrue(MEAL_MATCHER.equals(notNewMeal, mealRepository.get(notNewMeal.getId(), user.getId())));
+        assertTrue(MEAL_MATCHER.equals(updatedMeal, mealRepository.put(updatedMeal, user.getId())));
+        assertTrue(MEAL_MATCHER.equals(updatedMeal, mealRepository.get(updatedMeal.getId(), user.getId())));
     }
 
     @Test
-    public void testPutConflictMeal() {
+    public void testPutConflictedMeal() {
         thrown.expect(ConflictException.class);
-        mealRepository.put(conflictMeal, user.getId());
+        mealRepository.put(conflictedMeal, user.getId());
     }
 
     @Test
-    public void testPutDuplicateMeal() {
+    public void testPutDuplicatedMeal() {
         thrown.expect(DataAccessException.class);
-        mealRepository.put(duplicateMeal, user.getId());
+        mealRepository.put(duplicatedMeal, user.getId());
     }
 
     @Test

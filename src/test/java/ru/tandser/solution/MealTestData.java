@@ -22,10 +22,10 @@ public class MealTestData {
 
     public static Meal existingMeal;
     public static Meal newMeal;
-    public static Meal notNewMeal;
+    public static Meal updatedMeal;
     public static Meal nonExistentMeal;
-    public static Meal conflictMeal;
-    public static Meal duplicateMeal;
+    public static Meal conflictedMeal;
+    public static Meal duplicatedMeal;
     public static Meal invalidDateTimeMeal;
     public static Meal invalidDescriptionMeal;
     public static Meal invalidCaloriesMeal;
@@ -57,10 +57,10 @@ public class MealTestData {
         updatedMeals           = mocks.subList(1, 12);
         existingMeal           = mocks.get(0);
         newMeal                = mocks.get(12);
-        notNewMeal             = mocks.get(13);
+        updatedMeal            = mocks.get(13);
         nonExistentMeal        = mocks.get(14);
-        conflictMeal           = mocks.get(15);
-        duplicateMeal          = mocks.get(16);
+        conflictedMeal         = mocks.get(15);
+        duplicatedMeal         = mocks.get(16);
         invalidDateTimeMeal    = mocks.get(17);
         invalidDescriptionMeal = mocks.get(18);
         invalidCaloriesMeal    = mocks.get(19);
