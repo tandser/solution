@@ -38,14 +38,14 @@ function toggle(checkbox, id) {
 }
 
 function add() {
-    $(".modal-title").html(i18n["users_new"]);
+    $(".modal-title").html(i18n["new"]);
     form.find(":input").val("");
     form.find($("#version")).val(0);
     $("#modalWindow").modal();
 }
 
 function update(id) {
-    $(".modal-title").html(i18n["users_edit"]);
+    $(".modal-title").html(i18n["editing"]);
     $.get(ajaxPath + id, function (data) {
         $.each(data, function (key, value) {
             form.find("[name='" + key + "']").val(value);

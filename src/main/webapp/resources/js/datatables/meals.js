@@ -28,6 +28,9 @@ $(function () {
         "order": [[ 0, "desc" ]],
         "initComplete": makeEditable
     }));
+
+    $("#dateTime").datetimepicker();
+
 });
 
 function updateTable() {

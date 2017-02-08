@@ -29,23 +29,6 @@
 <html>
     <head>
         <jsp:include page="fragment/head.jsp"/>
-        <script defer type="text/javascript" src="resources/js/datatables/users.js"></script>
-        <script defer type="text/javascript" src="resources/js/main.js"></script>
-        <script type="text/javascript">
-            var i18n = [];
-            i18n["datatables_loadingRecords"] = "${i18n_datatables_loadingRecords}";
-            i18n["datatables_search"]         = "${i18n_datatables_search}";
-            i18n["datatables_zeroRecords"]    = "${i18n_datatables_zeroRecords}";
-            i18n["edit"]                      = "${i18n_edit}";
-            i18n["error"]                     = "${i18n_error}";
-            i18n["remove"]                    = "${i18n_remove}";
-            i18n["removed"]                   = "${i18n_users_removed}";
-            i18n["saved"]                     = "${i18n_users_saved}";
-            i18n["users_disabled"]            = "${i18n_users_disabled}";
-            i18n["users_edit"]                = "${i18n_users_edit}";
-            i18n["users_enabled"]             = "${i18n_users_enabled}";
-            i18n["users_new"]                 = "${i18n_users_new}";
-        </script>
     </head>
     <body>
         <jsp:include page="fragment/header.jsp"/>
@@ -124,4 +107,22 @@
             </div>
         </div>
     </body>
+    <jsp:include page="fragment/foot.jsp"/>
+    <script type="text/javascript" src="resources/js/datatables/users.js"></script>
+    <script type="text/javascript" src="resources/js/main.js"></script>
+    <script type="text/javascript">
+        var i18n = [];
+        i18n["datatables_loadingRecords"] = "${i18n_datatables_loadingRecords}";
+        i18n["datatables_search"]         = "${i18n_datatables_search}";
+        i18n["datatables_zeroRecords"]    = "${i18n_datatables_zeroRecords}";
+        i18n["edit"]                      = "${i18n_edit}";
+        i18n["error"]                     = "${i18n_error}";
+        i18n["remove"]                    = "${i18n_remove}";
+        i18n["removed"]                   = "${i18n_users_removed}";
+        i18n["saved"]                     = "${i18n_users_saved}";
+        i18n["users_disabled"]            = "${i18n_users_disabled}";
+        i18n["editing"]                   = "${i18n_users_edit}";
+        i18n["users_enabled"]             = "${i18n_users_enabled}";
+        i18n["new"]                       = "${i18n_users_new}";
+    </script>
 </html>

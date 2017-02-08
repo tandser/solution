@@ -12,21 +12,14 @@
 <spring:message code="jsp.meals.dateTime"            var="i18n_meals_dateTime"/>
 <spring:message code="jsp.meals.description"         var="i18n_meals_description"/>
 <spring:message code="jsp.meals.calories"            var="i18n_meals_calories"/>
+<spring:message code="jsp.save"                      var="i18n_save"/>
+<spring:message code="jsp.close"                     var="i18n_close"/>
+<spring:message code="jsp.meals.edit"                var="i18n_meals_edit"/>
+<spring:message code="jsp.meals.new"                 var="i18n_meals_new"/>
 
 <html>
     <head>
         <jsp:include page="fragment/head.jsp"/>
-        <script defer type="text/javascript" src="resources/js/datatables/meals.js"></script>
-        <script defer type="text/javascript" src="resources/js/main.js"></script>
-        <script type="text/javascript">
-            var i18n = [];
-            i18n["datatables_loadingRecords"] = "${i18n_datatables_loadingRecords}";
-            i18n["datatables_search"]         = "${i18n_datatables_search}";
-            i18n["datatables_zeroRecords"]    = "${i18n_datatables_zeroRecords}";
-            i18n["edit"]                      = "${i18n_edit}";
-            i18n["error"]                     = "${i18n_error}";
-            i18n["remove"]                    = "${i18n_remove}";
-        </script>
     </head>
     <body>
         <jsp:include page="fragment/header.jsp"/>
@@ -49,5 +42,56 @@
         <div class="container">
             <jsp:include page="fragment/footer.jsp"/>
         </div>
+        <div class="modal fade" id="modalWindow">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title"></h2>
+                    </div>
+                    <form class="form-horizontal" id="formInModalWindow" method="post">
+                        <div class="modal-body">
+                            <input id="id" name="id" type="hidden"/>
+                            <input id="version" name="version" type="hidden"/>
+                            <div class="form-group">
+                                <label class="control-label col-xs-3" for="dateTime">${i18n_meals_dateTime}</label>
+                                <div class="col-xs-9">
+                                    <input class="form-control" id="dateTime" name="dateTime" type="text"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-3" for="description">${i18n_meals_description}</label>
+                                <div class="col-xs-9">
+                                    <input class="form-control" id="description" name="description" type="text"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-3" for="calories">${i18n_meals_calories}</label>
+                                <div class="col-xs-9">
+                                    <input class="form-control" id="calories" name="calories" type="number"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" data-dismiss="modal" type="button">${i18n_close}</button>
+                            <button class="btn btn-primary" onclick="save()" type="button">${i18n_save}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
+    <jsp:include page="fragment/foot.jsp"/>
+    <script type="text/javascript" src="resources/js/datatables/meals.js"></script>
+    <script type="text/javascript" src="resources/js/main.js"></script>
+    <script type="text/javascript">
+        var i18n = [];
+        i18n["datatables_loadingRecords"] = "${i18n_datatables_loadingRecords}";
+        i18n["datatables_search"]         = "${i18n_datatables_search}";
+        i18n["datatables_zeroRecords"]    = "${i18n_datatables_zeroRecords}";
+        i18n["edit"]                      = "${i18n_edit}";
+        i18n["error"]                     = "${i18n_error}";
+        i18n["remove"]                    = "${i18n_remove}";
+        i18n["editing"]                   = "${i18n_meals_edit}";
+        i18n["new"]                       = "${i18n_meals_new}";
+    </script>
 </html>
