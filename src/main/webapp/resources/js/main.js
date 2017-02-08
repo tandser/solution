@@ -31,9 +31,22 @@ function toggle(checkbox, id) {
 function update(id) {
     $.get(ajaxPath + id, function (data) {
         $.each(data, function (key, value) {
-            form.find("input[name='" + key + "']").val(value);
+            form.find("[name='" + key + "']").val(value);
         });
+        form.find(".selectpicker").selectpicker("refresh");
         $("#modalWindow").modal();
+    });
+}
+
+function save() {
+    $.ajax({
+        url: ajaxPath,
+        type: "POST",
+        data: form.serialize(),
+        success: function () {
+            $("#modalWindow").modal("hide");
+            updateTable();
+        }
     });
 }
 

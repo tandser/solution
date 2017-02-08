@@ -1,15 +1,18 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<spring:message code="jsp.access"      var="i18n_access"/>
-<spring:message code="jsp.close"       var="i18n_close"/>
-<spring:message code="jsp.created"     var="i18n_created"/>
-<spring:message code="jsp.editProfile" var="i18n_editProfile"/>
-<spring:message code="jsp.email"       var="i18n_email"/>
-<spring:message code="jsp.name"        var="i18n_name"/>
-<spring:message code="jsp.password"    var="i18n_password"/>
-<spring:message code="jsp.rights"      var="i18n_rights"/>
-<spring:message code="jsp.save"        var="i18n_save"/>
+<spring:message code="jsp.access"         var="i18n_access"/>
+<spring:message code="jsp.admin"          var="i18n_admin"/>
+<spring:message code="jsp.close"          var="i18n_close"/>
+<spring:message code="jsp.created"        var="i18n_created"/>
+<spring:message code="jsp.editProfile"    var="i18n_editProfile"/>
+<spring:message code="jsp.email"          var="i18n_email"/>
+<spring:message code="jsp.name"           var="i18n_name"/>
+<spring:message code="jsp.normOfCalories" var="i18n_normOfCalories"/>
+<spring:message code="jsp.password"       var="i18n_password"/>
+<spring:message code="jsp.rights"         var="i18n_rights"/>
+<spring:message code="jsp.save"           var="i18n_save"/>
+<spring:message code="jsp.user"           var="i18n_user"/>
 
 <html>
     <head>
@@ -48,6 +51,8 @@
                     <form class="form-horizontal" id="formInModalWindow" method="post">
                         <div class="modal-body">
                             <input id="id" name="id" type="hidden"/>
+                            <input id="enabled" name="enabled" type="hidden"/>
+                            <input id="version" name="version" type="hidden"/>
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="name">${i18n_name}</label>
                                 <div class="col-xs-9">
@@ -64,6 +69,21 @@
                                 <label class="control-label col-xs-3" for="password">${i18n_password}</label>
                                 <div class="col-xs-9">
                                     <input class="form-control" id="password" name="password" type="password"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-3" for="role">${i18n_rights}</label>
+                                <div class="col-xs-9">
+                                    <select class="form-control selectpicker" id="role" name="role">
+                                        <option value="USER" selected>${i18n_user}</option>
+                                        <option value="ADMIN">${i18n_admin}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-3" for="normOfCalories">${i18n_normOfCalories}</label>
+                                <div class="col-xs-9">
+                                    <input class="form-control" id="normOfCalories" name="normOfCalories" type="number"/>
                                 </div>
                             </div>
                         </div>

@@ -36,10 +36,17 @@ public class UserAjaxController extends AbstractUserController {
         super.remove(id);
     }
 
-    // TODO: save or update
+    @PostMapping
+    public void saveOrUpdate(User user) {
+        if (user.isNew()) {
+            save(user);
+        } else {
+            update(user, user.getId());
+        }
+    }
 
     @Override
-    @PostMapping(value = "/toggle/{id}")
+    @PostMapping("/toggle/{id}")
     public void toggle(@PathVariable int id, @RequestParam boolean state) {
         super.toggle(id, state);
     }

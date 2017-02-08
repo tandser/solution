@@ -26,7 +26,6 @@ public abstract class AbstractEntity implements Persistable<Integer> {
         this.id = id;
     }
 
-    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     @Version
     @Column(name = "version")
     public int getVersion() {
