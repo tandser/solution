@@ -17,7 +17,7 @@ $(function () {
                 "data": "created",
                 "render": function (data, type, row) {
                     if (type == "display") {
-                        return data.substring(0, 16);
+                        return data.replace("T", " ").substring(0, 16);
                     }
                     return data;
                 }

@@ -40,5 +40,12 @@ public class MealAjaxController extends AbstractMealController {
         super.remove(id);
     }
 
-    // TODO: save or update
+    @PostMapping
+    public void saveOrUpdate(Meal meal) {
+        if (meal.isNew()) {
+            save(meal);
+        } else {
+            update(meal, meal.getId());
+        }
+    }
 }

@@ -17,6 +17,7 @@ function append(opts) {
         "paging": false,
         "info": false,
         "language": {
+            "loadingRecords": i18n["datatables_loadingRecords"],
             "search": i18n["datatables_search"],
             "zeroRecords": i18n["datatables_zeroRecords"]
         }
@@ -62,7 +63,7 @@ function save() {
         success: function () {
             $("#modalWindow").modal("hide");
             updateTable();
-            successNoty("users_saved");
+            successNoty("saved");
         }
     });
 }
@@ -73,7 +74,7 @@ function remove(id) {
         type: "DELETE",
         success: function () {
             updateTable();
-            successNoty("users_removed");
+            successNoty("removed");
         }
     });
 }
