@@ -28,6 +28,12 @@ function toggle(checkbox, id) {
     });
 }
 
+function add() {
+    form.find(":input").val("");
+    form.find($("#version")).val(0);
+    $("#modalWindow").modal();
+}
+
 function update(id) {
     $.get(ajaxPath + id, function (data) {
         $.each(data, function (key, value) {
