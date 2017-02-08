@@ -1,10 +1,10 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<spring:message code="jsp.login"           var="i18n_login"/>
-<spring:message code="jsp.password"        var="i18n_password"/>
-<spring:message code="jsp.signIn"          var="i18n_signIn"/>
-<spring:message code="jsp.createAnAccount" var="i18n_createAnAccount"/>
+<spring:message code="jsp.signIn"         var="i18n_signIn"/>
+<spring:message code="jsp.users.create"   var="i18n_users_create"/>
+<spring:message code="jsp.users.email"    var="i18n_users_email"/>
+<spring:message code="jsp.users.password" var="i18n_users_password"/>
 
 <html>
     <head>
@@ -15,14 +15,14 @@
             <div class="container">
                 <div class="navbar-collapse collapse">
                     <jsp:include page="fragment/lang.jsp"/>
-                    <form class="navbar-form navbar-right" action="spring_security_check" method="post">
+                    <form action="spring_security_check" class="navbar-form navbar-right" method="post">
                         <div class="form-group">
-                            <input type="text" placeholder="${i18n_login}" class="form-control" name="username"/>
+                            <input class="form-control" name="username" placeholder="${i18n_users_email}" type="text"/>
                         </div>
                         <div class="form-group">
-                            <input type="password" placeholder="${i18n_password}" class="form-control" name="password">
+                            <input class="form-control" name="password" placeholder="${i18n_users_password}" type="password"/>
                         </div>
-                        <button type="submit" class="btn btn-success">${i18n_signIn}</button>
+                        <button class="btn btn-success" type="submit">${i18n_signIn}</button>
                     </form>
                 </div>
             </div>
@@ -31,7 +31,7 @@
             <div class="container">
                 <h1>Hello, world!</h1>
                 <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-                <p><a class="btn btn-primary btn-lg" href="#">${i18n_createAnAccount}</a></p>
+                <p><a class="btn btn-primary btn-lg" href="#">${i18n_users_create}</a></p>
             </div>
         </div>
         <div class="container">

@@ -2,6 +2,10 @@ var form;
 
 function makeEditable() {
     form = $("#formInModalWindow");
+
+    $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+        errorNoty(event, jqXHR, options, jsExc)
+    });
 }
 
 function append(opts) {
@@ -11,7 +15,11 @@ function append(opts) {
             "dataSrc": ""
         },
         "paging": false,
-        "info": true
+        "info": false,
+        "language": {
+            "search": i18n["datatables_search"],
+            "zeroRecords": i18n["datatables_zeroRecords"]
+        }
     });
     return opts;
 }
@@ -29,12 +37,14 @@ function toggle(checkbox, id) {
 }
 
 function add() {
+    $(".modal-title").html(i18n["users_new"]);
     form.find(":input").val("");
     form.find($("#version")).val(0);
     $("#modalWindow").modal();
 }
 
 function update(id) {
+    $(".modal-title").html(i18n["users_edit"]);
     $.get(ajaxPath + id, function (data) {
         $.each(data, function (key, value) {
             form.find("[name='" + key + "']").val(value);
@@ -52,6 +62,7 @@ function save() {
         success: function () {
             $("#modalWindow").modal("hide");
             updateTable();
+            successNoty("users_saved");
         }
     });
 }
@@ -62,6 +73,7 @@ function remove(id) {
         type: "DELETE",
         success: function () {
             updateTable();
+            successNoty("users_removed");
         }
     });
 }
@@ -72,12 +84,34 @@ function updateTableData(data) {
 
 function updateButton(data, type, row) {
     if (type == "display") {
-        return "<a class=\"btn btn-primary btn-xs\" onclick=\"update(" + row.id + ")\">" + "Edit" + "</a>";
+        return "<a class=\"btn btn-primary btn-xs\" onclick=\"update(" + row.id + ")\">" + i18n["edit"] + "</a>";
     }
 }
 
 function removeButton(data, type, row) {
     if (type == "display") {
-        return "<a class=\"btn btn-danger btn-xs\" onclick=\"remove(" + row.id + ")\">" + "Remove" + "</a>";
+        return "<a class=\"btn btn-danger btn-xs\" onclick=\"remove(" + row.id + ")\">" + i18n["remove"] + "</a>";
     }
+}
+
+function successNoty(key) {
+    $.noty.closeAll();
+    noty({
+        theme: "relax",
+        type: "success",
+        layout: "bottomRight",
+        timeout: 500,
+        text: i18n[key]
+    });
+}
+
+function errorNoty(event, jqXHR, options, jsExc) {
+    $.noty.closeAll();
+    noty({
+        theme: "relax",
+        type: "error",
+        layout: "bottomRight",
+        timeout: 1000,
+        text: i18n["error"] + ": " + jqXHR.statusText
+    });
 }
