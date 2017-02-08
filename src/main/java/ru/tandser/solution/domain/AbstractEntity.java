@@ -1,6 +1,5 @@
 package ru.tandser.solution.domain;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.base.MoreObjects;
 import org.hibernate.Hibernate;
 import org.springframework.data.domain.Persistable;
