@@ -226,6 +226,12 @@
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap-select</artifactId>
             <version>1.12.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.webjars</groupId>
+                    <artifactId>bootstrap</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

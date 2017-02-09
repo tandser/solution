@@ -30,7 +30,6 @@ $(function () {
     }));
 
     $("#dateTime").datetimepicker();
-
 });
 
 function updateTable() {

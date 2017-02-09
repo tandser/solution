@@ -16,6 +16,7 @@
 <spring:message code="jsp.close"                     var="i18n_close"/>
 <spring:message code="jsp.meals.edit"                var="i18n_meals_edit"/>
 <spring:message code="jsp.meals.new"                 var="i18n_meals_new"/>
+<spring:message code="jsp.meals.removed"             var="i18n_meals_removed"/>
 
 <html>
     <head>
@@ -91,6 +92,7 @@
         i18n["edit"]                      = "${i18n_edit}";
         i18n["error"]                     = "${i18n_error}";
         i18n["remove"]                    = "${i18n_remove}";
+        i18n["removed"]                   = "${i18n_meals_removed}";
         i18n["editing"]                   = "${i18n_meals_edit}";
         i18n["new"]                       = "${i18n_meals_new}";
     </script>

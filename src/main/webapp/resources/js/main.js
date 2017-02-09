@@ -48,7 +48,9 @@ function update(id) {
     $(".modal-title").html(i18n["editing"]);
     $.get(ajaxPath + id, function (data) {
         $.each(data, function (key, value) {
-            form.find("[name='" + key + "']").val(value);
+            form.find("[name='" + key + "']").val(
+                key === "dateTime" ? value.substring(0, 16) : value
+            );
         });
         form.find(".selectpicker").selectpicker("refresh");
         $("#modalWindow").modal();
