@@ -29,7 +29,9 @@ $(function () {
         "initComplete": makeEditable
     }));
 
-    $("#dateTime").datetimepicker();
+    $("#dateTime").datetimepicker({
+        format: "YYYY-MM-DDTHH:mm"
+    });
 });
 
 function updateTable() {

@@ -10,4 +10,4 @@
 <link rel="stylesheet" type="text/css" href="webjars/bootstrap-select/1.12.0/css/bootstrap-select.min.css"/>
 <link rel="stylesheet" type="text/css" href="webjars/datatables/1.10.13/css/jquery.dataTables.min.css"/>
 <link rel="stylesheet" type="text/css" href="webjars/datatables/1.10.13/css/dataTables.bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.min.css"/>
+<link rel="stylesheet" type="text/css" href="webjars/eonasdan-bootstrap-datetimepicker/4.17.45/build/css/bootstrap-datetimepicker.min.css"/>

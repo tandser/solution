@@ -6,7 +6,8 @@
 <script type="text/javascript" src="webjars/datatables/1.10.13/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="webjars/datatables/1.10.13/js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript" src="webjars/noty/2.3.8/js/noty/packaged/jquery.noty.packaged.min.js"></script>
-<script type="text/javascript" src="webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript" src="webjars/moment/2.17.1/min/moment.min.js"></script>
+<script type="text/javascript" src="webjars/eonasdan-bootstrap-datetimepicker/4.17.45/build/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript">
     function show(lang) {
         window.location.href = window.location.href.split("?")[0] + "?lang=" + lang;

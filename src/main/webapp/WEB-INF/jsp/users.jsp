@@ -108,8 +108,6 @@
         </div>
     </body>
     <jsp:include page="fragment/foot.jsp"/>
-    <script type="text/javascript" src="resources/js/datatables/users.js"></script>
-    <script type="text/javascript" src="resources/js/main.js"></script>
     <script type="text/javascript">
         var i18n = [];
         i18n["datatables_loadingRecords"] = "${i18n_datatables_loadingRecords}";
@@ -125,4 +123,6 @@
         i18n["users_enabled"]             = "${i18n_users_enabled}";
         i18n["new"]                       = "${i18n_users_new}";
     </script>
+    <script type="text/javascript" src="resources/js/datatables/users.js"></script>
+    <script type="text/javascript" src="resources/js/main.js"></script>
 </html>

@@ -250,14 +250,8 @@
 
         <dependency>
             <groupId>org.webjars.bower</groupId>
-            <artifactId>datetimepicker</artifactId>
-            <version>2.5.4</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>jquery</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>eonasdan-bootstrap-datetimepicker</artifactId>
+            <version>4.17.45</version>
         </dependency>
 
         <dependency>

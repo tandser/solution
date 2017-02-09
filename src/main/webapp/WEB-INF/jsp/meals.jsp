@@ -17,6 +17,7 @@
 <spring:message code="jsp.meals.edit"                var="i18n_meals_edit"/>
 <spring:message code="jsp.meals.new"                 var="i18n_meals_new"/>
 <spring:message code="jsp.meals.removed"             var="i18n_meals_removed"/>
+<spring:message code="jsp.meals.saved"               var="i18n_meals_saved"/>
 
 <html>
     <head>
@@ -82,8 +83,6 @@
         </div>
     </body>
     <jsp:include page="fragment/foot.jsp"/>
-    <script type="text/javascript" src="resources/js/datatables/meals.js"></script>
-    <script type="text/javascript" src="resources/js/main.js"></script>
     <script type="text/javascript">
         var i18n = [];
         i18n["datatables_loadingRecords"] = "${i18n_datatables_loadingRecords}";
@@ -95,5 +94,8 @@
         i18n["removed"]                   = "${i18n_meals_removed}";
         i18n["editing"]                   = "${i18n_meals_edit}";
         i18n["new"]                       = "${i18n_meals_new}";
+        i18n["saved"]                     = "${i18n_meals_saved}";
     </script>
+    <script type="text/javascript" src="resources/js/datatables/meals.js"></script>
+    <script type="text/javascript" src="resources/js/main.js"></script>
 </html>
