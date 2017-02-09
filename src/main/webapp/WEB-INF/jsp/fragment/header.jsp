@@ -18,7 +18,7 @@
                         <a class="btn btn-primary" href="users">${i18n_users}</a>
                     </sec:authorize>
                     <sec:authorize access="hasRole('ROLE_USER')">
-                        <a class="btn btn-primary" href="profile">${i18n_users_profile}</a>
+                        <a class="btn btn-primary" onclick="profile()">${i18n_users_profile}</a>
                     </sec:authorize>
                     <button class="btn btn-success" type="submit">${i18n_signOut}</button>
                 </sec:authorize>

@@ -25,6 +25,10 @@ function append(opts) {
     return opts;
 }
 
+function profile() {
+    $("#modalWindowProfile").modal();
+}
+
 function add() {
     $("#titleModalWindowSave").html(i18n["new"]);
     formSave.find(":input").val("");
