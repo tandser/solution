@@ -33,15 +33,18 @@ $(function () {
     }));
 
     $("#dateTime").datetimepicker({
-        format: "YYYY-MM-DDTHH:mm"
+        format: "YYYY-MM-DDTHH:mm",
+        locale: code
     });
 
     $("#from").datetimepicker({
-        format: "YYYY-MM-DDTHH:mm"
+        format: "YYYY-MM-DDTHH:mm",
+        locale: code
     });
 
     $("#to").datetimepicker({
         format: "YYYY-MM-DDTHH:mm",
+        locale: code,
         useCurrent: false
     });
 
