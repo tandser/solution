@@ -18,6 +18,7 @@
 <spring:message code="jsp.meals.new"                 var="i18n_meals_new"/>
 <spring:message code="jsp.meals.removed"             var="i18n_meals_removed"/>
 <spring:message code="jsp.meals.saved"               var="i18n_meals_saved"/>
+<spring:message code="jsp.meals.add"                 var="i18n_meals_add"/>
 
 <html>
     <head>
@@ -28,6 +29,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h2>${i18n_meals_list}</h2>
+                <a class="btn btn-primary" onclick="add()">${i18n_meals_add}</a>
                 <table class="table" id="datatable">
                     <thead>
                         <tr>

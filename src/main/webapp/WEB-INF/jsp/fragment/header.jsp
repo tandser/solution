@@ -5,7 +5,6 @@
 <spring:message code="jsp.meals"         var="i18n_meals"/>
 <spring:message code="jsp.signOut"       var="i18n_signOut"/>
 <spring:message code="jsp.users"         var="i18n_users"/>
-<spring:message code="jsp.users.add"     var="i18n_users_add"/>
 <spring:message code="jsp.users.profile" var="i18n_users_profile"/>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -17,7 +16,6 @@
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <a class="btn btn-primary" href="meals">${i18n_meals}</a>
                         <a class="btn btn-primary" href="users">${i18n_users}</a>
-                        <a class="btn btn-primary" onclick="add()">${i18n_users_add}</a>
                     </sec:authorize>
                     <sec:authorize access="hasRole('ROLE_USER')">
                         <a class="btn btn-primary" href="profile">${i18n_users_profile}</a>

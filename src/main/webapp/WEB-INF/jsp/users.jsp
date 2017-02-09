@@ -10,6 +10,7 @@
 <spring:message code="jsp.remove"                    var="i18n_remove"/>
 <spring:message code="jsp.save"                      var="i18n_save"/>
 <spring:message code="jsp.users.access"              var="i18n_users_access"/>
+<spring:message code="jsp.users.add"                 var="i18n_users_add"/>
 <spring:message code="jsp.users.admin"               var="i18n_users_admin"/>
 <spring:message code="jsp.users.created"             var="i18n_users_created"/>
 <spring:message code="jsp.users.disabled"            var="i18n_users_disabled"/>
@@ -35,6 +36,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h2>${i18n_users_list}</h2>
+                <a class="btn btn-primary" onclick="add()">${i18n_users_add}</a>
                 <table class="table" id="datatable">
                     <thead>
                         <tr>
