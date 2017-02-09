@@ -29,7 +29,7 @@ public class MealAjaxController extends AbstractMealController {
     }
 
     @Override
-    @GetMapping(value = "/between", produces = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/between", produces = APPLICATION_JSON_VALUE)
     public List<MealWithExcess> getBetween(@RequestParam LocalDateTime from, @RequestParam LocalDateTime to) {
         return super.getBetween(from, to);
     }

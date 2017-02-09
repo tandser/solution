@@ -26,14 +26,58 @@ $(function () {
             }
         ],
         "order": [[ 0, "desc" ]],
+        "createdRow": function (row, data, dataIndex) {
+            $(row).addClass(data.excess ? "danger" : "success");
+        },
         "initComplete": makeEditable
     }));
 
     $("#dateTime").datetimepicker({
         format: "YYYY-MM-DDTHH:mm"
     });
+
+    $("#from").datetimepicker({
+        format: "YYYY-MM-DDTHH:mm"
+    });
+
+    $("#to").datetimepicker({
+        format: "YYYY-MM-DDTHH:mm",
+        useCurrent: false
+    });
+
+    $("#from").on("dp.change", function (e) {
+        $('#to').data("DateTimePicker").minDate(e.date);
+    });
+
+    $("#to").on("dp.change", function (e) {
+        $('#from').data("DateTimePicker").maxDate(e.date);
+    });
 });
 
 function updateTable() {
     $.get(ajaxPath, updateTableData);
+}
+
+function filter() {
+    $("#modalWindowFilter").modal();
+}
+
+function between() {
+    $.ajax({
+        url: ajaxPath + "between",
+        type: "POST",
+        data: $("#formInModalWindowFilter").serialize(),
+        success: function (data) {
+            $("#modalWindowFilter").modal("hide");
+            updateTableData(data);
+            successNoty("filtered");
+        }
+    });
+}
+
+function discard() {
+    $("#from").data("DateTimePicker").clear();
+    $("#to").data("DateTimePicker").clear();
+    updateTable();
+    successNoty("reset");
 }

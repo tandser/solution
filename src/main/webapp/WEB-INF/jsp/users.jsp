@@ -55,13 +55,13 @@
         <div class="container">
             <jsp:include page="fragment/footer.jsp"/>
         </div>
-        <div class="modal fade" id="modalWindow">
+        <div class="modal fade" id="modalWindowSave">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title"></h2>
+                        <h2 class="modal-title" id="titleModalWindowSave"></h2>
                     </div>
-                    <form class="form-horizontal" id="formInModalWindow" method="post">
+                    <form class="form-horizontal" id="formInModalWindowSave">
                         <div class="modal-body">
                             <input id="id" name="id" type="hidden"/>
                             <input id="enabled" name="enabled" type="hidden"/>
@@ -87,7 +87,7 @@
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="role">${i18n_users_rights}</label>
                                 <div class="col-xs-9">
-                                    <select class="form-control selectpicker" id="role" name="role">
+                                    <select class="form-control selectpicker show-menu-arrow" id="role" name="role">
                                         <option value="USER" selected>${i18n_users_user}</option>
                                         <option value="ADMIN">${i18n_users_admin}</option>
                                     </select>
@@ -112,18 +112,18 @@
     <jsp:include page="fragment/foot.jsp"/>
     <script type="text/javascript">
         var i18n = [];
-        i18n["datatables_loadingRecords"] = "${i18n_datatables_loadingRecords}";
-        i18n["datatables_search"]         = "${i18n_datatables_search}";
-        i18n["datatables_zeroRecords"]    = "${i18n_datatables_zeroRecords}";
-        i18n["edit"]                      = "${i18n_edit}";
-        i18n["error"]                     = "${i18n_error}";
-        i18n["remove"]                    = "${i18n_remove}";
-        i18n["removed"]                   = "${i18n_users_removed}";
-        i18n["saved"]                     = "${i18n_users_saved}";
-        i18n["users_disabled"]            = "${i18n_users_disabled}";
-        i18n["editing"]                   = "${i18n_users_edit}";
-        i18n["users_enabled"]             = "${i18n_users_enabled}";
-        i18n["new"]                       = "${i18n_users_new}";
+        i18n["disabled"]       = "${i18n_users_disabled}";
+        i18n["edit"]           = "${i18n_edit}";
+        i18n["editing"]        = "${i18n_users_edit}";
+        i18n["enabled"]        = "${i18n_users_enabled}";
+        i18n["error"]          = "${i18n_error}";
+        i18n["loadingRecords"] = "${i18n_datatables_loadingRecords}";
+        i18n["new"]            = "${i18n_users_new}";
+        i18n["remove"]         = "${i18n_remove}";
+        i18n["removed"]        = "${i18n_users_removed}";
+        i18n["saved"]          = "${i18n_users_saved}";
+        i18n["search"]         = "${i18n_datatables_search}";
+        i18n["zeroRecords"]    = "${i18n_datatables_zeroRecords}";
     </script>
     <script type="text/javascript" src="resources/js/datatables/users.js"></script>
     <script type="text/javascript" src="resources/js/main.js"></script>

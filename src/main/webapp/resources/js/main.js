@@ -1,7 +1,7 @@
-var form;
+var formSave;
 
 function makeEditable() {
-    form = $("#formInModalWindow");
+    formSave = $("#formInModalWindowSave");
 
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
         errorNoty(event, jqXHR, options, jsExc)
@@ -17,43 +17,31 @@ function append(opts) {
         "paging": false,
         "info": false,
         "language": {
-            "loadingRecords": i18n["datatables_loadingRecords"],
-            "search": i18n["datatables_search"],
-            "zeroRecords": i18n["datatables_zeroRecords"]
+            "loadingRecords": i18n["loadingRecords"],
+            "search": i18n["search"],
+            "zeroRecords": i18n["zeroRecords"]
         }
     });
     return opts;
 }
 
-function toggle(checkbox, id) {
-    var state = checkbox.is(":checked");
-    $.ajax({
-        url: ajaxPath + "toggle/" + id,
-        type: "POST",
-        data: "state=" + state,
-        success: function () {
-            checkbox.closest("tr").fadeTo(500, state ? 1 : 0.5);
-        }
-    });
-}
-
 function add() {
-    $(".modal-title").html(i18n["new"]);
-    form.find(":input").val("");
-    form.find($("#version")).val(0);
-    $("#modalWindow").modal();
+    $("#titleModalWindowSave").html(i18n["new"]);
+    formSave.find(":input").val("");
+    formSave.find($("#version")).val(0);
+    $("#modalWindowSave").modal();
 }
 
 function update(id) {
-    $(".modal-title").html(i18n["editing"]);
+    $("#titleModalWindowSave").html(i18n["editing"]);
     $.get(ajaxPath + id, function (data) {
         $.each(data, function (key, value) {
-            form.find("[name='" + key + "']").val(
+            formSave.find("[name='" + key + "']").val(
                 key === "dateTime" ? value.substring(0, 16) : value
             );
         });
-        form.find(".selectpicker").selectpicker("refresh");
-        $("#modalWindow").modal();
+        formSave.find(".selectpicker").selectpicker("refresh");
+        $("#modalWindowSave").modal();
     });
 }
 
@@ -61,9 +49,9 @@ function save() {
     $.ajax({
         url: ajaxPath,
         type: "POST",
-        data: form.serialize(),
+        data: formSave.serialize(),
         success: function () {
-            $("#modalWindow").modal("hide");
+            $("#modalWindowSave").modal("hide");
             updateTable();
             successNoty("saved");
         }
