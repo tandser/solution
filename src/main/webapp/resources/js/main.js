@@ -6,7 +6,7 @@ $(document).ajaxSend(function (e, xhr, options) {
 });
 
 $(document).ajaxError(function (event, jqXHR, options, jsExc) {
-    errorNoty(event, jqXHR, options, jsExc, "error", 1000)
+    errorNoty(event, jqXHR, options, jsExc, "error", 1000);
 });
 
 function successNoty(key, timeout) {
