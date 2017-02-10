@@ -1,12 +1,12 @@
-var formRegistration = $("#formInModalWindowRegistration");
+var modalRegistration = $("#modalWindowRegistration"), formRegistration = $("#formInModalWindowRegistration");
 
 $(document).ajaxError(function (event, jqXHR, options, jsExc) {
     errorNoty(event, jqXHR, options, jsExc, "error", 1000)
 });
 
 function registration() {
-    formRegistration.find(":input").val("");
-    $("#modalWindowRegistration").modal();
+    formRegistration[0].reset();
+    modalRegistration.modal();
 }
 
 function register() {
@@ -15,7 +15,7 @@ function register() {
         type: "POST",
         data: formRegistration.serialize(),
         success: function () {
-            $("#modalWindowRegistration").modal("hide");
+            modalRegistration.modal("hide");
             successNoty("gratitude", 10000);
         }
     });

@@ -1,5 +1,4 @@
-var ajaxPath = "ajax/users/";
-var table;
+var ajaxPath = "ajax/users/", table;
 
 $(function () {
     table = $("#datatable").DataTable(append({
@@ -54,6 +53,29 @@ $(function () {
 
 function updateTable() {
     $.get(ajaxPath, updateTableData);
+}
+
+function add() {
+    titleModalSave.html(i18n["new"]);
+    formSave.find(":input").val("");
+    formSave.find($("#version")).val(0);
+    formSave.find(".selectpicker").selectpicker("val", "USER");
+    modalSave.modal();
+}
+
+function update(id) {
+    titleModalSave.html(i18n["editing"]);
+    $.get(ajaxPath + id, function (data) {
+        $.each(data, function (key, value) {
+            if (key === "role") {
+                formSave.find(".selectpicker").selectpicker("val", value);
+                return true;
+            }
+            formSave.find("[name='" + key + "']").val(value);
+        });
+    });
+    formSave.find($("#password")).val("");
+    modalSave.modal();
 }
 
 function toggle(checkbox, id) {

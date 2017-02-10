@@ -1,5 +1,4 @@
-var ajaxPath = "ajax/meals/";
-var table;
+var ajaxPath = "ajax/meals/", table, modalFilter, formFilter;
 
 $(function () {
     table = $("#datatable").DataTable(append({
@@ -31,47 +30,77 @@ $(function () {
         },
         "initComplete": makeEditable
     }));
-});
 
-$("#dateTime").datetimepicker({
-    format: "YYYY-MM-DDTHH:mm",
-    locale: code
-});
+    var pattern = "YYYY-MM-DDTHH:mm";
 
-$("#from").datetimepicker({
-    format: "YYYY-MM-DDTHH:mm",
-    locale: code
-});
+    $("#dateTime").datetimepicker({
+        format: pattern,
+        locale: code
+    });
 
-$("#to").datetimepicker({
-    format: "YYYY-MM-DDTHH:mm",
-    locale: code,
-    useCurrent: false
-});
+    var from = $("#from");
 
-$("#from").on("dp.change", function (e) {
-    $('#to').data("DateTimePicker").minDate(e.date);
-});
+    from.datetimepicker({
+        format: pattern,
+        locale: code
+    });
 
-$("#to").on("dp.change", function (e) {
-    $('#from').data("DateTimePicker").maxDate(e.date);
+    var to = $("#to");
+
+    to.datetimepicker({
+        format: pattern,
+        locale: code,
+        useCurrent: false
+    });
+
+    from.on("dp.change", function (e) {
+        to.data("DateTimePicker").minDate(e.date);
+    });
+
+    to.on("dp.change", function (e) {
+        from.data("DateTimePicker").maxDate(e.date);
+    });
+
+    modalFilter = $("#modalWindowFilter");
+    formFilter  = $("#formInModalWindowFilter");
 });
 
 function updateTable() {
     $.get(ajaxPath, updateTableData);
 }
 
+function add() {
+    titleModalSave.html(i18n["new"]);
+    formSave.find(":input").val("");
+    formSave.find($("#version")).val(0);
+    modalSave.modal();
+}
+
+function update(id) {
+    titleModalSave.html(i18n["editing"]);
+    $.get(ajaxPath + id, function (data) {
+        $.each(data, function (key, value) {
+            if (key === "dateTime") {
+                formSave.find($("#dateTime")).val(value.substring(0, 16));
+                return true;
+            }
+            formSave.find("[name='" + key + "']").val(value);
+        });
+    });
+    modalSave.modal();
+}
+
 function filter() {
-    $("#modalWindowFilter").modal();
+    modalFilter.modal();
 }
 
 function between() {
     $.ajax({
         url: ajaxPath + "between",
         type: "POST",
-        data: $("#formInModalWindowFilter").serialize(),
+        data: formFilter.serialize(),
         success: function (data) {
-            $("#modalWindowFilter").modal("hide");
+            modalFilter.modal("hide");
             updateTableData(data);
             successNoty("filtered", 500);
         }
@@ -79,8 +108,7 @@ function between() {
 }
 
 function discard() {
-    $("#from").data("DateTimePicker").clear();
-    $("#to").data("DateTimePicker").clear();
+    formFilter[0].reset();
     updateTable();
     successNoty("reset", 500);
 }

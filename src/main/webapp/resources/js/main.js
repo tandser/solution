@@ -1,7 +1,11 @@
-var formSave;
+var modalSave, titleModalSave, formSave, modalProfile, formProfile, ajaxProfile = "ajax/users/profile";
 
 function makeEditable() {
-    formSave = $("#formInModalWindowSave");
+    modalSave      = $("#modalWindowSave");
+    titleModalSave = $("#titleModalWindowSave");
+    formSave       = $("#formInModalWindowSave");
+    modalProfile   = $("#modalWindowProfile");
+    formProfile    = $("#formInModalWindowProfile");
 
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
         errorNoty(event, jqXHR, options, jsExc, "error", 1000)
@@ -25,34 +29,13 @@ function append(opts) {
     return opts;
 }
 
-function add() {
-    $("#titleModalWindowSave").html(i18n["new"]);
-    formSave.find(":input").val("");
-    formSave.find($("#version")).val(0);
-    $("#modalWindowSave").modal();
-}
-
-function update(id) {
-    $("#titleModalWindowSave").html(i18n["editing"]);
-    $.get(ajaxPath + id, function (data) {
-        $.each(data, function (key, value) {
-            formSave.find("[name='" + key + "']").val(
-                key === "dateTime" ? value.substring(0, 16) : value
-            );
-        });
-    });
-    formSave.find($("#password")).val("");
-    formSave.find(".selectpicker").selectpicker("refresh");
-    $("#modalWindowSave").modal();
-}
-
 function save() {
     $.ajax({
         url: ajaxPath,
         type: "POST",
         data: formSave.serialize(),
         success: function () {
-            $("#modalWindowSave").modal("hide");
+            modalSave.modal("hide");
             updateTable();
             successNoty("saved", 500);
         }
@@ -70,25 +53,23 @@ function remove(id) {
     });
 }
 
-var formProfile = $("#formInModalWindowProfile");
-
 function profile() {
-    $.get("ajax/users/profile", function (data) {
+    $.get(ajaxProfile, function (data) {
         $.each(data, function (key, value) {
             formProfile.find("[name='" + key + "']").val(value);
         });
     });
     formProfile.find($("#password")).val("");
-    $("#modalWindowProfile").modal();
+    modalProfile.modal();
 }
 
 function refresh() {
     $.ajax({
-        url: "ajax/users/profile",
+        url: ajaxProfile,
         type: "POST",
         data: formProfile.serialize(),
         success: function () {
-            $("#modalWindowProfile").modal("hide");
+            modalProfile.modal("hide");
             updateTable();
             successNoty("refreshed", 500);
         }
