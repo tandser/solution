@@ -72,4 +72,18 @@ public abstract class AbstractUserController {
         log.info("{}: .toggle({}, {})", principal.getUsername(), id, state);
         userService.toggle(id, state);
     }
+
+    public User profile() {
+        Principal principal = Principal.get();
+        log.info("{}: .profile()", principal.getUsername());
+        return userService.get(principal.getId());
+    }
+
+    public void refresh(User user, int id) {
+        requireConsistency(user, id);
+        Principal principal = Principal.get();
+        log.info("{}: .refresh({})", principal.getUsername(), user);
+        userService.update(user);
+        principal.setNormOfCalories(user.getNormOfCalories());
+    }
 }

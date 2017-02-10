@@ -29,4 +29,8 @@ public class Principal extends org.springframework.security.core.userdetails.Use
     public int getNormOfCalories() {
         return normOfCalories;
     }
+
+    public void setNormOfCalories(int normOfCalories) {
+        this.normOfCalories = normOfCalories;
+    }
 }

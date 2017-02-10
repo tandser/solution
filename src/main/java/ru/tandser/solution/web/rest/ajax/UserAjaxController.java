@@ -50,4 +50,16 @@ public class UserAjaxController extends AbstractUserController {
     public void toggle(@PathVariable int id, @RequestParam boolean state) {
         super.toggle(id, state);
     }
+
+    @Override
+    @JsonView(Views.Website.class)
+    @GetMapping(value = "/profile", produces = APPLICATION_JSON_VALUE)
+    public User profile() {
+        return super.profile();
+    }
+
+    @PostMapping("/profile")
+    public void refresh(User user) {
+        refresh(user, user.getId());
+    }
 }

@@ -31,30 +31,30 @@ $(function () {
         },
         "initComplete": makeEditable
     }));
+});
 
-    $("#dateTime").datetimepicker({
-        format: "YYYY-MM-DDTHH:mm",
-        locale: code
-    });
+$("#dateTime").datetimepicker({
+    format: "YYYY-MM-DDTHH:mm",
+    locale: code
+});
 
-    $("#from").datetimepicker({
-        format: "YYYY-MM-DDTHH:mm",
-        locale: code
-    });
+$("#from").datetimepicker({
+    format: "YYYY-MM-DDTHH:mm",
+    locale: code
+});
 
-    $("#to").datetimepicker({
-        format: "YYYY-MM-DDTHH:mm",
-        locale: code,
-        useCurrent: false
-    });
+$("#to").datetimepicker({
+    format: "YYYY-MM-DDTHH:mm",
+    locale: code,
+    useCurrent: false
+});
 
-    $("#from").on("dp.change", function (e) {
-        $('#to').data("DateTimePicker").minDate(e.date);
-    });
+$("#from").on("dp.change", function (e) {
+    $('#to').data("DateTimePicker").minDate(e.date);
+});
 
-    $("#to").on("dp.change", function (e) {
-        $('#from').data("DateTimePicker").maxDate(e.date);
-    });
+$("#to").on("dp.change", function (e) {
+    $('#from').data("DateTimePicker").maxDate(e.date);
 });
 
 function updateTable() {

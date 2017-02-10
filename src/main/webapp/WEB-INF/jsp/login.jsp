@@ -55,4 +55,5 @@
             <jsp:include page="fragment/footer.jsp"/>
         </div>
     </body>
+    <jsp:include page="fragment/foot.jsp"/>
 </html>

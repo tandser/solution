@@ -25,10 +25,6 @@ function append(opts) {
     return opts;
 }
 
-function profile() {
-    $("#modalWindowProfile").modal();
-}
-
 function add() {
     $("#titleModalWindowSave").html(i18n["new"]);
     formSave.find(":input").val("");
@@ -44,9 +40,10 @@ function update(id) {
                 key === "dateTime" ? value.substring(0, 16) : value
             );
         });
-        formSave.find(".selectpicker").selectpicker("refresh");
-        $("#modalWindowSave").modal();
     });
+    formSave.find($("#password")).val("");
+    formSave.find(".selectpicker").selectpicker("refresh");
+    $("#modalWindowSave").modal();
 }
 
 function save() {
@@ -69,6 +66,31 @@ function remove(id) {
         success: function () {
             updateTable();
             successNoty("removed");
+        }
+    });
+}
+
+var formProfile = $("#formInModalWindowProfile");
+
+function profile() {
+    $.get("ajax/users/profile", function (data) {
+        $.each(data, function (key, value) {
+            formProfile.find("[name='" + key + "']").val(value);
+        });
+    });
+    formProfile.find($("#password")).val("");
+    $("#modalWindowProfile").modal();
+}
+
+function refresh() {
+    $.ajax({
+        url: "ajax/users/profile",
+        type: "POST",
+        data: formProfile.serialize(),
+        success: function () {
+            $("#modalWindowProfile").modal("hide");
+            updateTable();
+            successNoty("refreshed");
         }
     });
 }
@@ -107,6 +129,6 @@ function errorNoty(event, jqXHR, options, jsExc) {
         type: "error",
         layout: "bottomRight",
         timeout: 1000,
-        text: i18n["error"] + ": " + jqXHR.statusText
+        text: i18n["error"] + " - " + jqXHR.statusText
     });
 }

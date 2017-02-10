@@ -22,6 +22,7 @@
 <spring:message code="jsp.users.new"                 var="i18n_users_new"/>
 <spring:message code="jsp.users.normOfCalories"      var="i18n_users_normOfCalories"/>
 <spring:message code="jsp.users.password"            var="i18n_users_password"/>
+<spring:message code="jsp.users.refreshed"           var="i18n_users_refreshed"/>
 <spring:message code="jsp.users.removed"             var="i18n_users_removed"/>
 <spring:message code="jsp.users.rights"              var="i18n_users_rights"/>
 <spring:message code="jsp.users.saved"               var="i18n_users_saved"/>
@@ -55,7 +56,7 @@
         <div class="container">
             <jsp:include page="fragment/footer.jsp"/>
         </div>
-        <div class="modal fade" id="modalWindowSave">
+        <div class="fade modal" id="modalWindowSave">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -67,25 +68,25 @@
                             <input id="enabled" name="enabled" type="hidden"/>
                             <input id="version" name="version" type="hidden"/>
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="name">${i18n_users_name}</label>
+                                <label class="col-xs-3 control-label" for="name">${i18n_users_name}</label>
                                 <div class="col-xs-9">
                                     <input class="form-control" id="name" name="name" type="text"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="email">${i18n_users_email}</label>
+                                <label class="col-xs-3 control-label" for="email">${i18n_users_email}</label>
                                 <div class="col-xs-9">
                                     <input class="form-control" id="email" name="email" type="email"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="password">${i18n_users_password}</label>
+                                <label class="col-xs-3 control-label" for="password">${i18n_users_password}</label>
                                 <div class="col-xs-9">
                                     <input class="form-control" id="password" name="password" type="password"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="role">${i18n_users_rights}</label>
+                                <label class="col-xs-3 control-label" for="role">${i18n_users_rights}</label>
                                 <div class="col-xs-9">
                                     <select class="form-control selectpicker show-menu-arrow" id="role" name="role">
                                         <option value="USER" selected>${i18n_users_user}</option>
@@ -94,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="normOfCalories">${i18n_users_normOfCalories}</label>
+                                <label class="col-xs-3 control-label" for="normOfCalories">${i18n_users_normOfCalories}</label>
                                 <div class="col-xs-9">
                                     <input class="form-control" id="normOfCalories" name="normOfCalories" type="number"/>
                                 </div>
@@ -108,6 +109,7 @@
                 </div>
             </div>
         </div>
+        <jsp:include page="fragment/profile.jsp"/>
     </body>
     <jsp:include page="fragment/foot.jsp"/>
     <script type="text/javascript">
@@ -119,6 +121,7 @@
         i18n["error"]          = "${i18n_error}";
         i18n["loadingRecords"] = "${i18n_datatables_loadingRecords}";
         i18n["new"]            = "${i18n_users_new}";
+        i18n["refreshed"]      = "${i18n_users_refreshed}";
         i18n["remove"]         = "${i18n_remove}";
         i18n["removed"]        = "${i18n_users_removed}";
         i18n["saved"]          = "${i18n_users_saved}";
