@@ -1,13 +1,15 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<spring:message code="jsp.close"                var="i18n_close"/>
-<spring:message code="jsp.save"                 var="i18n_save"/>
-<spring:message code="jsp.users.edit"           var="i18n_users_edit"/>
-<spring:message code="jsp.users.email"          var="i18n_users_email"/>
-<spring:message code="jsp.users.name"           var="i18n_users_name"/>
-<spring:message code="jsp.users.normOfCalories" var="i18n_users_normOfCalories"/>
-<spring:message code="jsp.users.password"       var="i18n_users_password"/>
+<spring:message code="jsp.close"                     var="i18n_close"/>
+<spring:message code="jsp.save"                      var="i18n_save"/>
+<spring:message code="jsp.users.edit"                var="i18n_users_edit"/>
+<spring:message code="jsp.users.email"               var="i18n_users_email"/>
+<spring:message code="jsp.users.name"                var="i18n_users_name"/>
+<spring:message code="jsp.users.normOfCalories"      var="i18n_users_normOfCalories"/>
+<spring:message code="jsp.users.password"            var="i18n_users_password"/>
+<spring:message code="jsp.users.validNormOfCalories" var="i18n_users_validNormOfCalories"/>
+<spring:message code="jsp.users.validPassword"       var="i18n_users_validPassword"/>
 
 <div class="fade modal" id="modalWindowProfile">
     <div class="modal-dialog">
@@ -34,13 +36,13 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label" for="password">${i18n_users_password}</label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="password" name="password" type="password"/>
+                            <input class="form-control" id="password" name="password" placeholder="${i18n_users_validPassword}" type="password"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label" for="normOfCalories">${i18n_users_normOfCalories}</label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="normOfCalories" name="normOfCalories" type="number"/>
+                            <input class="form-control" id="normOfCalories" name="normOfCalories" placeholder="${i18n_users_validNormOfCalories}" type="number"/>
                         </div>
                     </div>
                 </div>

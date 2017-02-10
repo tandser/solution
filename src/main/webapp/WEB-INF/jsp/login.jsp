@@ -2,29 +2,31 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<spring:message code="jsp.close"                var="i18n_close"/>
-<spring:message code="jsp.error"                var="i18n_error"/>
-<spring:message code="jsp.gratitude"            var="i18n_gratitude"/>
-<spring:message code="jsp.readMore"             var="i18n_readMore"/>
-<spring:message code="jsp.save"                 var="i18n_save"/>
-<spring:message code="jsp.signIn"               var="i18n_signIn"/>
-<spring:message code="jsp.title"                var="i18n_title"/>
-<spring:message code="jsp.users.create"         var="i18n_users_create"/>
-<spring:message code="jsp.users.email"          var="i18n_users_email"/>
-<spring:message code="jsp.users.name"           var="i18n_users_name"/>
-<spring:message code="jsp.users.new"            var="i18n_users_new"/>
-<spring:message code="jsp.users.normOfCalories" var="i18n_users_normOfCalories"/>
-<spring:message code="jsp.users.password"       var="i18n_users_password"/>
-<spring:message code="jsp.welcome"              var="i18n_welcome"/>
+<spring:message code="jsp.close"                     var="i18n_close"/>
+<spring:message code="jsp.error"                     var="i18n_error"/>
+<spring:message code="jsp.gratitude"                 var="i18n_gratitude"/>
+<spring:message code="jsp.readMore"                  var="i18n_readMore"/>
+<spring:message code="jsp.save"                      var="i18n_save"/>
+<spring:message code="jsp.signIn"                    var="i18n_signIn"/>
+<spring:message code="jsp.title"                     var="i18n_title"/>
+<spring:message code="jsp.users.create"              var="i18n_users_create"/>
+<spring:message code="jsp.users.email"               var="i18n_users_email"/>
+<spring:message code="jsp.users.name"                var="i18n_users_name"/>
+<spring:message code="jsp.users.new"                 var="i18n_users_new"/>
+<spring:message code="jsp.users.normOfCalories"      var="i18n_users_normOfCalories"/>
+<spring:message code="jsp.users.password"            var="i18n_users_password"/>
+<spring:message code="jsp.users.validNormOfCalories" var="i18n_users_validNormOfCalories"/>
+<spring:message code="jsp.users.validPassword"       var="i18n_users_validPassword"/>
+<spring:message code="jsp.welcome"                   var="i18n_welcome"/>
 
-<spring:message code="jsp.recipe1"              var="i18n_recipe1"/>
-<spring:message code="jsp.recipe1.text"         var="i18n_recipe1_text"/>
+<spring:message code="jsp.recipe1"                   var="i18n_recipe1"/>
+<spring:message code="jsp.recipe1.text"              var="i18n_recipe1_text"/>
 
-<spring:message code="jsp.recipe2"              var="i18n_recipe2"/>
-<spring:message code="jsp.recipe2.text"         var="i18n_recipe2_text"/>
+<spring:message code="jsp.recipe2"                   var="i18n_recipe2"/>
+<spring:message code="jsp.recipe2.text"              var="i18n_recipe2_text"/>
 
-<spring:message code="jsp.recipe3"              var="i18n_recipe3"/>
-<spring:message code="jsp.recipe3.text"         var="i18n_recipe3_text"/>
+<spring:message code="jsp.recipe3"                   var="i18n_recipe3"/>
+<spring:message code="jsp.recipe3.text"              var="i18n_recipe3_text"/>
 
 <html>
     <head>
@@ -97,13 +99,13 @@
                             <div class="form-group">
                                 <label class="col-xs-3 control-label" for="password">${i18n_users_password}</label>
                                 <div class="col-xs-9">
-                                    <input class="form-control" id="password" name="password" type="password"/>
+                                    <input class="form-control" id="password" name="password" placeholder="${i18n_users_validPassword}" type="password"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-xs-3 control-label" for="normOfCalories">${i18n_users_normOfCalories}</label>
                                 <div class="col-xs-9">
-                                    <input class="form-control" id="normOfCalories" name="normOfCalories" type="number"/>
+                                    <input class="form-control" id="normOfCalories" name="normOfCalories" placeholder="${i18n_users_validNormOfCalories}" type="number"/>
                                 </div>
                             </div>
                         </div>
