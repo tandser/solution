@@ -62,4 +62,10 @@ public class UserAjaxController extends AbstractUserController {
     public void refresh(User user) {
         refresh(user, user.getId());
     }
+
+    @Override
+    @PostMapping("/registration")
+    public void register(User user) {
+        super.register(user);
+    }
 }

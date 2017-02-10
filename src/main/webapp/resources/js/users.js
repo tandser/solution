@@ -64,7 +64,7 @@ function toggle(checkbox, id) {
         data: "state=" + state,
         success: function () {
             checkbox.closest("tr").fadeTo(500, state ? 1 : 0.5);
-            successNoty(state ? "enabled" : "disabled");
+            successNoty(state ? "enabled" : "disabled", 500);
         }
     });
 }

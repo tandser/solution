@@ -4,7 +4,7 @@ function makeEditable() {
     formSave = $("#formInModalWindowSave");
 
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
-        errorNoty(event, jqXHR, options, jsExc)
+        errorNoty(event, jqXHR, options, jsExc, "error", 1000)
     });
 }
 
@@ -54,7 +54,7 @@ function save() {
         success: function () {
             $("#modalWindowSave").modal("hide");
             updateTable();
-            successNoty("saved");
+            successNoty("saved", 500);
         }
     });
 }
@@ -65,7 +65,7 @@ function remove(id) {
         type: "DELETE",
         success: function () {
             updateTable();
-            successNoty("removed");
+            successNoty("removed", 500);
         }
     });
 }
@@ -90,7 +90,7 @@ function refresh() {
         success: function () {
             $("#modalWindowProfile").modal("hide");
             updateTable();
-            successNoty("refreshed");
+            successNoty("refreshed", 500);
         }
     });
 }
@@ -109,26 +109,4 @@ function removeButton(data, type, row) {
     if (type == "display") {
         return "<a class=\"btn btn-danger btn-xs\" onclick=\"remove(" + row.id + ")\">" + i18n["remove"] + "</a>";
     }
-}
-
-function successNoty(key) {
-    $.noty.closeAll();
-    noty({
-        theme: "relax",
-        type: "success",
-        layout: "bottomRight",
-        timeout: 500,
-        text: i18n[key]
-    });
-}
-
-function errorNoty(event, jqXHR, options, jsExc) {
-    $.noty.closeAll();
-    noty({
-        theme: "relax",
-        type: "error",
-        layout: "bottomRight",
-        timeout: 1000,
-        text: i18n["error"] + " - " + jqXHR.statusText
-    });
 }

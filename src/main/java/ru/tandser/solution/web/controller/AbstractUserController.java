@@ -86,4 +86,10 @@ public abstract class AbstractUserController {
         userService.update(user);
         principal.setNormOfCalories(user.getNormOfCalories());
     }
+
+    public void register(User user) {
+        requireNew(user);
+        log.info(".register({})", user);
+        userService.save(user);
+    }
 }

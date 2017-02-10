@@ -73,7 +73,7 @@ function between() {
         success: function (data) {
             $("#modalWindowFilter").modal("hide");
             updateTableData(data);
-            successNoty("filtered");
+            successNoty("filtered", 500);
         }
     });
 }
@@ -82,5 +82,5 @@ function discard() {
     $("#from").data("DateTimePicker").clear();
     $("#to").data("DateTimePicker").clear();
     updateTable();
-    successNoty("reset");
+    successNoty("reset", 500);
 }

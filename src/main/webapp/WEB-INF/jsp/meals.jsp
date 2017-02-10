@@ -141,6 +141,7 @@
         i18n["search"]         = "${i18n_datatables_search}";
         i18n["zeroRecords"]    = "${i18n_datatables_zeroRecords}";
     </script>
-    <script type="text/javascript" src="resources/js/datatables/meals.js"></script>
+    <script type="text/javascript" src="resources/js/noty.js"></script>
+    <script type="text/javascript" src="resources/js/meals.js"></script>
     <script type="text/javascript" src="resources/js/main.js"></script>
 </html>
