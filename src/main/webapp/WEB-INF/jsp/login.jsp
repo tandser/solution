@@ -1,5 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <spring:message code="jsp.close"                var="i18n_close"/>
 <spring:message code="jsp.error"                var="i18n_error"/>
@@ -34,7 +35,7 @@
             <div class="container">
                 <div class="collapse navbar-collapse">
                     <jsp:include page="fragment/lang.jsp"/>
-                    <form action="spring_security_check" class="navbar-form navbar-right" method="post">
+                    <form:form action="spring_security_check" class="navbar-form navbar-right" method="post">
                         <div class="form-group">
                             <input class="form-control" name="username" placeholder="${i18n_users_email}" type="text"/>
                         </div>
@@ -42,7 +43,7 @@
                             <input class="form-control" name="password" placeholder="${i18n_users_password}" type="password"/>
                         </div>
                         <button class="btn btn-success" type="submit">${i18n_signIn}</button>
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </nav>
