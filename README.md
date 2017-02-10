@@ -8,18 +8,13 @@
 
 Проект разработан на Java 8 с использованием следующих фреймворков и инструментов:
 
-[Maven](https://maven.apache.org/), [Spring Framework](http://projects.spring.io/spring-framework/), [Spring Data JPA](http://projects.spring.io/spring-data-jpa/), [Spring Security](http://projects.spring.io/spring-security/), [Hibernate ORM](http://hibernate.org/orm/), [Hibernate Validator](http://hibernate.org/validator/), [Apache Tomcat](http://tomcat.apache.org/), [PostgreSQL](https://www.postgresql.org/), [SLF4J](https://www.slf4j.org/), [Logback](https://logback.qos.ch/), [JSP](https://jcp.org/aboutJava/communityprocess/final/jsr245/index.html), [Jackson](https://github.com/FasterXML/jackson), [JUnit](http://junit.org/junit4/), JavaScript, [JQuery](https://jquery.com/), [Bootstrap](http://getbootstrap.com/)
+[Maven](https://maven.apache.org/), [Spring Framework](http://projects.spring.io/spring-framework/), [Spring Data JPA](http://projects.spring.io/spring-data-jpa/), [Spring Security](http://projects.spring.io/spring-security/), [Hibernate ORM](http://hibernate.org/orm/), [Hibernate Validator](http://hibernate.org/validator/), [Apache Tomcat](http://tomcat.apache.org/), [PostgreSQL](https://www.postgresql.org/), [SLF4J](https://www.slf4j.org/), [Logback](https://logback.qos.ch/), [JSP](https://jcp.org/aboutJava/communityprocess/final/jsr245/index.html), [Jackson](https://github.com/FasterXML/jackson), [JUnit](http://junit.org/junit4/), JavaScript, [JQuery](https://jquery.com/) + plugins, [Bootstrap](http://getbootstrap.com/)
 
 ## Конфигурация базы данных
 
-В приложении используется база данных PostgreSQL. Конфигурация JDBC-драйвера располагается в `src\main\resources\properties\database.properties` и выглядит следующим образом:
+В приложении используется база данных PostgreSQL. Конфигурация JDBC-драйвера располагается в `src\main\resources\properties\database.properties`. Инициализация базы данных осуществляется с помощью сценариев, которые можно обнаружить в `src\main\resources\ddl`. Будьте внимательны при развёртывании приложения на вашем компьютере и в случае необходимости отредактируйте конфигурацию драйвера и сценарии под ваши настройки.
 
-```
-postgresql.driverClassName = org.postgresql.Driver
-postgresql.url             = jdbc:postgresql://localhost:5432/postgres
-postgresql.username        = postgres
-postgresql.password        = postgres
-```
+## Отображение URL на представления
 
-Инициализация базы данных осуществляется с помощью сценариев, которые можно обнаружить в `src\main\resources\ddl`. Будьте внимательны при развёртывании приложения на вашем компьютере и в случае необходимости отредактируйте сценарии под вашу конфигурацию PostgreSQL.
-
+| URL | Метод HTTP | Описание |
+|:--- |:----------:|:-------- |
