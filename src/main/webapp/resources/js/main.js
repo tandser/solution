@@ -26,7 +26,7 @@ function errorNoty(event, jqXHR, options, jsExc, key, timeout) {
         layout: "bottomRight",
         theme: "relax",
         type: "error",
-        text: i18n[key] + " - " + jqXHR.statusText,
+        text: i18n[key] + " &#151; " + jqXHR.statusText,
         timeout: timeout
     });
 }

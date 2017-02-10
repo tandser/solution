@@ -6,6 +6,7 @@ import ru.tandser.solution.domain.User;
 import ru.tandser.solution.web.controller.AbstractUserController;
 import ru.tandser.solution.web.json.Views;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -37,7 +38,7 @@ public class UserAjaxController extends AbstractUserController {
     }
 
     @PostMapping
-    public void saveOrUpdate(User user) {
+    public void saveOrUpdate(@Valid User user) {
         if (user.isNew()) {
             save(user);
         } else {
@@ -59,13 +60,13 @@ public class UserAjaxController extends AbstractUserController {
     }
 
     @PostMapping("/profile")
-    public void refresh(User user) {
+    public void refresh(@Valid User user) {
         refresh(user, user.getId());
     }
 
     @Override
     @PostMapping("/registration")
-    public void register(User user) {
+    public void register(@Valid User user) {
         super.register(user);
     }
 }

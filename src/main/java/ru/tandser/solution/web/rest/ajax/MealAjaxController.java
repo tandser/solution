@@ -5,6 +5,7 @@ import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.dto.MealWithExcess;
 import ru.tandser.solution.web.controller.AbstractMealController;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class MealAjaxController extends AbstractMealController {
     }
 
     @PostMapping
-    public void saveOrUpdate(Meal meal) {
+    public void saveOrUpdate(@Valid Meal meal) {
         if (meal.isNew()) {
             save(meal);
         } else {
