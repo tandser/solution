@@ -1,8 +1,5 @@
-var modalRegistration = $("#modalWindowRegistration"), formRegistration = $("#formInModalWindowRegistration");
-
-$(document).ajaxError(function (event, jqXHR, options, jsExc) {
-    errorNoty(event, jqXHR, options, jsExc, "error", 1000)
-});
+var modalRegistration = $("#modalWindowRegistration"),
+    formRegistration  = $("#formInModalWindowRegistration");
 
 function registration() {
     formRegistration[0].reset();

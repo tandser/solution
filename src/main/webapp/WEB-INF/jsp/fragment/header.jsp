@@ -10,8 +10,8 @@
 
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
+        <jsp:include page="lang.jsp"/>
         <div class="collapse navbar-collapse">
-            <jsp:include page="lang.jsp"/>
             <form:form action="logout" class="navbar-form navbar-right" method="post">
                 <sec:authorize access="isAuthenticated()">
                     <sec:authorize access="hasRole('ROLE_ADMIN')">

@@ -33,8 +33,8 @@
     <body>
         <nav class="navbar navbar-fixed-top navbar-inverse">
             <div class="container">
+                <jsp:include page="fragment/lang.jsp"/>
                 <div class="collapse navbar-collapse">
-                    <jsp:include page="fragment/lang.jsp"/>
                     <form:form action="spring_security_check" class="navbar-form navbar-right" method="post">
                         <div class="form-group">
                             <input class="form-control" name="username" placeholder="${i18n_users_email}" type="text"/>
@@ -50,7 +50,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h1>${i18n_title}</h1>
-                <p>${i18n_welcome}</p>
+                <p class="text-justify">${i18n_welcome}</p>
                 <p><a class="btn btn-lg btn-primary" onclick="registration()">${i18n_users_create}</a></p>
             </div>
         </div>
@@ -122,6 +122,6 @@
         i18n["error"]     = "${i18n_error}";
         i18n["gratitude"] = "${i18n_gratitude}";
     </script>
-    <script type="text/javascript" src="resources/js/noty.js"></script>
+    <script type="text/javascript" src="resources/js/main.js"></script>
     <script type="text/javascript" src="resources/js/login.js"></script>
 </html>
