@@ -16,8 +16,8 @@
 
 | Права | Логин               | Пароль  |
 |:-----:|:-------------------:|:-------:|
-| ADMIN | l.douglas@gmail.com | Mr01LRc |
-| USER  | s.welch@gmail.com   | Izhyw29 |
+| ADMIN | `l.douglas@gmail.com` | `Mr01LRc` |
+| USER  | `s.welch@gmail.com`   | `Izhyw29` |
 
 
 ## Конфигурация базы данных
