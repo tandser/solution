@@ -14,7 +14,10 @@
 
 Для входа в приложение воспользуйтесь аккаунтами тестовых персонажей или зарегистрируйтесь.
 
-<tt>asdfasdfwefasdf</tt>
+```
+    admin : l.douglas@gmail.com : Mr01LRc
+    user  : s.welch@gmail.com   : Izhyw29
+```
 
 <table border="0">
     <tr>
