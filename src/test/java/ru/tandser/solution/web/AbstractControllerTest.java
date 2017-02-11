@@ -3,6 +3,7 @@ package ru.tandser.solution.web;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -23,6 +24,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 import static ru.tandser.solution.UserTestData.admin;
 import static ru.tandser.solution.UserTestData.user;
 
+@ActiveProfiles("localhost")
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/repository.xml", "classpath:spring/service.xml", "classpath:spring/web.xml", "classpath:spring/security.xml"})
