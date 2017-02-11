@@ -50,7 +50,7 @@
         <th>Описание</th>
     </tr>
     <tr>
-        <td>/rest/users</td>
+        <td><tt>/rest/users</tt></td>
         <td>GET</td>
         <td>ADMIN</td>
         <td>Извлечение всех пользователей</td>
