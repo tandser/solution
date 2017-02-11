@@ -56,12 +56,6 @@
         <td>Извлечение всех пользователей</td>
     </tr>
     <tr>
-        <td>/rest/users/{id}</td>
-        <td>GET</td>
-        <td>ADMIN</td>
-        <td>Извлечение пользователя с указанным идентификатором</td>
-    </tr>
-    <tr>
         <td>/rest/users</td>
         <td>POST</td>
         <td>ADMIN</td>
@@ -69,8 +63,26 @@
     </tr>
     <tr>
         <td>/rest/users/{id}</td>
+        <td>GET</td>
+        <td>ADMIN</td>
+        <td>Извлечение пользователя с указанным идентификатором</td>
+    </tr>
+    <tr>
+        <td>/rest/users/{id}</td>
         <td>PUT</td>
         <td>ADMIN</td>
         <td>Обновление существующего пользователя с указанным идентификатором</td>
+    </tr>
+    <tr>
+        <td>/rest/users/by?email=</td>
+        <td>GET</td>
+        <td>ADMIN</td>
+        <td>Извлечение пользователя с указанным адресом электронной почты</td>
+    </tr>
+    <tr>
+        <td>/rest/users/toggle/{id}?state=</td>
+        <td>PUT</td>
+        <td>ADMIN</td>
+        <td></td>
     </tr>
 </table>
