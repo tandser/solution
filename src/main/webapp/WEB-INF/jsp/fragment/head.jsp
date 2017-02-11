@@ -8,9 +8,9 @@
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>${i18n_calorieDiary}</title>
 <base href="${pageContext.request.contextPath}/"/>
-<link rel="shortcut icon" type="image/png" href="resources/image/pie-chart16.png" sizes="16x16"/>
-<link rel="shortcut icon" type="image/png" href="resources/image/pie-chart24.png" sizes="24x24"/>
-<link rel="shortcut icon" type="image/png" href="resources/image/pie-chart32.png" sizes="32x32"/>
+<link rel="icon" type="image/png" href="resources/image/pie-chart16.png" sizes="16x16"/>
+<link rel="icon" type="image/png" href="resources/image/pie-chart24.png" sizes="24x24"/>
+<link rel="icon" type="image/png" href="resources/image/pie-chart32.png" sizes="32x32"/>
 <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="webjars/bootstrap-select/1.12.0/css/bootstrap-select.min.css"/>
 <link rel="stylesheet" type="text/css" href="webjars/datatables/1.10.13/css/jquery.dataTables.min.css"/>
