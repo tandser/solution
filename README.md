@@ -78,7 +78,7 @@
         <td>Извлечение пользователя с указанным адресом электронной почты</td>
     </tr>
     <tr>
-        <td>/rest/users/toggle/{<i>id</i>}?state={<b>true</b>|<b>false</b>}</td>
+        <td>/rest/users/toggle/{<i>id</i>}?state={<i>true</i> | <i>false</i>}</td>
         <td>PUT</td>
         <td>ADMIN</td>
         <td></td>
