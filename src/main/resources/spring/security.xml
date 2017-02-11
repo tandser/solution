@@ -19,9 +19,12 @@
     </http>
 
     <http use-expressions="true">
-        <intercept-url pattern="/login" access="permitAll"/>
+        <intercept-url pattern="/login"                   access="permitAll"/>
+        <intercept-url pattern="/users"                   access="hasRole('ADMIN')"/>
         <intercept-url pattern="/ajax/users/registration" access="permitAll"/>
-        <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/ajax/users/profile"      access="isAuthenticated()"/>
+        <intercept-url pattern="/ajax/users/**"           access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/**"                      access="isAuthenticated()"/>
         <form-login login-page="/login"
                     login-processing-url="/spring_security_check"
                     default-target-url="/meals"
