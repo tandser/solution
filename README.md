@@ -42,7 +42,7 @@
 
 <table>
     <tr>
-        <th width="50%">URL</th>
+        <th width="30%">URL</th>
         <th>HTTP-метод</th>
         <th>Права</th>
         <th>Описание</th>
@@ -72,13 +72,13 @@
         <td>Обновление существующего пользователя с указанным идентификатором</td>
     </tr>
     <tr>
-        <td>/rest/users/by?email=</td>
+        <td>/rest/users/by?email={email}</td>
         <td>GET</td>
         <td>ADMIN</td>
         <td>Извлечение пользователя с указанным адресом электронной почты</td>
     </tr>
     <tr>
-        <td>/rest/users/toggle/{id}?state=</td>
+        <td>/rest/users/toggle/{id}?state={<b>true</b>, <b>false</b>}</td>
         <td>PUT</td>
         <td>ADMIN</td>
         <td></td>
