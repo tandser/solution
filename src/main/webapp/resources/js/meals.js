@@ -35,14 +35,16 @@ $(function () {
 
     $("#dateTime").datetimepicker({
         format: pattern,
-        locale: code
+        locale: code,
+        showClose: true
     });
 
     var from = $("#from");
 
     from.datetimepicker({
         format: pattern,
-        locale: code
+        locale: code,
+        showClose: true
     });
 
     var to = $("#to");
@@ -50,6 +52,7 @@ $(function () {
     to.datetimepicker({
         format: pattern,
         locale: code,
+        showClose: true,
         useCurrent: false
     });
 
