@@ -6,7 +6,7 @@
 
 Пример веб-приложения на популярном стеке технологий и инструментов Java Enterprise с авторизацией и правами доступа на основе ролей. Работа с приложением реализована через веб-интерфейс с применением Ajax, а также по REST в формате JSON. Весь функционал приложения покрывается JUnit-тестами.
 
-Проект разработан на Java 8 с использованием следующих фреймворков и инструментов:
+Приложение разработано на Java 8 с использованием следующих фреймворков и инструментов:
 
 [Maven](https://maven.apache.org/), [Spring Framework](http://projects.spring.io/spring-framework/), [Spring Data JPA](http://projects.spring.io/spring-data-jpa/), [Spring Security](http://projects.spring.io/spring-security/), [Hibernate ORM](http://hibernate.org/orm/), [Hibernate Validator](http://hibernate.org/validator/), [Apache Tomcat](http://tomcat.apache.org/), [PostgreSQL](https://www.postgresql.org/), [SLF4J](https://www.slf4j.org/), [Logback](https://logback.qos.ch/), [JSP](https://jcp.org/aboutJava/communityprocess/final/jsr245/index.html), [Jackson](https://github.com/FasterXML/jackson), [JUnit](http://junit.org/junit4/), JavaScript, [JQuery](https://jquery.com/) + plugins, [Bootstrap](http://getbootstrap.com/)
 
@@ -14,7 +14,7 @@
 
 Для входа в приложение воспользуйтесь аккаунтами тестовых персонажей или зарегистрируйтесь.
 
-<table>
+<table border="0">
     <tr>
         <th>Права</th>
         <th>Логин</th>
