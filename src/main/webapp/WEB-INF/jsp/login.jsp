@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse">
                     <form:form action="spring_security_check" class="navbar-form navbar-right" method="post">
                         <div class="form-group">
-                            <input class="form-control" name="username" placeholder="${i18n_users_email}" type="text"/>
+                            <input class="form-control" name="username" placeholder="${i18n_users_email}" type="email"/>
                         </div>
                         <div class="form-group">
                             <input class="form-control" name="password" placeholder="${i18n_users_password}" type="password"/>
