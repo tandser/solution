@@ -77,13 +77,13 @@ function updateTableData(data) {
 }
 
 function updateButton(data, type, row) {
-    if (type == "display") {
+    if (type === "display") {
         return "<a class=\"btn btn-primary btn-xs\" onclick=\"update(" + row.id + ")\">" + i18n["edit"] + "</a>";
     }
 }
 
 function removeButton(data, type, row) {
-    if (type == "display") {
+    if (type === "display") {
         return "<a class=\"btn btn-danger btn-xs\" onclick=\"remove(" + row.id + ")\">" + i18n["remove"] + "</a>";
     }
 }

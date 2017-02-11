@@ -7,7 +7,7 @@ $(function () {
             }, {
                 "data": "email",
                 "render": function (data, type, row) {
-                    if (type == "display") {
+                    if (type === "display") {
                         return "<a href=\"mailto:" + data + "\">" + data + "</a>";
                     }
                     return data;
@@ -15,7 +15,7 @@ $(function () {
             }, {
                 "data": "created",
                 "render": function (data, type, row) {
-                    if (type == "display") {
+                    if (type === "display") {
                         return data.replace("T", " ").substring(0, 16);
                     }
                     return data;
@@ -25,7 +25,7 @@ $(function () {
             }, {
                 "data": "enabled",
                 "render": function (data, type, row) {
-                    if (type == "display") {
+                    if (type === "display") {
                         return "<input type=\"checkbox\" onclick=\"toggle($(this), " + row.id + ")\"" + (data ? " checked" : "") + "/>";
                     }
                     return data;
