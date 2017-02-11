@@ -46,9 +46,13 @@
     <tr>
         <th>URL</th>
         <th>HTTP-метод</th>
+        <th>Права</th>
         <th>Описание</th>
     </tr>
-    <th>
-        <td></td>
-    </th>
+    <tr>
+        <td>/rest/users</td>
+        <td>GET</td>
+        <td>ADMIN</td>
+        <td>Извлечение всех пользователей</td>
+    </tr>
 </table>
