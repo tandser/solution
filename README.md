@@ -19,19 +19,18 @@
         <th>Права</th>
         <th>Логин</th>
         <th>Пароль</th>
-    <tr>
     </tr>
+    <tr>
         <td>ADMIN</td>
-        <td>`l.douglas@gmail.com`</td>
-        <td>`Mr01LRc`</td>
+        <td>l.douglas@gmail.com</td>
+        <td>Mr01LRc</td>
+    </tr>
+    <tr>
+        <td>USER</td>
+        <td>s.welch@gmail.com/td>
+        <td>Izhyw29</td>
     </tr>
 </table>
-
-| Права | Логин               | Пароль  |
-|:-----:|:-------------------:|:-------:|
-| ADMIN | `l.douglas@gmail.com` | `Mr01LRc` |
-| USER  | `s.welch@gmail.com`   | `Izhyw29` |
-
 
 ## Конфигурация базы данных
 
