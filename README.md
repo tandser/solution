@@ -69,7 +69,13 @@
         <td>/rest/users/{<i>id</i>}</td>
         <td>PUT</td>
         <td>ADMIN</td>
-        <td>Обновление существующего пользователя с указанным идентификатором</td>
+        <td>Обновление пользователя с указанным идентификатором</td>
+    </tr>
+    <tr>
+        <td>/rest/users/{<i>id</i>}</td>
+        <td>DELETE</td>
+        <td>ADMIN</td>
+        <td>Удаление пользователя с указанным идентификатором</td>
     </tr>
     <tr>
         <td>/rest/users/by?email={<i>email</i>}</td>
@@ -81,6 +87,6 @@
         <td>/rest/users/toggle/{<i>id</i>}?state={<i>true</i> | <i>false</i>}</td>
         <td>PUT</td>
         <td>ADMIN</td>
-        <td></td>
+        <td>Активирование или деактивирование пользователя с указанным идентификатором</td>
     </tr>
 </table>
