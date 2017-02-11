@@ -27,7 +27,7 @@
     </tr>
     <tr>
         <td>USER</td>
-        <td>s.welch@gmail.com/td>
+        <td>s.welch@gmail.com</td>
         <td>Izhyw29</td>
     </tr>
 </table>
