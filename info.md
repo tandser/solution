@@ -1,4 +1,6 @@
-﻿<table>
+﻿Таблица 1 &#151; Тестовые персонажи
+
+<table>
     <tr>
         <th>Права</th>
         <th>Логин</th>
@@ -15,6 +17,8 @@
         <td>Izhyw29</td>
     </tr>
 </table>
+
+Таблица 2 &#151; REST-интерфейс
 
 <table>
     <tr>
@@ -39,31 +43,31 @@
         <td>GET</td>
         <td>admin</td>
         <td>/rest/users/{<em>id</em>}</td>
-        <td>Извлечь пользователя с указанным id</td>
+        <td>Извлечь пользователя с указанным <em>id</em></td>
     </tr>
     <tr>
         <td>PUT</td>
         <td>admin</td>
         <td>/rest/users/{<em>id</em>}</td>
-        <td>Обновить пользователя с указанным id</td>
+        <td>Обновить пользователя с указанным <em>id</em></td>
     </tr>
     <tr>
         <td>DELETE</td>
         <td>admin</td>
         <td>/rest/users/{<em>id</em>}</td>
-        <td>Удалить пользователя с указанным id</td>
+        <td>Удалить пользователя с указанным <em>id</em></td>
     </tr>
     <tr>
         <td>GET</td>
         <td>amidn</td>
         <td>/rest/users/by?email={<em>email</em>}</td>
-        <td>Извлечь пользователя с указанным email</td>
+        <td>Извлечь пользователя с указанным <em>email</em></td>
     </tr>
     <tr>
         <td>PUT</td>
         <td>admin</td>
-        <td>/rest/users/toggle/{id}?state={<em>true</em> | <em>false</em>}</td>
-        <td>Включить или выключить пользователя с указанным id</td>
+        <td>/rest/users/toggle/{<em>id</em>}?state={<em>true</em> | <em>false</em>}</td>
+        <td>Включить или выключить пользователя с указанным <em>id</em></td>
     </tr>
     <tr>
         <td>GET</td>
@@ -81,24 +85,24 @@
         <td>GET</td>
         <td>admin, user</td>
         <td>/rest/meals/{<em>id</em>}</td>
-        <td>Извлечь запись авторизированного пользователя о приёме пищи с указанным id</td>
+        <td>Извлечь запись авторизированного пользователя о приёме пищи с указанным <em>id</em></td>
     </tr>
     <tr>
         <td>PUT</td>
         <td>admin, user</td>
         <td>/rest/meals/{<em>id</em>}</td>
-        <td>Обновить запись авторизированного пользователя о приёме пищи с указанным id</td>
+        <td>Обновить запись авторизированного пользователя о приёме пищи с указанным <em>id</em></td>
     </tr>
     <tr>
         <td>DELETE</td>
         <td>admin, user</td>
         <td>/rest/meals/{<em>id</em>}</td>
-        <td>Удалить запись авторизированного пользователя о приёме пищи с указанным id</td>
+        <td>Удалить запись авторизированного пользователя о приёме пищи с указанным <em>id</em></td>
     </tr>
     <tr>
         <td>GET</td>
         <td>admin, user</td>
         <td>/rest/meals/between?from={<em>from</em>}&to={<em>to</em>}</td>
-        <td>Извлечь записи авторизированного пользователя о приёме пищи между from и to, где from и to в формате ISO-8601 yyyy-MM-ddTHH:mm</td>
+        <td>Извлечь записи авторизированного пользователя о приёме пищи в промежутке между моментами времени, где <em>from</em> и <em>to</em> в формате ISO-8601 yyyy-MM-ddTHH:mm</td>
     </tr>
 </table>
