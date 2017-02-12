@@ -62,7 +62,7 @@
     <tr>
         <td>PUT</td>
         <td>admin</td>
-        <td>/rest/users/toggle/{id}?state={<em>true</em>|<em>false</em>}</td>
+        <td>/rest/users/toggle/{id}?state={<em>true</em> | <em>false</em>}</td>
         <td>Включить или выключить пользователя с указанным id</td>
     </tr>
     <tr>
