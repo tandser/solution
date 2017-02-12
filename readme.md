@@ -8,11 +8,11 @@
 
 Приложение разработано на Java 8 с использованием следующих фреймворков и инструментов:
 
-[Maven](https://maven.apache.org/), [Spring Framework](http://projects.spring.io/spring-framework/), [Spring Data JPA](http://projects.spring.io/spring-data-jpa/), [Spring Security](http://projects.spring.io/spring-security/), [Hibernate ORM](http://hibernate.org/orm/), [Hibernate Validator](http://hibernate.org/validator/), [Apache Tomcat](http://tomcat.apache.org/), [PostgreSQL](https://www.postgresql.org/), [SLF4J](https://www.slf4j.org/), [Logback](https://logback.qos.ch/), [JSP](https://jcp.org/aboutJava/communityprocess/final/jsr245/index.html), [Jackson](https://github.com/FasterXML/jackson), [JUnit](http://junit.org/junit4/), JavaScript, [JQuery](https://jquery.com/) + plugins, [Bootstrap](http://getbootstrap.com/)
+[*Maven*](https://maven.apache.org/), [*Spring Framework*](http://projects.spring.io/spring-framework/), [*Spring Data JPA*](http://projects.spring.io/spring-data-jpa/), [*Spring Security*](http://projects.spring.io/spring-security/), [*Hibernate ORM*](http://hibernate.org/orm/), [*Hibernate Validator*](http://hibernate.org/validator/), [*Apache Tomcat*](http://tomcat.apache.org/), [*PostgreSQL*](https://www.postgresql.org/), [*SLF4J*](https://www.slf4j.org/), [*Logback*](https://logback.qos.ch/), [*JSP*](https://jcp.org/aboutJava/communityprocess/final/jsr245/index.html), [*Jackson*](https://github.com/FasterXML/jackson), [*JUnit*](http://junit.org/junit4/), *JavaScript*, [*JQuery*](https://jquery.com/) + plugins, [*Bootstrap*](http://getbootstrap.com/)
 
 Демонстрация приложения доступна в облаке по адресу <http://tandser.herokuapp.com>. Как правило, старт приложения занимает не больше минуты, &#151; это время необходимо [Heroku](https://www.heroku.com/), чтобы развернуть приложение на сервере. Если при первом обращении приложение оказалось недоступным, повторите попытку.
 
-Для входа в приложение воспользуйтесь аккаунтами тестовых персонажей (см. [info.txt]()) или зарегистрируйтесь.
+Для входа в приложение воспользуйтесь аккаунтами тестовых персонажей (см. [info.html](https://github.com/tandser/solution/info.html)) или зарегистрируйтесь.
 
 ## Конфигурация базы данных
 
@@ -20,110 +20,4 @@
 
 ## Работа с REST-интерфейсом
 
-Доступ к веб-службе REST осуществляется через базовую авторизацию зарегистрированных в приложении пользователей. В следующей таблице отражена структура служб, которая включает поддерживаемые HTTP-методы и целевые URL для различных операций.
-
-```
-┌──────────────────────────────────────────────┬────────┬───────┬──────────────────────────────────────────────────────┐
-│ Ресурс                                       │ Метод  │ Права │ Описание                                             │
-├──────────────────────────────────────────────┼────────┼───────┼──────────────────────────────────────────────────────┤
-│ /rest/users                                  │ GET    │ admin │ Извлечение всех пользователей                        │
-├──────────────────────────────────────────────┼────────┼───────┼──────────────────────────────────────────────────────┤
-│ /rest/users                                  │ POST   │ admin │ Создание нового пользователя                         │
-├──────────────────────────────────────────────┼────────┼───────┼──────────────────────────────────────────────────────┤
-│ /rest/users/{id}                             │ GET    │ admin │ Извлечение пользователя с указанным id               │
-├──────────────────────────────────────────────┼────────┼───────┼──────────────────────────────────────────────────────┤
-│ /rest/users/{id}                             │ PUT    │ admin │ Обновление пользователя с указанным id               │
-├──────────────────────────────────────────────┼────────┼───────┼──────────────────────────────────────────────────────┤
-│ /rest/users/{id}                             │ DELETE │ admin │ Удаление пользователя с указанным id                 │
-├──────────────────────────────────────────────┼────────┼───────┼──────────────────────────────────────────────────────┤
-│ /rest/users/by?email={email}                 │ GET    │ admin │ Извлечение пользователя с указанным email            │
-├──────────────────────────────────────────────┼────────┼───────┼──────────────────────────────────────────────────────┤
-│ /rest/users/toggle/{id}?state={true | false} │ PUT    │ admin │ Включение или выключение пользователя с указанным id │
-```
-
-<table style="font-family: monospace;">
-    <tr>
-        <th width="40%">URL</th>
-        <th>HTTP-метод</th>
-        <th>Права</th>
-        <th>Описание</th>
-    </tr>
-    <tr>
-        <td>/rest/users</td>
-        <td>GET</td>
-        <td>ADMIN</td>
-        <td>Извлечение всех пользователей</td>
-    </tr>
-    <tr>
-        <td>/rest/users</td>
-        <td>POST</td>
-        <td>ADMIN</td>
-        <td>Создание нового пользователя</td>
-    </tr>
-    <tr>
-        <td>/rest/users/{<i>id</i>}</td>
-        <td>GET</td>
-        <td>ADMIN</td>
-        <td>Извлечение пользователя с указанным идентификатором</td>
-    </tr>
-    <tr>
-        <td>/rest/users/{<i>id</i>}</td>
-        <td>PUT</td>
-        <td>ADMIN</td>
-        <td>Обновление пользователя с указанным идентификатором</td>
-    </tr>
-    <tr>
-        <td>/rest/users/{<i>id</i>}</td>
-        <td>DELETE</td>
-        <td>ADMIN</td>
-        <td>Удаление пользователя с указанным идентификатором</td>
-    </tr>
-    <tr>
-        <td>/rest/users/by?email={<i>email</i>}</td>
-        <td>GET</td>
-        <td>ADMIN</td>
-        <td>Извлечение пользователя с указанным адресом электронной почты</td>
-    </tr>
-    <tr>
-        <td>/rest/users/toggle/{<i>id</i>}?state={<i>true</i> | <i>false</i>}</td>
-        <td>PUT</td>
-        <td>ADMIN</td>
-        <td>Активирование или деактивирование пользователя с указанным идентификатором</td>
-    </tr>
-    <tr>
-        <td>/rest/meals</td>
-        <td>GET</td>
-        <td>ADMIN, USER</td>
-        <td>Извлечение всех записей о приёмах пищи для авторизированного пользователя</td>
-    </tr>
-    <tr>
-        <td>/rest/meals</td>
-        <td>POST</td>
-        <td>ADMIN, USER</td>
-        <td>Создание новой записи о приёме пищи для авторизированного пользователя</td>
-    </tr>
-    <tr>
-        <td>/rest/meals/{<i>id</i>}</td>
-        <td>GET</td>
-        <td>ADMIN, USER</td>
-        <td>Извлечение записи о приёме пищи с указанным идентификатором для авторизированного пользователя</td>
-    </tr>
-    <tr>
-        <td>/rest/meals/{<i>id</i>}</td>
-        <td>PUT</td>
-        <td>ADMIN, USER</td>
-        <td>Обновление записи о приёме пищи с указанным идентификатором для авторизированного пользователя</td>
-    </tr>
-    <tr>
-        <td>/rest/meals/{<i>id</i>}</td>
-        <td>DELETE</td>
-        <td>ADMIN, USER</td>
-        <td>Удаление записи о приёме пищи с указанным идентификатором для авторизированного пользователя</td>
-    </tr>
-    <tr>
-        <td>/rest/meals/between?from={<i>from</i>}&to={<i>to</i>}</td>
-        <td>GET</td>
-        <td>ADMIN, USER</td>
-        <td></td>
-    </tr>
-</table>
+Доступ к веб-службе REST осуществляется через базовую авторизацию зарегистрированных в приложении пользователей. Смотрите таблицу в [info.html](https://github.com/tandser/solution/info.html), в которой отражена структура служб, которая включает поддерживаемые HTTP-методы и целевые URL для различных операций.
