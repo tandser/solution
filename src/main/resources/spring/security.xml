@@ -11,14 +11,14 @@
     <http pattern="/resources/**" security="none"/>
     <http pattern="/webjars/**"   security="none"/>
 
-    <http pattern="/rest/**" create-session="stateless" use-expressions="true">
+    <http pattern="/rest/**" create-session="stateless">
         <http-basic/>
         <intercept-url pattern="/rest/users/**" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/rest/meals/**" access="isAuthenticated()"/>
         <csrf disabled="true"/>
     </http>
 
-    <http use-expressions="true">
+    <http>
         <intercept-url pattern="/login"                   access="permitAll"/>
         <intercept-url pattern="/users"                   access="hasRole('ADMIN')"/>
         <intercept-url pattern="/ajax/users/registration" access="permitAll"/>
