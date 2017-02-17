@@ -2,7 +2,8 @@ package ru.tandser.solution.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.tandser.solution.repository.exc.ConflictException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import ru.tandser.solution.service.exc.NotFoundException;
 
 import static org.junit.Assert.assertTrue;
@@ -90,6 +91,12 @@ public class MealServiceTest extends AbstractServiceTest {
     }
 
     @Test
+    public void testSaveDuplicatedMeal() {
+        thrown.expect(DataIntegrityViolationException.class);
+        mealService.save(duplicatedMeal, user.getId());
+    }
+
+    @Test
     public void testUpdate() {
         mealService.update(updatedMeal, user.getId());
         assertTrue(MEAL_MATCHER.equals(updatedMeal, mealService.get(updatedMeal.getId(), user.getId())));
@@ -109,7 +116,7 @@ public class MealServiceTest extends AbstractServiceTest {
 
     @Test
     public void testUpdateConflictedMeal() {
-        thrown.expect(ConflictException.class);
+        thrown.expect(ObjectOptimisticLockingFailureException.class);
         mealService.update(conflictedMeal, user.getId());
     }
 }

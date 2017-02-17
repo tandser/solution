@@ -2,10 +2,10 @@ package ru.tandser.solution.repository.datajpa;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import ru.tandser.solution.repository.AbstractRepositoryTest;
 import ru.tandser.solution.repository.UserRepository;
-import ru.tandser.solution.repository.exc.ConflictException;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Arrays;
@@ -72,13 +72,13 @@ public class DataJpaUserRepositoryTest extends AbstractRepositoryTest {
 
     @Test
     public void testPutConflictedUser() {
-        thrown.expect(ConflictException.class);
+        thrown.expect(ObjectOptimisticLockingFailureException.class);
         userRepository.put(conflictedUser);
     }
 
     @Test
     public void testPutDuplicatedUser() {
-        thrown.expect(DataAccessException.class);
+        thrown.expect(DataIntegrityViolationException.class);
         userRepository.put(duplicatedUser);
     }
 

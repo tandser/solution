@@ -44,7 +44,8 @@ public class UserRestControllerTest extends AbstractControllerTest {
                 .andExpect(USER_MATCHER.contentMatcher(user));
 
         mockMvc.perform(get(REST_PATH + nonExistentUser.getId()).with(adminAccount))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
     }
 
     @Test
@@ -69,7 +70,8 @@ public class UserRestControllerTest extends AbstractControllerTest {
                 .andExpect(USER_MATCHER.contentMatcher(user));
 
         mockMvc.perform(get(REST_PATH + "by?email=" + nonExistentUser.getEmail()).with(adminAccount))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
     }
 
     @Test
@@ -87,7 +89,8 @@ public class UserRestControllerTest extends AbstractControllerTest {
         assertTrue(MEAL_MATCHER.equals(reverseOrderMeals, returned.getMeals()));
 
         mockMvc.perform(get(REST_PATH + "details/" + nonExistentUser.getId()).with(adminAccount))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
     }
 
     @Test
@@ -101,7 +104,8 @@ public class UserRestControllerTest extends AbstractControllerTest {
         assertTrue(USER_MATCHER.equals(Collections.singletonList(admin), userService.getAll()));
 
         mockMvc.perform(delete(REST_PATH + nonExistentUser.getId()).with(adminAccount))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
     }
 
     @Test
@@ -125,7 +129,14 @@ public class UserRestControllerTest extends AbstractControllerTest {
         mockMvc.perform(post(REST_PATH).with(adminAccount)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(JsonConverter.toJson(updatedUser)))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
+
+        mockMvc.perform(post(REST_PATH).with(adminAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(duplicatedUser)))
+                .andExpect(status().isConflict())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
     }
 
     @Test
@@ -145,17 +156,20 @@ public class UserRestControllerTest extends AbstractControllerTest {
         mockMvc.perform(put(REST_PATH + nonExistentUser.getId()).with(adminAccount)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(JsonConverter.toJson(nonExistentUser)))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
 
         mockMvc.perform(put(REST_PATH + updatedUser.getId()).with(adminAccount)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(JsonConverter.toJson(nonExistentUser)))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
 
         mockMvc.perform(put(REST_PATH + conflictedUser.getId()).with(adminAccount)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(JsonConverter.toJson(conflictedUser)))
-                .andExpect(status().isConflict());
+                .andExpect(status().isConflict())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
     }
 
     @Test
@@ -171,7 +185,8 @@ public class UserRestControllerTest extends AbstractControllerTest {
         assertTrue(userService.get(user.getId()).getEnabled());
 
         mockMvc.perform(put(REST_PATH + "toggle/" + nonExistentUser.getId() + "?state=false").with(adminAccount))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
 
         mockMvc.perform(put(REST_PATH + "toggle/" + user.getId() + "?state=false").with(userAccount))
                 .andExpect(status().isForbidden());

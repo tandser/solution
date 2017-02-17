@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tandser.solution.domain.Meal;
 import ru.tandser.solution.repository.MealRepository;
-import ru.tandser.solution.repository.exc.ConflictException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -60,13 +59,8 @@ public class DataJpaMealRepositoryImpl implements MealRepository {
             return null;
         }
 
-        if (!meal.isNew()) {
-            Meal last = get(meal.getId(), userId);
-            if (last == null) {
-                return null;
-            } else if (meal.getVersion() != last.getVersion()) {
-                throw new ConflictException();
-            }
+        if (!meal.isNew() && get(meal.getId(), userId) == null) {
+            return null;
         }
 
         meal.setUser(userRepository.getOne(userId));

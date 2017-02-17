@@ -2,7 +2,8 @@ package ru.tandser.solution.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.tandser.solution.repository.exc.ConflictException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import ru.tandser.solution.service.exc.NotFoundException;
 
 import java.util.Arrays;
@@ -81,6 +82,12 @@ public class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
+    public void testSaveDuplicatedUser() {
+        thrown.expect(DataIntegrityViolationException.class);
+        userService.save(duplicatedUser);
+    }
+
+    @Test
     public void testUpdate() {
         userService.update(updatedUser);
         assertTrue(USER_MATCHER.equals(updatedUser, userService.get(updatedUser.getId())));
@@ -94,7 +101,7 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void testUpdateConflictedUser() {
-        thrown.expect(ConflictException.class);
+        thrown.expect(ObjectOptimisticLockingFailureException.class);
         userService.update(conflictedUser);
     }
 

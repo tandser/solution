@@ -39,7 +39,8 @@ public class MealRestControllerTest extends AbstractControllerTest {
                 .andExpect(MEAL_MATCHER.contentMatcher(existingMeal));
 
         mockMvc.perform(get(REST_PATH + nonExistentMeal.getId()).with(userAccount))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
     }
 
     @Test
@@ -64,7 +65,8 @@ public class MealRestControllerTest extends AbstractControllerTest {
                 .andExpect(MEAL_WITH_EXCESS_MATCHER.contentMatcher(betweenMealsWithExcess));
 
         mockMvc.perform(get(REST_PATH + "between?from=" + "&to=").with(userAccount))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
     }
 
     @Test
@@ -78,7 +80,8 @@ public class MealRestControllerTest extends AbstractControllerTest {
         assertTrue(MEAL_MATCHER.equals(updatedMeals, mealService.getAll(user.getId())));
 
         mockMvc.perform(delete(REST_PATH + nonExistentMeal.getId()).with(userAccount))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
     }
 
     @Test
@@ -102,7 +105,14 @@ public class MealRestControllerTest extends AbstractControllerTest {
         mockMvc.perform(post(REST_PATH).with(userAccount)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(JsonConverter.toJson(updatedMeal)))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
+
+        mockMvc.perform(post(REST_PATH).with(userAccount)
+                .contentType(APPLICATION_JSON_VALUE)
+                .content(JsonConverter.toJson(duplicatedMeal)))
+                .andExpect(status().isConflict())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
     }
 
     @Test
@@ -122,16 +132,19 @@ public class MealRestControllerTest extends AbstractControllerTest {
         mockMvc.perform(put(REST_PATH + nonExistentMeal.getId()).with(userAccount)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(JsonConverter.toJson(nonExistentMeal)))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
 
         mockMvc.perform(put(REST_PATH + updatedMeal.getId()).with(userAccount)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(JsonConverter.toJson(nonExistentMeal)))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
 
         mockMvc.perform(put(REST_PATH + conflictedMeal.getId()).with(userAccount)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(JsonConverter.toJson(conflictedMeal)))
-                .andExpect(status().isConflict());
+                .andExpect(status().isConflict())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8));
     }
 }

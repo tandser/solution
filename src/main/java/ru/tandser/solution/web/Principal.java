@@ -19,7 +19,10 @@ public class Principal extends org.springframework.security.core.userdetails.Use
     }
 
     public static Principal get() {
-        return (Principal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return principal instanceof Principal
+                ? (Principal) principal
+                : null;
     }
 
     public int getId() {

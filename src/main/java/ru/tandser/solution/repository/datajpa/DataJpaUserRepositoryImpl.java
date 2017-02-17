@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tandser.solution.domain.User;
 import ru.tandser.solution.repository.UserRepository;
-import ru.tandser.solution.repository.exc.ConflictException;
 
 import java.util.List;
 
@@ -48,13 +47,8 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     @Override
     @Transactional
     public User put(User user) {
-        if (!user.isNew()) {
-            User last = get(user.getId());
-            if (last == null) {
-                return null;
-            } else if (user.getVersion() != last.getVersion()) {
-                throw new ConflictException();
-            }
+        if (!user.isNew() && get(user.getId()) == null) {
+            return null;
         }
 
         return userRepository.save(user);
