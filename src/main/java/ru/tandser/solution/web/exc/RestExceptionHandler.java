@@ -3,6 +3,8 @@ package ru.tandser.solution.web.exc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
@@ -14,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import static org.slf4j.event.Level.ERROR;
 import static org.slf4j.event.Level.WARN;
+import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
+import static org.springframework.core.Ordered.LOWEST_PRECEDENCE;
+import static org.springframework.http.HttpStatus.*;
 
 @ControllerAdvice(annotations = RestController.class)
 public class RestExceptionHandler {
@@ -33,35 +38,40 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(NotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @Order(HIGHEST_PRECEDENCE)
+    @ResponseStatus(NOT_FOUND)
     @ResponseBody
     public ErrorInfo catchException(HttpServletRequest req, NotFoundException exc) {
         return logAndGetErrorInfo(req, exc, WARN);
     }
 
     @ExceptionHandler(BadRequestException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @Order(HIGHEST_PRECEDENCE)
+    @ResponseStatus(BAD_REQUEST)
     @ResponseBody
     public ErrorInfo catchException(HttpServletRequest req, BadRequestException exc) {
         return logAndGetErrorInfo(req, exc, WARN);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
+    @Order(HIGHEST_PRECEDENCE)
+    @ResponseStatus(CONFLICT)
     @ResponseBody
     public ErrorInfo catchException(HttpServletRequest req, DataIntegrityViolationException exc) {
         return logAndGetErrorInfo(req, exc, WARN);
     }
 
     @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
+    @Order(HIGHEST_PRECEDENCE)
+    @ResponseStatus(CONFLICT)
     @ResponseBody
     public ErrorInfo catchException(HttpServletRequest req, ObjectOptimisticLockingFailureException exc) {
         return logAndGetErrorInfo(req, exc, WARN);
     }
 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @Order(LOWEST_PRECEDENCE)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorInfo catchException(HttpServletRequest req, Exception exc) {
         return logAndGetErrorInfo(req, exc, ERROR);
