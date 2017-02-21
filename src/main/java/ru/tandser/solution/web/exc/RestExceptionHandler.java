@@ -3,10 +3,8 @@ package ru.tandser.solution.web.exc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.web.bind.annotation.*;
 import ru.tandser.solution.service.exc.NotFoundException;
@@ -17,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import static org.slf4j.event.Level.ERROR;
 import static org.slf4j.event.Level.WARN;
 import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
-import static org.springframework.core.Ordered.LOWEST_PRECEDENCE;
 import static org.springframework.http.HttpStatus.*;
 
 @ControllerAdvice(annotations = RestController.class)
@@ -38,7 +35,6 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(NotFoundException.class)
-    @Order(HIGHEST_PRECEDENCE)
     @ResponseStatus(NOT_FOUND)
     @ResponseBody
     public ErrorInfo catchException(HttpServletRequest req, NotFoundException exc) {
@@ -46,7 +42,6 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(BadRequestException.class)
-    @Order(HIGHEST_PRECEDENCE)
     @ResponseStatus(BAD_REQUEST)
     @ResponseBody
     public ErrorInfo catchException(HttpServletRequest req, BadRequestException exc) {
@@ -54,7 +49,6 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    @Order(HIGHEST_PRECEDENCE)
     @ResponseStatus(CONFLICT)
     @ResponseBody
     public ErrorInfo catchException(HttpServletRequest req, DataIntegrityViolationException exc) {
@@ -62,7 +56,6 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
-    @Order(HIGHEST_PRECEDENCE)
     @ResponseStatus(CONFLICT)
     @ResponseBody
     public ErrorInfo catchException(HttpServletRequest req, ObjectOptimisticLockingFailureException exc) {
@@ -70,7 +63,6 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    @Order(LOWEST_PRECEDENCE)
     @ResponseStatus(INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorInfo catchException(HttpServletRequest req, Exception exc) {
