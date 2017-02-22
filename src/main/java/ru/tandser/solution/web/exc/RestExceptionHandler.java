@@ -3,7 +3,6 @@ package ru.tandser.solution.web.exc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
-import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import static org.slf4j.event.Level.ERROR;
 import static org.slf4j.event.Level.WARN;
-import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 import static org.springframework.http.HttpStatus.*;
 
 @ControllerAdvice(annotations = RestController.class)
