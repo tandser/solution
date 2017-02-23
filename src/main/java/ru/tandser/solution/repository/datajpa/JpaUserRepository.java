@@ -16,10 +16,10 @@ public interface JpaUserRepository extends JpaRepository<User, Integer> {
 
     @EntityGraph(User.WITH_MEALS)
     @Query("SELECT u FROM User AS u WHERE u.id = ?1")
-    User findOneWithMeals(Integer id);
+    User findOneWithMeals(int id);
 
     @Transactional
-    List<User> removeById(Integer id);
+    List<User> removeById(int id);
 
     @Transactional
     @Modifying

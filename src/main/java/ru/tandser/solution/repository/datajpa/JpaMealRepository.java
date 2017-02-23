@@ -10,12 +10,12 @@ import java.util.List;
 @Transactional(readOnly = true)
 public interface JpaMealRepository extends JpaRepository<Meal, Integer> {
 
-    Meal findOneByIdAndUserId(Integer id, Integer userId);
+    Meal findOneByIdAndUserId(int id, int userId);
 
-    List<Meal> findAllByUserId(Integer userId);
+    List<Meal> findAllByUserId(int userId);
 
-    List<Meal> findByUserIdAndDateTimeBetween(Integer userId, LocalDateTime from, LocalDateTime to);
+    List<Meal> findByUserIdAndDateTimeBetween(int userId, LocalDateTime from, LocalDateTime to);
 
     @Transactional
-    List<Meal> removeByIdAndUserId(Integer id, Integer userId);
+    List<Meal> removeByIdAndUserId(int id, int userId);
 }
