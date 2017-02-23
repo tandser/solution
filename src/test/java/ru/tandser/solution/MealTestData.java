@@ -50,7 +50,7 @@ public class MealTestData {
     private MealTestData() {}
 
     public static void loadMocks() throws Exception {
-        List<Meal> mocks = JsonConverter.fromJsonToList(ResourceUtils.getFile("classpath:mocks/meals.json"), Meal.class);
+        List<Meal> mocks = JsonConverter.fromJsonToList(ResourceUtils.getFile("classpath:mock/meals.json"), Meal.class);
 
         meals                  = mocks.subList(0, 12);
         betweenMeals           = mocks.subList(0, 6);

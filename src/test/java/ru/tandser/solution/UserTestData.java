@@ -32,7 +32,7 @@ public class UserTestData {
     private UserTestData() {}
 
     public static void loadMocks() throws Exception {
-        Iterator<User> mocks = JsonConverter.fromJsonToList(ResourceUtils.getFile("classpath:mocks/users.json"), User.class).iterator();
+        Iterator<User> mocks = JsonConverter.fromJsonToList(ResourceUtils.getFile("classpath:mock/users.json"), User.class).iterator();
 
         admin                     = mocks.next();
         user                      = mocks.next();
