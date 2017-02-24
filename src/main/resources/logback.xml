@@ -8,8 +8,7 @@
         </encoder>
     </appender>
 
-    <logger name="ru.tandser.solution"          level="degub"/>
-    <logger name="org.springframework.security" level="degub"/>
+    <logger name="ru.tandser.solution" level="debug"/>
 
     <root level="info">
         <appender-ref ref="console"/>
