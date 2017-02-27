@@ -19,9 +19,9 @@
     </http>
 
     <http>
-        <intercept-url pattern="/login"                   access="permitAll"/>
+        <intercept-url pattern="/login"                   access="isAnonymous()"/>
         <intercept-url pattern="/users"                   access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/ajax/users/registration" access="permitAll"/>
+        <intercept-url pattern="/ajax/users/registration" access="isAnonymous()"/>
         <intercept-url pattern="/ajax/users/profile"      access="isAuthenticated()"/>
         <intercept-url pattern="/ajax/users/**"           access="hasRole('ADMIN')"/>
         <intercept-url pattern="/**"                      access="isAuthenticated()"/>
