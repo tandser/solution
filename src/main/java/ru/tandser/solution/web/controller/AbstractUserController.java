@@ -63,7 +63,7 @@ public abstract class AbstractUserController {
     public void update(User user, int id) {
         requireConsistency(user, id);
         Principal principal = Principal.get();
-        log.info("{}: .update({})", principal.getUsername(), user);
+        log.info("{}: .update({}, {})", principal.getUsername(), user, id);
         userService.update(user);
     }
 
